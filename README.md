@@ -72,7 +72,7 @@ $ ./pickomino.out
     - Gestion des boucles d'un tour
 
       > - [ ] Vérifier si plus aucun 🎲 n'est disponible (tous retenus ?)
-      > - [ ] Le joueur continue de lancé les 🎲 non retenus
+      > - [ ] Le joueur continue de lancer les 🎲 non retenus
 
     - Déclencheur de fin du tour d'un joueur
 
@@ -82,18 +82,18 @@ $ ./pickomino.out
     - Vérification d'un tour
 
       > - [ ] Le score total des 🎲 est compris entre 21 et 36.
-      > - [ ] Le pickomino de la valeur total des 🎲 est visble (partout dans le jeu)
-      > - [ ] Si le pickomino n'est pas visible, faire une exeption si le pickomino suivant de valeur inférieur est visible (uniquement sur la brochette)
+      > - [ ] Le pickomino de la valeur total des 🎲 est visible (partout dans le jeu)
+      > - [ ] Si le pickomino n'est pas visible, faire une exception si le pickomino suivant de valeur inférieur est visible (uniquement sur la brochette)
       > - [ ] Toutes les vérification précédente sont fausse alors le lancé est nul
 
-    - Evénement si tour nul
+    - Événement si tour nul
 
       > - [ ] Le sommet de la pile du joueur retourne sur la brochette (si non vide)
 
     - Lorsque qu'un pickomino est remis sur la brochette par un joueur
 
       > - [ ] Vérifier si le pickomino remis est d'une valeur supérieur au max visible sur la brochette.
-      > - [ ] Si faux, alors le pickomino de valeur max de la brochette se retourne face caché.
+      > - [ ] Si faux, alors le pickomino de valeur max de la brochette se retourne face cachée.
 
     - Déclencheur de fin de partie
 
@@ -122,14 +122,14 @@ $ ./pickomino.out
 
   - v2.0.0 :
 
-    - Auto-limites des lancés des 🎲 de 🤖
+    - Auto-limites des lancers des 🎲 de 🤖
 
       > - [ ] Fin du tour si la valeur total est égal à un pickomino visible
       > - [ ] Fin du tour si le pickomino suivant de valeur inférieur est visible (uniquement sur la brochette)
 
     - Choix des valeurs retenus des 🎲 par 🤖
 
-      > - [ ] Garde les 🎲 où il y a le plus d'occurance hors exception
+      > - [ ] Garde les 🎲 où il y a le plus d'occurrence hors exception
       > - [ ] Garde les 🎲 supérieur à 3 hors exception
       > - [ ] Garde les 🎲 face 🪱 obligatoirement au 3 lancé
 
@@ -141,16 +141,16 @@ $ ./pickomino.out
 
     - Choix du mode de 🤖
 
-      > - [ ] Le mode de l'IA developpé en 2.0 est assigné au mode 1
-      > - [ ] Le mode de l'IA developpé en 2.1 est assigné au mode 2
-      > - [ ] Le mode de 🤖 est définit aléatoirement lors du lancement de la partie.
+      > - [ ] Le mode de l'IA développé en 2.0 est assigné au mode 1
+      > - [ ] Le mode de l'IA développé en 2.1 est assigné au mode 2
+      > - [ ] Le mode de 🤖 est définie aléatoirement lors du lancement de la partie.
 
-    - Auto-limites des lancés des 🎲 de 🤖
+    - Auto-limites des lancers des 🎲 de 🤖
 
       > - [ ] Fin du tour si la valeur total est égal à un pickomino visible sauf exception
       > - [ ] Fin du tour si le pickomino suivant de valeur inférieur est visible (uniquement sur la brochette)
 
-    - Exceptions des Auto-limites des lancés des 🎲 de 🤖
+    - Exceptions des Auto-limites des lancers des 🎲 de 🤖
 
       > - [ ] Le pickomino d'une valeur supérieur est visible
       > - [ ] Si le nombre de 🎲 non retenus est <=3
@@ -158,7 +158,7 @@ $ ./pickomino.out
 
     - Choix des valeurs retenus des 🎲 par 🤖
 
-      > - [ ] Garde les 🎲 où il y a le plus d'occurance hors exception
+      > - [ ] Garde les 🎲 où il y a le plus d'occurrence hors exception
       > - [ ] Garde les 🎲 supérieur à 3 hors exception
       > - [ ] Garde les 🎲 face 🪱 obligatoirement au 3 lancé
 
@@ -228,7 +228,7 @@ $ ./pickomino.out
 - Version 2 :
 
   - v2.0.0 : Ajout d'une intelligence artificielle.
-  - v2.1.0 : Ajout de mode de l'IA (Agresive).
+  - v2.1.0 : Ajout de mode de l'IA (Agressive).
 
 - Version 3 :
 
