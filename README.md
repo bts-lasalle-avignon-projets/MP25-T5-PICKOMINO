@@ -84,12 +84,18 @@ $ ./pickomino.out
 
       > - [ ] Vérifier si le score total des 🎲 est compris entre 21 et 36.
       > - [ ] Vérifier si le pickomino de la valeur total des 🎲 est visible (partout dans le jeu)
-      > - [ ] Vérifier si le pickomino n'est pas visible, faire une exception si le pickomino suivant de valeur inférieur est visible (uniquement sur la brochette)
+      > - [ ] Si le pickomino n'est pas visible, Vérifier si le pickomino suivant de valeur inférieur est visible (uniquement sur la brochette)
       > - [ ] Vérifier si toutes les vérification précédente sont fausse (si oui, le tour est nul)
 
-    - Événement si tour nul
+    - Événement du tour
 
-      > - [ ] Remettre le sommet de la pile du joueur sur la brochette (si non vide)
+      > - [ ] Prendre le pickomino de la valeur total des 🎲 si visible sur la brochette hors exception
+      > - [ ] Becqueter le pickomino de la valeur total des 🎲 si visible sur la pile d'un joueur
+      > - [ ] Remettre le sommet de la pile du joueur sur la brochette (si tour nul)
+
+    - Exception événement du tour
+
+      > - [ ] Prendre le pickomino sur la brochette de la valeur total des 🎲 - 1 si visible
 
     - Lorsque qu'un pickomino est remis sur la brochette par un joueur
 
