@@ -59,52 +59,53 @@ $ ./pickomino.out
 
     - Configuration des structure et tableau du jeu/joueur + constantes
 
-      > - [ ] Structure brochettes
+      > - [ ] Structure Jeu
       > - [ ] Structure Joueur
+      > - [ ] Tableau Brochettes
       > - [ ] Tableau 🎲
 
     - Déroulement du tour d'un joueur
 
-      > - [ ] Choix de la face des 🎲 à retenir par le joueur
+      > - [ ] Choisir la face des 🎲 à retenir par le joueur
       > - [ ] Stocker la face du 🎲 et la bloquer le reste du tour
       > - [ ] Calculer le score total des 🎲 du tour
 
     - Gestion des boucles d'un tour
 
-      > - [ ] Vérifier si plus aucun 🎲 n'est disponible (tous retenus ?)
-      > - [ ] Le joueur continue de lancer les 🎲 non retenus
+      > - [ ] Vérifier si tout les 🎲 sont retenus ?
+      > - [ ] Relancer les 🎲 non retenus
 
     - Déclencheur de fin du tour d'un joueur
 
       > - [ ] Vérifier si les valeurs des 🎲 relancé sont déjà retenus
-      > - [ ] Le joueur arrête son tour (lui même)
+      > - [ ] Arrêter son tour
 
     - Vérification d'un tour
 
-      > - [ ] Le score total des 🎲 est compris entre 21 et 36.
-      > - [ ] Le pickomino de la valeur total des 🎲 est visible (partout dans le jeu)
-      > - [ ] Si le pickomino n'est pas visible, faire une exception si le pickomino suivant de valeur inférieur est visible (uniquement sur la brochette)
-      > - [ ] Toutes les vérification précédente sont fausse alors le lancé est nul
+      > - [ ] Vérifier si le score total des 🎲 est compris entre 21 et 36.
+      > - [ ] Vérifier si le pickomino de la valeur total des 🎲 est visible (partout dans le jeu)
+      > - [ ] Vérifier si le pickomino n'est pas visible, faire une exception si le pickomino suivant de valeur inférieur est visible (uniquement sur la brochette)
+      > - [ ] Vérifier si toutes les vérification précédente sont fausse (si oui, le tour est nul)
 
     - Événement si tour nul
 
-      > - [ ] Le sommet de la pile du joueur retourne sur la brochette (si non vide)
+      > - [ ] Remettre le sommet de la pile du joueur sur la brochette (si non vide)
 
     - Lorsque qu'un pickomino est remis sur la brochette par un joueur
 
-      > - [ ] Vérifier si le pickomino remis est d'une valeur supérieur au max visible sur la brochette.
-      > - [ ] Si faux, alors le pickomino de valeur max de la brochette se retourne face cachée.
+      > - [ ] Vérifier si le pickomino remis est d'une valeur supérieur au max visible sur la brochette
+      > - [ ] Si faux, retourner face caché le pickomino avec la valeur la plus élevé de la brochette
 
     - Déclencheur de fin de partie
 
-      > - [ ] S'il ne reste plus de pickominos visible sur la brochette
+      > - [ ] Vérifier s'il ne reste plus de pickominos visible sur la brochette
 
     - Choix du gagnant en fin de partie
 
       > - [ ] Compter le nombre de "vers" total par joueur
       > - [ ] Vérifier s'il y a une égalité entre plusieur joueurs
-      > - [ ] Si égalité choisir le joueur qui a le pickomino avec la valeur la plus élevé
-      > - [ ] Sinon désignation le joueur avec le plus de vers
+      > - [ ] Si égalité, choisir le joueur qui a le pickomino avec la valeur la plus élevé
+      > - [ ] Sinon, désigner le joueur avec le plus de vers
 
     - Affichage du gagnant
 
@@ -114,9 +115,9 @@ $ ./pickomino.out
 
     - Personnalisation des pseudos
 
-      > - [ ] Interdiction des caractères spéciaux
-      > - [ ] Limite de 3 caractère min
-      > - [ ] Limite de 10 caractère max
+      > - [ ] Interdictir les caractères spéciaux
+      > - [ ] Limiter à 3 caractère min
+      > - [ ] Limiter à 10 caractère max
 
 - **Mise à jour de l'Ordinateur**
 
