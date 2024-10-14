@@ -173,51 +173,6 @@ $ ./pickomino.out
 
       > - [ ] Garde les 🎲 < 3 si score total = la valeur d'un pickomino visible
 
-- **Mise à jour de l'historique et des scores**
-
-  - v3.0.0 : Historique des parties
-
-    - X
-
-      > - [ ]
-      > - [ ]
-      > - [ ]
-
-  - v3.1.0 : Classement des meilleurs scores
-
-    - X
-
-      > - [ ]
-      > - [ ]
-      > - [ ]
-
-  - v3.2.0 : Classement des meilleurs joueurs (ELO)
-
-    - X
-
-      > - [ ]
-      > - [ ]
-      > - [ ]
-
-- **Mise à jour du multijoueur en LAN**
-
-  - v4.0.0 :
-
-    - X
-
-      > - [ ]
-      > - [ ]
-      > - [ ]
-
-- **Mise à jour de l'interface**
-
-  - v5.0.0 :
-
-    - X
-
-      > - [ ]
-      > - [ ]
-      > - [ ]
 
 ## Planification des versions
 
