@@ -2,7 +2,6 @@
 #include "joueur.h"
 #include "plateau.h"
 
-void jouerPickomino(){
-    
+void jouerPickomino()
+{
 }
-
