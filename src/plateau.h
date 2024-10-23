@@ -3,30 +3,36 @@
 
 #define NB_DES      8
 #define NB_FACE_DES 6
+#define FACE_VER    6
+
+#define NB_PICKOMINOS        16
+#define VALEUR_PICKOMINO_MIN 21
+#define VALEUR_PICKOMINO_MAX (NB_PICKOMINOS + VALEUR_PICKOMINO_MIN - 1)
+#define PALIER_VER_PICKOMINO 4
+
+enum Etat
+{
+    RETOURNE = -1,
+    VISIBLE  = 0
+};
 
 struct Pickomino
 {
     int  numero;
-    int  nbVer;
-    bool etat;
+    int  nbVers;
+    Etat etat;
 };
-extern Pickomino pickomino[16];
 
-struct Des
+struct Plateau
 {
-    int  valeurFace[NB_FACE_DES];
-    bool retenu;
+    Pickomino pickominos[NB_PICKOMINOS];
+    int       nbDes;
+    int       des[NB_DES];
+    int       desRetenus[NB_DES];
 };
-extern Des des[NB_DES];
 
-void initialisationPickomino();
-
-void initialisationDes();
-
-int  definirNombreJoueur();
-bool verifierConditionJoueurMin(const int& nombreJoueur);
-bool verifierConditionJoueurMin(const int& nombreJoueur);
-
-int changerJoueur(const int& nombreJoueur, int auTourJoueur);
+void initialiserPlateau(Plateau& plateau);
+void initialiserPickominos(Pickomino pickominos[NB_PICKOMINOS]);
+void lancerDes(int des[NB_DES], int nbDes);
 
 #endif

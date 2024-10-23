@@ -1,22 +1,20 @@
 #ifndef JOUEUR_H
 #define JOUEUR_H
 
-#include <iostream>
+#include <string>
 
-#define NB_CARACTERE_PSEUDO 7
-#define NB_PICKOMINO        16
-#define NB_JOUEUR           3
-#define NB_JOUEUR_MAX       7 // test
+#include "plateau.h"
+
+#define NB_JOUEURS_MIN 2
+#define NB_JOUEURS_MAX 7
 
 struct Joueur
 {
-    std::string nom[NB_JOUEUR_MAX];
-    int         pilePickomino[NB_JOUEUR][NB_PICKOMINO];
+    std::string nom;
+    int         pilePickominos[NB_PICKOMINOS];
+    int         sommetPile;
 };
 
-extern Joueur joueur[NB_JOUEUR];
-
-char definitionNomJoueur(const int& nombreJoueur);
-void initialisationPilePickominoJoueur(const int& nombreJoueur);
+void initialiserJoueur(const std::string nomJoueur, Joueur& joueur);
 
 #endif
