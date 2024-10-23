@@ -4,5 +4,6 @@
 #include "plateau.h"
 
 void afficherDes(int des[NB_DES], int nbDes);
+int  definirNombreJoueurs();
 
 #endif

@@ -5,12 +5,24 @@
 
 void jouerPickomino()
 {
-    Plateau plateau;
+    Jeu jeu;
 
-    intialiserPlateau(plateau);
+#ifdef SIMULATION
+    int nbJoueurs = NB_JOUEURS_MIN;
+#else
+    int nbJoueurs = definirNombreJoueurs();
+#endif
 
-    lancerDes(plateau.des, plateau.nbDes);
+    jeu.nbJoueurs = nbJoueurs;
+    for(int i = 0; i < nbJoueurs; i++)
+    {
+        initialiserJoueur("Joueur" + std::to_string(i + 1), jeu.joueurs[i]);
+    }
 
-    afficherDes(plateau.des, plateau.nbDes);
-    afficherDes(plateau.desRetenus, NB_DES - plateau.nbDes);
+    initialiserPlateau(jeu.plateau);
+
+    lancerDes(jeu.plateau.des, jeu.plateau.nbDes);
+
+    afficherDes(jeu.plateau.des, jeu.plateau.nbDes);
+    afficherDes(jeu.plateau.desRetenus, (NB_DES - jeu.plateau.nbDes));
 }
