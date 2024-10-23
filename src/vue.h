@@ -1,8 +1,8 @@
 #ifndef VUE_H
 #define VUE_H
 
-using namespace std;
+#include "plateau.h"
 
-void affichageDesAleatoires(int aleatoireDes[]);
+void afficherDes(int des[NB_DES], int nbDes);
 
 #endif

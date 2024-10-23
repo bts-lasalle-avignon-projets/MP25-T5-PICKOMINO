@@ -2,14 +2,17 @@
 #include "plateau.h"
 #include <iostream>
 
-void affichageDesAleatoires(int aleatoireDes[]){
-    cout << "   Dés obtenue    :    ";
-    for (int i = 0; i < NB_DES; i++)
+using namespace std;
+
+void afficherDes(int des[NB_DES], int nbDes)
+{
+    cout << "Dés :    ";
+    for(int i = 0; i < nbDes; i++)
     {
-        if(aleatoireDes[i] == 6)
+        if(des[i] == FACE_VER)
             cout << "V    ";
         else
-            cout << aleatoireDes[i] << "    ";
+            cout << des[i] << "    ";
     }
     cout << endl;
 }

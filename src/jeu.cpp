@@ -5,7 +5,12 @@
 
 void jouerPickomino()
 {
-    int aleatoireDes[NB_DES];
-    lanceeDes(aleatoireDes);
-    affichageDesAleatoires(aleatoireDes); 
+    Plateau plateau;
+
+    intialiserPlateau(plateau);
+
+    lancerDes(plateau.des, plateau.nbDes);
+
+    afficherDes(plateau.des, plateau.nbDes);
+    afficherDes(plateau.desRetenus, NB_DES - plateau.nbDes);
 }

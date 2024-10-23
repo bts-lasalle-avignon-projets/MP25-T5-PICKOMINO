@@ -3,9 +3,18 @@
 
 #define NB_DES      8
 #define NB_FACE_DES 6
+#define FACE_VER    6
 
-using namespace std;
+#define NB_PICKOMINO 16
 
-void lanceeDes(int aleatoireDes[]);
+struct Plateau
+{
+    int nbDes;
+    int des[NB_DES];
+    int desRetenus[NB_DES];
+};
+
+void intialiserPlateau(Plateau& plateau);
+void lancerDes(int des[NB_DES], int nbDes);
 
 #endif
