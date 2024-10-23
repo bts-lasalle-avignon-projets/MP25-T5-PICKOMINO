@@ -12,8 +12,8 @@
 
 enum Etat
 {
-    RETOURNE = -1,
-    VISIBLE  = 0
+    CACHE   = -1,
+    VISIBLE = 0
 };
 
 struct Pickomino
