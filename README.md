@@ -13,21 +13,21 @@
 
 ## Présentation
 
-Le jeu "Pickomino" est assez simple : Avoir le plus de vers à la fin de la partie.
+Le jeu "Pickomino" est assez simple : récupérer le plus de vers à la fin de la partie.
 
 Le jeu se compose de :
 
-- 2 à 7 joueurs.
-- 8 🎲 (numéroté de 1 à 5, le 6 est remplacé par un 🪱 qui vaut aussi 5).
-- Une brochette de 16 pickominos (numérotée de 21 à 36 et d'un nombre de ver).
-- Chaque joueur à une pile (vide au début)
+- 2 à 7 joueurs
+- 8 🎲 (numérotés de 1 à 5, le 6 est remplacé par un 🪱 qui vaut aussi 5)
+- Une brochette de 16 pickominos (numérotée de 21 à 36 et d'un nombre de vers).
+- Chaque joueur à une pile de pickominos (vide au début)
 
 Les règles sont les suivantes :
 
-- A chaque lancé, le joueur retient tous les 🎲 correspondant à la valeur choisie (🪱 compris) et ne peut le resélectionner par la suite.
-- Additionner tous les 🎲 retenus et faire un score égal à celui d'un des pickominos pour le récupérer (sur la brochette et sur le piles des joueurs).
+- A chaque lancer, le joueur retient tous les 🎲 correspondants à la valeur choisie (🪱 compris) et ne peut la resélectionner par la suite.
 - Doit avoir au moins 1 🪱 dans ses 🎲 sinon le tour est nul.
 - Si lors du retirage des 🎲, tous les 🎲 ont une valeur déjà retenue alors le tour est nul.
+- Additionner tous les 🎲 retenus et faire un score égal à celui d'un des pickominos pour le récupérer (sur la brochette et sur les piles des autres joueurs).
 - Quand le joueur gagne un pickomino, il le place en haut de sa pile (il est dit visible).
 - Seul les pickominos visibles ont la possibilité de se faire récupérer ou voler (becquetage).
 - Si aucun pickomino n'est disponible, le joueur prend le prochain pickomino disponible de valeur inférieure (uniquement sur la brochette).
@@ -210,8 +210,8 @@ $ ./pickomino.out
 
 ## Équipe de développement
 
-@dvaudaine : dylan.vaudaine.pro@gmail.com
-@npessina1 : pessina.nicolas.pro@gmail.com
+- @dvaudaine : dylan.vaudaine.pro@gmail.com
+- @npessina1 : pessina.nicolas.pro@gmail.com
 
 ---
 
