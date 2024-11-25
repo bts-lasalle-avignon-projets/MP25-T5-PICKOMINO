@@ -29,10 +29,18 @@ struct Plateau
     int       nbDes;
     int       des[NB_DES];
     int       desRetenus[NB_DES];
+    int       indexDernierDesRetenu;
 };
 
 void initialiserPlateau(Plateau& plateau);
-void initialiserPickominos(Pickomino pickominos[NB_PICKOMINOS]);
+void initialiserPickominos(Plateau plateau);
+void initialiserIndexTableauDes(Plateau plateau);
 void lancerDes(int des[NB_DES], int nbDes);
+
+bool estScoreValide(const int& score);
+bool verifierSiVersRetenu(const Plateau plateau);
+bool estDesInvalide(const Plateau plateau);
+
+bool estPickominoVisible(const int& score);
 
 #endif

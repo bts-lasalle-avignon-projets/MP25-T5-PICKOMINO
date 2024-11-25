@@ -26,3 +26,16 @@ void jouerPickomino()
     afficherDes(jeu.plateau.des, jeu.plateau.nbDes);
     afficherDes(jeu.plateau.desRetenus, (NB_DES - jeu.plateau.nbDes));
 }
+
+bool estLancerNul()
+{
+    // soit parce que la valeur des dés mis de côté ne suffit pas,
+    bool estScoreValide(const int& score);
+
+    // soit parce qu’il n’a mis aucune face « ver » de côté.
+    bool verifierSiVersRetenu();
+
+    // @todo n’obtienne sur un nouveau tirage que des valeurs ou des vers qu’il a déjà mis de côté.
+    // bool estDesInvalide();
+    return false;
+}

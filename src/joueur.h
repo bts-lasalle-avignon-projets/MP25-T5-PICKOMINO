@@ -11,14 +11,10 @@
 struct Joueur
 {
     std::string nom;
-    int         pilePickominos[NB_PICKOMINOS];
+    Pickomino   pilePickominos[NB_PICKOMINOS];
     int         sommetPile;
 };
 
 void initialiserJoueur(const std::string nomJoueur, Joueur& joueur);
-bool verificationScoreDes(const int& score);
-bool verificationPickominoVisible(const int& score);
-bool verificationPickominoInferieurVisible(const int& score);
-bool verificationTour();
 
 #endif
