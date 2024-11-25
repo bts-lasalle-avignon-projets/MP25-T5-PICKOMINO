@@ -1,6 +1,8 @@
 #ifndef PLATEAU_H
 #define PLATEAU_H
 
+#include "vue.h"
+
 #define NB_DES      8
 #define NB_FACE_DES 6
 #define FACE_VER    6
@@ -34,5 +36,6 @@ struct Plateau
 void initialiserPlateau(Plateau& plateau);
 void initialiserPickominos(Pickomino pickominos[NB_PICKOMINOS]);
 void lancerDes(int des[NB_DES], int nbDes);
+int estDesDoublon(int des[NB_DES]);
 
 #endif

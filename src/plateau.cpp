@@ -31,3 +31,18 @@ void lancerDes(int des[NB_DES], int nbDes)
         des[i] = (rand() % NB_FACE_DES) + 1;
     }
 }
+
+int estDesDoublon(int des[NB_DES]) {
+    int valeurNombreMeme;
+
+    for (int i = 0; i < NB_DES; ++i) {
+        if (des[i] == demandeDesARetenir()) {
+            valeurNombreMeme++;
+        }
+    }
+    return valeurNombreMeme;
+}
+
+void reduireNombreDesParNombreDesBloquant(int des[NB_DES]){
+    lancerDes - estDesDoublon(des); //à refaire
+}

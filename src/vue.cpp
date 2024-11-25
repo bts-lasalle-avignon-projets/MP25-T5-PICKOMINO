@@ -19,6 +19,18 @@ void afficherDes(int des[NB_DES], int nbDes)
     cout << endl;
 }
 
+int demandeDesARetenir(){
+    int chiffreARetenir;
+
+    cin >> chiffreARetenir;
+    int vers = atoi("V");
+    if(vers){
+        chiffreARetenir = FACE_VER;
+        return chiffreARetenir;
+    }
+    else return chiffreARetenir;
+}
+
 int definirNombreJoueurs()
 {
     int nombreJoueurs;

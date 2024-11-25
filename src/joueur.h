@@ -2,8 +2,10 @@
 #define JOUEUR_H
 
 #include <string>
+#include <vector>
 
 #include "plateau.h"
+#include "vue.h"
 
 #define NB_JOUEURS_MIN 2
 #define NB_JOUEURS_MAX 7
@@ -16,5 +18,6 @@ struct Joueur
 };
 
 void initialiserJoueur(const std::string nomJoueur, Joueur& joueur);
+int BloquerDesRetenue(int des[NB_DES]);
 
 #endif

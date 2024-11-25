@@ -24,5 +24,5 @@ void jouerPickomino()
     lancerDes(jeu.plateau.des, jeu.plateau.nbDes);
 
     afficherDes(jeu.plateau.des, jeu.plateau.nbDes);
-    afficherDes(jeu.plateau.desRetenus, (NB_DES - jeu.plateau.nbDes));
+    //afficherDes(jeu.plateau.desRetenus, (NB_DES - jeu.plateau.nbDes));
 }
