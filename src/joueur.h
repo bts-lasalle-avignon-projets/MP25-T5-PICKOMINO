@@ -18,6 +18,7 @@ struct Joueur
 };
 
 void initialiserJoueur(const std::string nomJoueur, Joueur& joueur);
-int BloquerDesRetenue(int des[NB_DES]);
+int desRetenueJoueur(int des[NB_DES], Plateau plateau);
+bool BloquerDesRetenue(Plateau plateau);
 
 #endif

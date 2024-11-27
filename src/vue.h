@@ -3,8 +3,9 @@
 
 #include "plateau.h"
 
-void afficherDes(int des[NB_DES], int nbDes);
 int  definirNombreJoueurs();
+void afficherDes(int des[NB_DES], int nbDes);
 int demandeDesARetenir();
+void affichageDesRetenue(Plateau plateau);
 
 #endif
