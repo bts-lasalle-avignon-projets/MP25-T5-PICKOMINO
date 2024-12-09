@@ -41,7 +41,7 @@ void jouerTour(Jeu& jeu)
         {
             afficherDesRetenus(jeu.plateau);
             calculerTotalDesRetenus(jeu.plateau);
-            // afficherTotalDesRetenus(jeu.plateau.totalRetenue);
+            afficherTotalDesRetenus(jeu.plateau);
 
             tourFini = !demanderRelancerDes();
         }

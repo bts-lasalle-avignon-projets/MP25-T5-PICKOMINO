@@ -37,6 +37,6 @@ void initialiserPickominos(Pickomino pickominos[NB_PICKOMINOS]);
 void lancerDes(Plateau& plateau);
 bool estDejaRetenue(const Plateau& plateau, int faceDe);
 bool retenirDes(Plateau& plateau, int faceDe);
-int  calculerTotalDesRetenus(const Plateau& plateau);
+int  calculerTotalDesRetenus(Plateau& plateau);
 
 #endif

@@ -120,7 +120,7 @@ void afficherDesRetenus(const Plateau& plateau)
     cout << endl;
 }
 
-void afficherTotalDesRetenus(int totalRetenue)
+void afficherTotalDesRetenus(const Plateau& plateau)
 {
-    cout << "Total :    ", totalRetenue;
+    cout << "Total dés retenues : " << plateau.totalRetenue << endl;
 }

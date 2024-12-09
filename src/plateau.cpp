@@ -70,9 +70,11 @@ bool retenirDes(Plateau& plateau, int faceDe)
 
 int calculerTotalDesRetenus(Plateau& plateau)
 {
-    for(int i = 0; i < plateau.desRetenus[i]; i++)
+    plateau.totalRetenue = 0;
+
+    for(int i = 0; i < NB_DES; i++)
     {
-        plateau.totalRetenue = plateau.desRetenus[i] + plateau.desRetenus[i++];
+        plateau.totalRetenue += plateau.desRetenus[i];
     }
     return plateau.totalRetenue;
 }
