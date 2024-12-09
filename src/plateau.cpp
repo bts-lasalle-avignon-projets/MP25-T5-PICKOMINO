@@ -1,4 +1,6 @@
 #include "plateau.h"
+#include "jeu.h"
+
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
@@ -40,7 +42,7 @@ bool estScoreValide(const int& score)
     return true;
 }
 
-bool verifierSiVersRetenu(const Plateau plateau)
+bool verifierSiVersRetenu(const Plateau& plateau)
 {
     for(int i = 0; i < NB_DES; i++)
     {
@@ -52,7 +54,20 @@ bool verifierSiVersRetenu(const Plateau plateau)
     return false;
 }
 
-bool estPickominoVisible(const int& numero, Pickomino pickominos[])
+bool estPickominoVisible(const int& numero, const Jeu& jeu)
 {
-    return (pickominos[numero - VALEUR_PICKOMINO_MIN].etat == VISIBLE);
+    return (jeu.plateau.pickominos[numero - VALEUR_PICKOMINO_MIN].etat == VISIBLE);
+}
+
+bool estPickominoInferieurVisible(const int& numero, const Jeu& jeu)
+{
+    for(int i = 0; i < numero - VALEUR_PICKOMINO_MIN; i++)
+    {
+        for(int j = 0; j < jeu.nbJoueurs; j++)
+            if(numero - i != jeu.joueurs[j].pilePickominos[jeu.joueurs[j].sommetPile].numero)
+            {
+                return (jeu.plateau.pickominos[numero - VALEUR_PICKOMINO_MIN].etat - i == VISIBLE);
+            }
+    }
+    return false;
 }
