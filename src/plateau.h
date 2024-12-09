@@ -1,8 +1,6 @@
 #ifndef PLATEAU_H
 #define PLATEAU_H
 
-#include "vue.h"
-
 #define NB_DES      8
 #define NB_FACE_DES 6
 #define FACE_VER    6
@@ -31,11 +29,14 @@ struct Plateau
     int       nbDes;
     int       des[NB_DES];
     int       desRetenus[NB_DES];
+    int       totalRetenue;
 };
 
 void initialiserPlateau(Plateau& plateau);
 void initialiserPickominos(Pickomino pickominos[NB_PICKOMINOS]);
-void lancerDes(int des[NB_DES], int nbDes);
-int estDesDoublon(int des[NB_DES]);
+void lancerDes(Plateau& plateau);
+bool estDejaRetenue(const Plateau& plateau, int faceDe);
+bool retenirDes(Plateau& plateau, int faceDe);
+int  calculerTotalDesRetenus(const Plateau& plateau);
 
 #endif

@@ -24,25 +24,55 @@ void initialiserPickominos(Pickomino pickominos[NB_PICKOMINOS])
     }
 }
 
-void lancerDes(int des[NB_DES], int nbDes)
+void lancerDes(Plateau& plateau)
 {
-    for(int i = 0; i < nbDes; i++)
+    for(int i = 0; i < plateau.nbDes; i++)
     {
-        des[i] = (rand() % NB_FACE_DES) + 1;
+        plateau.des[i] = (rand() % NB_FACE_DES) + 1;
     }
 }
 
-int estDesDoublon(int des[NB_DES]) {
-    int valeurNombreMeme;
-
-    for (int i = 0; i < NB_DES; ++i) {
-        if (des[i] == demandeDesARetenir()) {
-            valeurNombreMeme++;
+bool estDejaRetenue(const Plateau& plateau, int faceDe)
+{
+    for(int i = 0; i < NB_DES - plateau.nbDes; i++)
+    {
+        if(plateau.desRetenus[i] == faceDe)
+        {
+            return true;
         }
     }
-    return valeurNombreMeme;
+    return false;
 }
 
-void reduireNombreDesParNombreDesBloquant(int des[NB_DES]){
-    lancerDes - estDesDoublon(des); //à refaire
+bool retenirDes(Plateau& plateau, int faceDe)
+{
+    if(estDejaRetenue(plateau, faceDe) || plateau.nbDes == 0)
+    {
+        return false;
+    }
+
+    int  nbDesRetenus = NB_DES - plateau.nbDes;
+    bool retenue      = false;
+
+    for(int i = 0; i < plateau.nbDes; i++)
+    {
+        if(plateau.des[i] == faceDe)
+        {
+            plateau.desRetenus[nbDesRetenus++] = plateau.des[i];
+            retenue                            = true;
+        }
+    }
+
+    plateau.nbDes = NB_DES - nbDesRetenus;
+
+    return retenue;
+}
+
+int calculerTotalDesRetenus(Plateau& plateau)
+{
+    for(int i = 0; i < plateau.desRetenus[i]; i++)
+    {
+        plateau.totalRetenue = plateau.desRetenus[i] + plateau.desRetenus[i++];
+    }
+    return plateau.totalRetenue;
 }
