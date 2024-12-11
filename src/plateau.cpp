@@ -32,7 +32,7 @@ void lancerDes(Plateau& plateau)
     }
 }
 
-bool estDejaRetenue(const Plateau& plateau, int faceDe)
+bool estDejaRetenu(const Plateau& plateau, int faceDe)
 {
     for(int i = 0; i < NB_DES - plateau.nbDes; i++)
     {
@@ -46,7 +46,7 @@ bool estDejaRetenue(const Plateau& plateau, int faceDe)
 
 bool retenirDes(Plateau& plateau, int faceDe)
 {
-    if(estDejaRetenue(plateau, faceDe) || plateau.nbDes == 0)
+    if(estDejaRetenu(plateau, faceDe) || plateau.nbDes == 0)
     {
         return false;
     }
@@ -70,11 +70,20 @@ bool retenirDes(Plateau& plateau, int faceDe)
 
 int calculerTotalDesRetenus(Plateau& plateau)
 {
-    plateau.totalRetenue = 0;
+    plateau.totalDes = 0;
 
-    for(int i = 0; i < NB_DES; i++)
+    for(int i = 0; i < NB_DES - plateau.nbDes; i++)
     {
-        plateau.totalRetenue += plateau.desRetenus[i];
+        if(plateau.desRetenus[i] == FACE_VER)
+        {
+            plateau.totalDes += VALEUR_FACE_VER;
+            continue;
+        }
+        else
+        {
+            plateau.totalDes += plateau.desRetenus[i];
+        }
     }
-    return plateau.totalRetenue;
+
+    return plateau.totalDes;
 }

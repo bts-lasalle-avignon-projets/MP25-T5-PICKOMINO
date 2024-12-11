@@ -30,12 +30,10 @@ void jouerTour(Jeu& jeu)
     do
     {
         lancerDes(jeu.plateau);
-
         afficherDes(jeu.plateau);
 
         int faceDe = demanderDesARetenir();
-
-        lancerNul = !retenirDes(jeu.plateau, faceDe);
+        lancerNul  = !retenirDes(jeu.plateau, faceDe);
 
         if(!lancerNul)
         {

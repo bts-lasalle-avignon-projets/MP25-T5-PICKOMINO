@@ -122,5 +122,5 @@ void afficherDesRetenus(const Plateau& plateau)
 
 void afficherTotalDesRetenus(const Plateau& plateau)
 {
-    cout << "Total dés retenues : " << plateau.totalRetenue << endl;
+    cout << "Total dés : " << plateau.totalDes << endl;
 }
