@@ -1,9 +1,10 @@
 #ifndef PLATEAU_H
 #define PLATEAU_H
 
-#define NB_DES      8
-#define NB_FACE_DES 6
-#define FACE_VER    6
+#define NB_DES          8
+#define NB_FACE_DES     6
+#define FACE_VER        6
+#define VALEUR_FACE_VER 5
 
 #define NB_PICKOMINOS        16
 #define VALEUR_PICKOMINO_MIN 21
@@ -29,10 +30,14 @@ struct Plateau
     int       nbDes;
     int       des[NB_DES];
     int       desRetenus[NB_DES];
+    int       totalDes;
 };
 
 void initialiserPlateau(Plateau& plateau);
 void initialiserPickominos(Pickomino pickominos[NB_PICKOMINOS]);
-void lancerDes(int des[NB_DES], int nbDes);
+void lancerDes(Plateau& plateau);
+bool estDejaRetenu(const Plateau& plateau, int faceDe);
+bool retenirDes(Plateau& plateau, int faceDe);
+int  calculerTotalDesRetenus(Plateau& plateau);
 
 #endif

@@ -1,6 +1,4 @@
 #include "jeu.h"
-#include "joueur.h"
-#include "plateau.h"
 #include "vue.h"
 
 void jouerPickomino()
@@ -21,8 +19,33 @@ void jouerPickomino()
 
     initialiserPlateau(jeu.plateau);
 
-    lancerDes(jeu.plateau.des, jeu.plateau.nbDes);
+    jouerTour(jeu);
+}
 
-    afficherDes(jeu.plateau.des, jeu.plateau.nbDes);
-    afficherDes(jeu.plateau.desRetenus, (NB_DES - jeu.plateau.nbDes));
+void jouerTour(Jeu& jeu)
+{
+    bool tourFini  = false;
+    bool lancerNul = false;
+
+    do
+    {
+        lancerDes(jeu.plateau);
+        afficherDes(jeu.plateau);
+
+        int faceDe = demanderDesARetenir();
+        lancerNul  = !retenirDes(jeu.plateau, faceDe);
+
+        if(!lancerNul)
+        {
+            afficherDesRetenus(jeu.plateau);
+            calculerTotalDesRetenus(jeu.plateau);
+            afficherTotalDesRetenus(jeu.plateau);
+
+            tourFini = !demanderRelancerDes();
+        }
+        else
+        {
+            tourFini = true;
+        }
+    } while(!tourFini);
 }

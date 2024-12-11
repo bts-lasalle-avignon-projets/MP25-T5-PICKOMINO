@@ -15,6 +15,6 @@ struct Joueur
     int         sommetPile;
 };
 
-void initialiserJoueur(const std::string nomJoueur, Joueur& joueur);
+void initialiserJoueur(const std::string& nomJoueur, Joueur& joueur);
 
 #endif
