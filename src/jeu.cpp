@@ -33,8 +33,5 @@ bool estLancerNul(const int& score)
     // soit parce qu’il n’a mis aucune face « ver » de côté.
     bool verifierSiVersRetenu(const Plateau& plateau);
 
-    // @todo n’obtienne sur un nouveau tirage que des valeurs ou des vers qu’il a déjà mis de côté.
-    bool estDesInvalide(const Plateau& plateau);
-
     return false;
 }

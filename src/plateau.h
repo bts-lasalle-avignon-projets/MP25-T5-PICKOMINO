@@ -34,7 +34,6 @@ void lancerDes(int des[NB_DES], int nbDes);
 
 bool estScoreValide(const int& score);
 bool verifierSiVersRetenu(const Plateau& plateau);
-bool estDesInvalide(const Plateau& plateau);
 
 bool estPickominoVisible(const int& numero, const Jeu& jeu);
 bool estPickominoInferieurVisible(const int& numero, const Jeu& jeu);
