@@ -1,6 +1,5 @@
 #include "plateau.h"
 #include "jeu.h"
-
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
@@ -9,7 +8,11 @@ void initialiserPlateau(Plateau& plateau)
 {
     srand(time(NULL));
     initialiserPickominos(plateau);
-    initialiserIndexTableauDes(plateau);
+    plateau.nbDes = NB_DES;
+    for(int i = 0; i < NB_DES; i++)
+    {
+        plateau.desRetenus[i] = 0;
+    }
 }
 
 void initialiserPickominos(Plateau plateau)
@@ -22,17 +25,48 @@ void initialiserPickominos(Plateau plateau)
     }
 }
 
-void initialiserIndexTableauDes(Plateau plateau)
+void lancerDes(Plateau& plateau)
 {
-    plateau.indexDernierDesRetenu = 0;
+    for(int i = 0; i < plateau.nbDes; i++)
+    {
+        plateau.des[i] = (rand() % NB_FACE_DES) + 1;
+    }
 }
 
-void lancerDes(int des[NB_DES], int nbDes)
+bool estDejaRetenu(const Plateau& plateau, int faceDe)
 {
-    for(int i = 0; i < nbDes; i++)
+    for(int i = 0; i < NB_DES - plateau.nbDes; i++)
     {
-        des[i] = (rand() % NB_FACE_DES) + 1;
+        if(plateau.desRetenus[i] == faceDe)
+        {
+            return true;
+        }
     }
+    return false;
+}
+
+bool retenirDes(Plateau& plateau, int faceDe)
+{
+    if(estDejaRetenu(plateau, faceDe) || plateau.nbDes == 0)
+    {
+        return false;
+    }
+
+    int  nbDesRetenus = NB_DES - plateau.nbDes;
+    bool retenue      = false;
+
+    for(int i = 0; i < plateau.nbDes; i++)
+    {
+        if(plateau.des[i] == faceDe)
+        {
+            plateau.desRetenus[nbDesRetenus++] = plateau.des[i];
+            retenue                            = true;
+        }
+    }
+
+    plateau.nbDes = NB_DES - nbDesRetenus;
+
+    return retenue;
 }
 
 bool estScoreValide(const int& score)
@@ -70,4 +104,24 @@ bool estPickominoInferieurVisible(const int& numero, const Jeu& jeu)
             }
     }
     return false;
+}
+
+int calculerTotalDesRetenus(Plateau& plateau)
+{
+    plateau.totalDes = 0;
+
+    for(int i = 0; i < NB_DES - plateau.nbDes; i++)
+    {
+        if(plateau.desRetenus[i] == FACE_VER)
+        {
+            plateau.totalDes += VALEUR_FACE_VER;
+            continue;
+        }
+        else
+        {
+            plateau.totalDes += plateau.desRetenus[i];
+        }
+    }
+
+    return plateau.totalDes;
 }

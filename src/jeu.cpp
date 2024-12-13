@@ -19,13 +19,38 @@ void jouerPickomino()
 
     initialiserPlateau(jeu.plateau);
 
-    lancerDes(jeu.plateau.des, jeu.plateau.nbDes);
-
-    afficherDes(jeu.plateau.des, jeu.plateau.nbDes);
-    // afficherDes(jeu.plateau.desRetenus, (NB_DES - jeu.plateau.nbDes));
+    jouerTour(jeu);
 }
 
-bool estLancerNul(const int& score)
+void jouerTour(Jeu& jeu)
+{
+    bool tourFini  = false;
+    bool lancerNul = false;
+
+    do
+    {
+        lancerDes(jeu.plateau);
+        afficherDes(jeu.plateau);
+
+        int faceDe = demanderDesARetenir();
+        lancerNul  = !retenirDes(jeu.plateau, faceDe);
+
+        if(!lancerNul)
+        {
+            afficherDesRetenus(jeu.plateau);
+            calculerTotalDesRetenus(jeu.plateau);
+            afficherTotalDesRetenus(jeu.plateau);
+
+            tourFini = !demanderRelancerDes();
+        }
+        else
+        {
+            tourFini = true;
+        }
+    } while(!tourFini);
+}
+
+bool estLancerNul(const int& score, const Plateau& plateau)
 {
     // soit parce que la valeur des dés mis de côté ne suffit pas,
     bool estScoreValide(const int& score);

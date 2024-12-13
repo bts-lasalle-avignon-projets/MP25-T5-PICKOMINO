@@ -3,6 +3,8 @@
 
 #include "pickomino.h"
 
+struct Jeu;
+
 enum Etat
 {
     CACHE   = -1,
@@ -22,20 +24,17 @@ struct Plateau
     int       nbDes;
     int       des[NB_DES];
     int       desRetenus[NB_DES];
-    int       indexDernierDesRetenu;
+    int       totalDes;
 };
-
-struct Jeu;
 
 void initialiserPlateau(Plateau& plateau);
 void initialiserPickominos(Plateau plateau);
-void initialiserIndexTableauDes(Plateau plateau);
-void lancerDes(int des[NB_DES], int nbDes);
-
-bool estScoreValide(const int& score);
+void lancerDes(Plateau& plateau);
+bool estDejaRetenu(const Plateau& plateau, int faceDe);
+bool retenirDes(Plateau& plateau, int faceDe);
 bool verifierSiVersRetenu(const Plateau& plateau);
-
 bool estPickominoVisible(const int& numero, const Jeu& jeu);
 bool estPickominoInferieurVisible(const int& numero, const Jeu& jeu);
+int  calculerTotalDesRetenus(Plateau& plateau);
 
 #endif

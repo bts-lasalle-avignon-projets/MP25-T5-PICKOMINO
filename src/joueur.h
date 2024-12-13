@@ -2,7 +2,11 @@
 #define JOUEUR_H
 
 #include <string>
+
 #include "plateau.h"
+
+#define NB_JOUEURS_MIN 2
+#define NB_JOUEURS_MAX 7
 
 struct Joueur
 {
@@ -11,6 +15,6 @@ struct Joueur
     int         sommetPile;
 };
 
-void initialiserJoueur(const std::string nomJoueur, Joueur& joueur);
+void initialiserJoueur(const std::string& nomJoueur, Joueur& joueur);
 
 #endif
