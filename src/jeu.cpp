@@ -49,3 +49,14 @@ void jouerTour(Jeu& jeu)
         }
     } while(!tourFini);
 }
+
+bool estLancerNul(const int& score, const Plateau& plateau)
+{
+    // soit parce que la valeur des dés mis de côté ne suffit pas,
+    bool estScoreValide(const int& score);
+
+    // soit parce qu’il n’a mis aucune face « ver » de côté.
+    bool verifierSiVersRetenu(const Plateau& plateau);
+
+    return false;
+}

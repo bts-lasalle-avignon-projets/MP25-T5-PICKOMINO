@@ -1,6 +1,7 @@
 #ifndef VUE_H
 #define VUE_H
 
+#include "pickomino.h"
 #include "plateau.h"
 
 int  definirNombreJoueurs();

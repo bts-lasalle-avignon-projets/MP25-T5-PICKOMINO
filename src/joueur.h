@@ -11,7 +11,7 @@
 struct Joueur
 {
     std::string nom;
-    int         pilePickominos[NB_PICKOMINOS];
+    Pickomino   pilePickominos[NB_PICKOMINOS];
     int         sommetPile;
 };
 
