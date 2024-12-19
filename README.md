@@ -59,24 +59,24 @@ $ ./pickomino.out
 
     - Configuration des structure et tableau du jeu/joueur + constantes
 
-      > - [v] Structure Jeu
-      > - [v] Structure Joueur
-      > - [v] Tableau 🎲
+      > - [x] Structure Jeu
+      > - [x] Structure Joueur
+      > - [x] Tableau 🎲
 
     - Déroulement du tour d'un joueur
 
-      > - [v] Choisir la face des 🎲 à retenir par le joueur
-      > - [v] Stocker la face du 🎲 et la bloquer le reste du tour
-      > - [v] Calculer le score total des 🎲 du tour
+      > - [x] Choisir la face des 🎲 à retenir par le joueur
+      > - [x] Stocker la face du 🎲 et la bloquer le reste du tour
+      > - [x] Calculer le score total des 🎲 du tour
 
     - Gestion des boucles d'un tour
 
-      > - [v] Vérifier si tout les 🎲 sont retenus ?
-      > - [v] Relancer les 🎲 non retenus
+      > - [x] Vérifier si tout les 🎲 sont retenus ?
+      > - [x] Relancer les 🎲 non retenus
 
     - Vérification d'un tour
 
-      > - [v] Vérifier si le pickomino de la valeur total des 🎲 est visible (partout dans le jeu)
+      > - [x] Vérifier si le pickomino de la valeur total des 🎲 est visible (partout dans le jeu)
 
   - v1.0.0 :
 
