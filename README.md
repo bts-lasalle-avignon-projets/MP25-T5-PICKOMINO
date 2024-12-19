@@ -55,25 +55,34 @@ $ ./pickomino.out
 
 - **Jeu PICKOMINO**
 
+  Alpha :
+
+    - Configuration des structure et tableau du jeu/joueur + constantes
+
+      > - [v] Structure Jeu
+      > - [v] Structure Joueur
+      > - [v] Tableau 🎲
+
+    - Déroulement du tour d'un joueur
+
+      > - [v] Choisir la face des 🎲 à retenir par le joueur
+      > - [v] Stocker la face du 🎲 et la bloquer le reste du tour
+      > - [v] Calculer le score total des 🎲 du tour
+
+    - Gestion des boucles d'un tour
+
+      > - [v] Vérifier si tout les 🎲 sont retenus ?
+      > - [v] Relancer les 🎲 non retenus
+
+    - Vérification d'un tour
+
+      > - [v] Vérifier si le pickomino de la valeur total des 🎲 est visible (partout dans le jeu)
+
   - v1.0.0 :
 
     - Configuration des structure et tableau du jeu/joueur + constantes
 
-      > - [ ] Structure Jeu
-      > - [ ] Structure Joueur
       > - [ ] Tableau Brochettes
-      > - [ ] Tableau 🎲
-
-    - Déroulement du tour d'un joueur
-
-      > - [ ] Choisir la face des 🎲 à retenir par le joueur
-      > - [ ] Stocker la face du 🎲 et la bloquer le reste du tour
-      > - [ ] Calculer le score total des 🎲 du tour
-
-    - Gestion des boucles d'un tour
-
-      > - [ ] Vérifier si tout les 🎲 sont retenus ?
-      > - [ ] Relancer les 🎲 non retenus
 
     - Déclencheur de fin du tour d'un joueur
 
@@ -83,7 +92,6 @@ $ ./pickomino.out
     - Vérification d'un tour
 
       > - [ ] Vérifier si le score total des 🎲 est compris entre 21 et 36.
-      > - [ ] Vérifier si le pickomino de la valeur total des 🎲 est visible (partout dans le jeu)
       > - [ ] Si le pickomino n'est pas visible, Vérifier si le pickomino suivant de valeur inférieur est visible (uniquement sur la brochette)
       > - [ ] Vérifier si toutes les vérification précédente sont fausse (si oui, le tour est nul)
 
