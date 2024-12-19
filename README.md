@@ -55,12 +55,13 @@ $ ./pickomino.out
 
 - **Jeu PICKOMINO**
 
-  Alpha :
+  - Alpha :
 
     - Configuration des structure et tableau du jeu/joueur + constantes
 
       > - [x] Structure Jeu
       > - [x] Structure Joueur
+      > - [x] Tableau Brochettes
       > - [x] Tableau 🎲
 
     - Déroulement du tour d'un joueur
@@ -77,12 +78,10 @@ $ ./pickomino.out
     - Vérification d'un tour
 
       > - [x] Vérifier si le pickomino de la valeur total des 🎲 est visible (partout dans le jeu)
+      > - [x] Vérifier si le score total des 🎲 est compris entre 21 et 36.
+      > - [x] Si le pickomino n'est pas visible, Vérifier si le pickomino suivant de valeur inférieur est visible (uniquement sur la brochette)
 
   - v1.0.0 :
-
-    - Configuration des structure et tableau du jeu/joueur + constantes
-
-      > - [ ] Tableau Brochettes
 
     - Déclencheur de fin du tour d'un joueur
 
@@ -91,8 +90,6 @@ $ ./pickomino.out
 
     - Vérification d'un tour
 
-      > - [ ] Vérifier si le score total des 🎲 est compris entre 21 et 36.
-      > - [ ] Si le pickomino n'est pas visible, Vérifier si le pickomino suivant de valeur inférieur est visible (uniquement sur la brochette)
       > - [ ] Vérifier si toutes les vérification précédente sont fausse (si oui, le tour est nul)
 
     - Événement du tour

@@ -32,6 +32,7 @@ void initialiserPickominos(Plateau plateau);
 void lancerDes(Plateau& plateau);
 bool estDejaRetenu(const Plateau& plateau, int faceDe);
 bool retenirDes(Plateau& plateau, int faceDe);
+bool estScoreValide(const int& score);
 bool verifierSiVersRetenu(const Plateau& plateau);
 bool estPickominoVisible(const int& numero, const Jeu& jeu);
 bool estPickominoInferieurVisible(const int& numero, const Jeu& jeu);
