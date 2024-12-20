@@ -3,8 +3,6 @@
 
 #include "joueur.h"
 
-// #define SIMULATION
-
 struct Jeu
 {
     int     nbJoueurs;
