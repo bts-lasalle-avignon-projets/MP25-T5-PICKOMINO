@@ -1,6 +1,8 @@
 #ifndef PICKOMINO_H
 #define PICKOMINO_H
 
+#define VERSION "0.9"
+
 #define NB_JOUEURS_MIN 2
 #define NB_JOUEURS_MAX 7
 
