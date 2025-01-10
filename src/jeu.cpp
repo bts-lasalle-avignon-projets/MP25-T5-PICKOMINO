@@ -54,8 +54,6 @@ void jouerTour(Jeu& jeu)
 
 bool estLancerNul(const int& score, const Plateau& plateau)
 {
-    bool estScoreValide(const int& score);
-    bool verifierSiVersRetenu(const Plateau& plateau);
 
     return false;
 }
