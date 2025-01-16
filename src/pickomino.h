@@ -1,11 +1,12 @@
 #ifndef PICKOMINO_H
 #define PICKOMINO_H
 
-// anciennement joueur.h
+
+#define VERSION "0.9"
+
 #define NB_JOUEURS_MIN 2
 #define NB_JOUEURS_MAX 7
 
-// anciennement plateau.h
 #define NB_DES          8
 #define NB_FACE_DES     6
 #define FACE_VER        6

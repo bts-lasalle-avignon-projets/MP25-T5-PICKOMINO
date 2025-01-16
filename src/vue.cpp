@@ -94,6 +94,15 @@ bool demanderRelancerDes()
     }
 }
 
+void afficherVersion()
+{
+    cout << "-----------------------------------------------" << endl;
+    cout << "-------------------Pickomino-------------------" << endl;
+    cout << "-----------------------------------------------" << endl;
+    cout << "-----------------Version " << VERSION << "-----------------" << endl;
+    cout << "-----------------------------------------------" << endl;
+}
+
 void afficherDes(const Plateau& plateau)
 {
     cout << "Dés :    ";
