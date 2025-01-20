@@ -14,6 +14,6 @@ struct Jeu
 
 void jouerPickomino();
 void jouerTour(Jeu& jeu);
-bool estLancerNul(const int& score, const Plateau& plateau);
+bool estLancerNul(const int& score, const Jeu& jeu);
 
 #endif
