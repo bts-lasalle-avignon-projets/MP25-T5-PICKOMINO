@@ -1,15 +1,9 @@
 #ifndef PLATEAU_H
 #define PLATEAU_H
 
-#define NB_DES          8
-#define NB_FACE_DES     6
-#define FACE_VER        6
-#define VALEUR_FACE_VER 5
+#include "pickomino.h"
 
-#define NB_PICKOMINOS        16
-#define VALEUR_PICKOMINO_MIN 21
-#define VALEUR_PICKOMINO_MAX (NB_PICKOMINOS + VALEUR_PICKOMINO_MIN - 1)
-#define PALIER_VER_PICKOMINO 4
+struct Jeu;
 
 enum Etat
 {
@@ -34,10 +28,14 @@ struct Plateau
 };
 
 void initialiserPlateau(Plateau& plateau);
-void initialiserPickominos(Pickomino pickominos[NB_PICKOMINOS]);
+void initialiserPickominos(Plateau plateau);
 void lancerDes(Plateau& plateau);
 bool estDejaRetenu(const Plateau& plateau, int faceDe);
 bool retenirDes(Plateau& plateau, int faceDe);
+bool estScoreValide(const int& score);
+bool verifierSiVersRetenu(const Plateau& plateau);
+bool estPickominoVisible(const int& numero, const Jeu& jeu);
+bool estPickominoInferieurVisible(const int& numero, const Jeu& jeu);
 int  calculerTotalDesRetenus(Plateau& plateau);
 
 #endif

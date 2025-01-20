@@ -1,4 +1,4 @@
-// pickomino (version C++ sans STL)
+// pickomino vAlpha (version C++ sans STL)
 
 #include "jeu.h"
 

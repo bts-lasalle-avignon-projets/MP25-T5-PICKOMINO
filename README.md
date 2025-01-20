@@ -1,3 +1,5 @@
+[![make](https://github.com/bts-lasalle-avignon-projets/MP25-T5-PICKOMINO/actions/workflows/makefile.yml/badge.svg)](https://github.com/bts-lasalle-avignon-projets/MP25-T5-PICKOMINO/actions/workflows/makefile.yml)
+
 # Mini-projet : Pickomino
 
 - [Mini-projet : Pickomino](#mini-projet--pickomino)
@@ -51,128 +53,124 @@ $ ./pickomino.out
 
 ## Changelog
 
+- v0.9 :
+
+  - Configuration des structure et tableau du jeu/joueur + constantes
+
+    > - [x] Structure Jeu
+    > - [x] Structure Joueur
+    > - [x] Tableau Brochettes
+    > - [x] Tableau 🎲
+
+  - Déroulement du tour d'un joueur
+
+    > - [x] Choisir la face des 🎲 à retenir par le joueur
+    > - [x] Stocker la face du 🎲 et la bloquer le reste du tour
+    > - [x] Calculer le score total des 🎲 du tour
+
+  - Gestion des boucles d'un tour
+
+    > - [x] Vérifier si tout les 🎲 sont retenus ?
+    > - [x] Relancer les 🎲 non retenus
+
+  - Vérification d'un tour
+
+    > - [x] Vérifier si le pickomino de la valeur total des 🎲 est visible (partout dans le jeu)
+    > - [x] Vérifier si le score total des 🎲 est compris entre 21 et 36.
+    > - [x] Si le pickomino n'est pas visible, Vérifier si le pickomino suivant de valeur inférieur est visible (uniquement sur la brochette)
+
 ## TODO
 
-- **Jeu PICKOMINO**
+- v1.0 :
 
-  - v1.0.0 :
+  - Déclencheur de fin du tour d'un joueur
 
-    - Configuration des structure et tableau du jeu/joueur + constantes
+    > - [ ] Vérifier si les valeurs des 🎲 relancé sont déjà retenus
+    > - [ ] Arrêter son tour
 
-      > - [ ] Structure Jeu
-      > - [ ] Structure Joueur
-      > - [ ] Tableau Brochettes
-      > - [ ] Tableau 🎲
+  - Vérification d'un tour
 
-    - Déroulement du tour d'un joueur
+    > - [ ] Vérifier si toutes les vérification précédente sont fausse (si oui, le tour est nul)
 
-      > - [ ] Choisir la face des 🎲 à retenir par le joueur
-      > - [ ] Stocker la face du 🎲 et la bloquer le reste du tour
-      > - [ ] Calculer le score total des 🎲 du tour
+  - Événement du tour
 
-    - Gestion des boucles d'un tour
+    > - [ ] Prendre le pickomino de la valeur total des 🎲 si visible sur la brochette hors exception
+    > - [ ] Becqueter le pickomino de la valeur total des 🎲 si visible sur la pile d'un joueur
+    > - [ ] Remettre le sommet de la pile du joueur sur la brochette (si tour nul)
 
-      > - [ ] Vérifier si tout les 🎲 sont retenus ?
-      > - [ ] Relancer les 🎲 non retenus
+  - Exception événement du tour
 
-    - Déclencheur de fin du tour d'un joueur
+    > - [ ] Prendre le pickomino sur la brochette de la valeur total des 🎲 - 1 si visible
 
-      > - [ ] Vérifier si les valeurs des 🎲 relancé sont déjà retenus
-      > - [ ] Arrêter son tour
+  - Lorsque qu'un pickomino est remis sur la brochette par un joueur
 
-    - Vérification d'un tour
+    > - [ ] Vérifier si le pickomino remis est d'une valeur supérieur au max visible sur la brochette
+    > - [ ] Si faux, retourner face caché le pickomino avec la valeur la plus élevé de la brochette
 
-      > - [ ] Vérifier si le score total des 🎲 est compris entre 21 et 36.
-      > - [ ] Vérifier si le pickomino de la valeur total des 🎲 est visible (partout dans le jeu)
-      > - [ ] Si le pickomino n'est pas visible, Vérifier si le pickomino suivant de valeur inférieur est visible (uniquement sur la brochette)
-      > - [ ] Vérifier si toutes les vérification précédente sont fausse (si oui, le tour est nul)
+  - Déclencheur de fin de partie
 
-    - Événement du tour
+    > - [ ] Vérifier s'il ne reste plus de pickominos visible sur la brochette
 
-      > - [ ] Prendre le pickomino de la valeur total des 🎲 si visible sur la brochette hors exception
-      > - [ ] Becqueter le pickomino de la valeur total des 🎲 si visible sur la pile d'un joueur
-      > - [ ] Remettre le sommet de la pile du joueur sur la brochette (si tour nul)
+  - Choix du gagnant en fin de partie
 
-    - Exception événement du tour
+    > - [ ] Compter le nombre de "vers" total par joueur
+    > - [ ] Vérifier s'il y a une égalité entre plusieur joueurs
+    > - [ ] Si égalité, choisir le joueur qui a le pickomino avec la valeur la plus élevé
+    > - [ ] Sinon, désigner le joueur avec le plus de vers
 
-      > - [ ] Prendre le pickomino sur la brochette de la valeur total des 🎲 - 1 si visible
+  - Affichage du gagnant
 
-    - Lorsque qu'un pickomino est remis sur la brochette par un joueur
+    > - [ ] Afficher le joueur gagnant
 
-      > - [ ] Vérifier si le pickomino remis est d'une valeur supérieur au max visible sur la brochette
-      > - [ ] Si faux, retourner face caché le pickomino avec la valeur la plus élevé de la brochette
+  - Personnalisation des pseudos
 
-    - Déclencheur de fin de partie
+    > - [ ] Interdictir les caractères spéciaux
+    > - [ ] Limiter à 3 caractère min
+    > - [ ] Limiter à 10 caractère max
 
-      > - [ ] Vérifier s'il ne reste plus de pickominos visible sur la brochette
+- v2.0 :
 
-    - Choix du gagnant en fin de partie
+  - Auto-limites des lancers des 🎲 de 🤖
 
-      > - [ ] Compter le nombre de "vers" total par joueur
-      > - [ ] Vérifier s'il y a une égalité entre plusieur joueurs
-      > - [ ] Si égalité, choisir le joueur qui a le pickomino avec la valeur la plus élevé
-      > - [ ] Sinon, désigner le joueur avec le plus de vers
+    > - [ ] Fin du tour si la valeur total est égal à un pickomino visible
+    > - [ ] Fin du tour si le pickomino suivant de valeur inférieur est visible (uniquement sur la brochette)
 
-    - Affichage du gagnant
+  - Choix des valeurs retenus des 🎲 par 🤖
 
-      > - [ ] Afficher le joueur gagnant
+    > - [ ] Garde les 🎲 où il y a le plus d'occurrence hors exception
+    > - [ ] Garde les 🎲 supérieur à 3 hors exception
+    > - [ ] Garde les 🎲 face 🪱 obligatoirement au 3 lancé
 
-  - v1.1.0 :
+  - Exception des choix des valeurs retenus des 🎲 par 🤖
 
-    - Personnalisation des pseudos
+    > - [ ] Garde les 🎲 < 3 si score total = la valeur d'un pickomino visible
 
-      > - [ ] Interdictir les caractères spéciaux
-      > - [ ] Limiter à 3 caractère min
-      > - [ ] Limiter à 10 caractère max
+  - Choix du mode de 🤖
 
-- **Mise à jour de l'Ordinateur**
+    > - [ ] Le mode de l'IA développé en 2.0 est assigné au mode 1
+    > - [ ] Le mode de l'IA développé en 2.1 est assigné au mode 2
+    > - [ ] Le mode de 🤖 est définie aléatoirement lors du lancement de la partie.
 
-  - v2.0.0 :
+  - Auto-limites des lancers des 🎲 de 🤖
 
-    - Auto-limites des lancers des 🎲 de 🤖
+    > - [ ] Fin du tour si la valeur total est égal à un pickomino visible sauf exception
+    > - [ ] Fin du tour si le pickomino suivant de valeur inférieur est visible (uniquement sur la brochette)
 
-      > - [ ] Fin du tour si la valeur total est égal à un pickomino visible
-      > - [ ] Fin du tour si le pickomino suivant de valeur inférieur est visible (uniquement sur la brochette)
+  - Exceptions des Auto-limites des lancers des 🎲 de 🤖
 
-    - Choix des valeurs retenus des 🎲 par 🤖
+    > - [ ] Le pickomino d'une valeur supérieur est visible
+    > - [ ] Si le nombre de 🎲 non retenus est <=3
+    > - [ ] Si les valeurs non retenus restantes sont <3
 
-      > - [ ] Garde les 🎲 où il y a le plus d'occurrence hors exception
-      > - [ ] Garde les 🎲 supérieur à 3 hors exception
-      > - [ ] Garde les 🎲 face 🪱 obligatoirement au 3 lancé
+  - Choix des valeurs retenus des 🎲 par 🤖
 
-    - Exception des choix des valeurs retenus des 🎲 par 🤖
+    > - [ ] Garde les 🎲 où il y a le plus d'occurrence hors exception
+    > - [ ] Garde les 🎲 supérieur à 3 hors exception
+    > - [ ] Garde les 🎲 face 🪱 obligatoirement au 3 lancé
 
-      > - [ ] Garde les 🎲 < 3 si score total = la valeur d'un pickomino visible
+  - Exception des choix des valeurs retenus des 🎲 par 🤖
 
-  - v2.1.0 :
-
-    - Choix du mode de 🤖
-
-      > - [ ] Le mode de l'IA développé en 2.0 est assigné au mode 1
-      > - [ ] Le mode de l'IA développé en 2.1 est assigné au mode 2
-      > - [ ] Le mode de 🤖 est définie aléatoirement lors du lancement de la partie.
-
-    - Auto-limites des lancers des 🎲 de 🤖
-
-      > - [ ] Fin du tour si la valeur total est égal à un pickomino visible sauf exception
-      > - [ ] Fin du tour si le pickomino suivant de valeur inférieur est visible (uniquement sur la brochette)
-
-    - Exceptions des Auto-limites des lancers des 🎲 de 🤖
-
-      > - [ ] Le pickomino d'une valeur supérieur est visible
-      > - [ ] Si le nombre de 🎲 non retenus est <=3
-      > - [ ] Si les valeurs non retenus restantes sont <3
-
-    - Choix des valeurs retenus des 🎲 par 🤖
-
-      > - [ ] Garde les 🎲 où il y a le plus d'occurrence hors exception
-      > - [ ] Garde les 🎲 supérieur à 3 hors exception
-      > - [ ] Garde les 🎲 face 🪱 obligatoirement au 3 lancé
-
-    - Exception des choix des valeurs retenus des 🎲 par 🤖
-
-      > - [ ] Garde les 🎲 < 3 si score total = la valeur d'un pickomino visible
-
+    > - [ ] Garde les 🎲 < 3 si score total = la valeur d'un pickomino visible
 
 ## Planification des versions
 
@@ -182,29 +180,15 @@ $ ./pickomino.out
 > - Y = nouvelle fonctionnalité
 > - Z = Correction de bug
 
-- Version 1 :
+- Version 1 : Jeu de base, JvJ
 
-  - v1.0.0 : Jeu de base, JvJ.
-  - v1.1.0 : Personnalisation des pseudos par les joueurs.
+- Version 2 : Ajout d'une intelligence artificielle
 
-- Version 2 :
+- Version 3 : Ajout d'un historique des parties jouées et d'un classement des meilleurs scores
 
-  - v2.0.0 : Ajout d'une intelligence artificielle.
-  - v2.1.0 : Ajout de mode de l'IA (Agressive).
+- Version 4 : Ajout du mode réseau (LAN)
 
-- Version 3 :
-
-  - v3.0.0 : Ajout d'un historique des parties jouées.
-  - v3.1.0 : Ajout d'un classement des meilleurs scores.
-  - v3.2.0 : Ajout d'un classement des meilleurs joueurs (ELO)
-
-- Version 4 :
-
-  - v4.0.0 : Ajout du mode réseau (LAN).
-
-- Version 5 :
-
-  - v5.0.0 : Ajout d'une interface graphique.
+- Version 5 : Ajout d'une interface graphique
 
 ## Défauts constatés non corrigés
 

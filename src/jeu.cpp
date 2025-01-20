@@ -3,6 +3,8 @@
 
 void jouerPickomino()
 {
+    afficherVersion();
+
     Jeu jeu;
 
 #ifdef SIMULATION
@@ -48,4 +50,9 @@ void jouerTour(Jeu& jeu)
             tourFini = true;
         }
     } while(!tourFini);
+}
+
+bool estLancerNul(const int& score, const Plateau& plateau)
+{
+    return false;
 }
