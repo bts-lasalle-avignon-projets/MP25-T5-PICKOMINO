@@ -125,3 +125,14 @@ int calculerTotalDesRetenus(Plateau& plateau)
 
     return plateau.totalDes;
 }
+
+void remisePickomino(const int joueurQuiJoue, Jeu& jeu)
+{
+    if(jeu.joueurs[joueurQuiJoue].sommetPile > 0)
+    {
+        jeu.joueurs[joueurQuiJoue].sommetPile -= 1;
+        if(jeu.joueurs[joueurQuiJoue].sommetPile > 0)
+            jeu.joueurs[joueurQuiJoue].pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile].etat =
+              VISIBLE;
+    }
+}

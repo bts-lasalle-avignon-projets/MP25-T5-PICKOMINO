@@ -37,5 +37,6 @@ bool verifierSiVersRetenu(const Plateau& plateau);
 bool estPickominoVisible(const int& numero, const Jeu& jeu);
 bool estPickominoInferieurVisible(const int& numero, const Jeu& jeu);
 int  calculerTotalDesRetenus(Plateau& plateau);
+void remisePickomino(const int joueurQuiJoue, Jeu& jeu);
 
 #endif

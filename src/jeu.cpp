@@ -54,7 +54,7 @@ void jouerTour(Jeu& jeu)
 
 bool estLancerNul(const int& score, const Jeu& jeu)
 {
-    if(estScoreValide(score) == verifierSiVersRetenu(jeu.plateau) == true)
+    if(estScoreValide(score) && verifierSiVersRetenu(jeu.plateau) == true)
     {
         if(estPickominoVisible(score, jeu))
             return false;
