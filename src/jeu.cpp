@@ -52,8 +52,14 @@ void jouerTour(Jeu& jeu)
     } while(!tourFini);
 }
 
-bool estLancerNul(const int& score, const Plateau& plateau)
+bool estLancerNul(const int& score, const Jeu& jeu)
 {
-
-    return false;
+    if(estScoreValide(score) == verifierSiVersRetenu(jeu.plateau) == true)
+    {
+        if(estPickominoVisible(score, jeu))
+            return false;
+        else if(estPickominoInferieurVisible(score, jeu))
+            return false;
+    }
+    return true;
 }
