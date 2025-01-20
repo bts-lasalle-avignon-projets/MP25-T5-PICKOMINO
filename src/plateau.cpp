@@ -131,8 +131,33 @@ void remisePickomino(const int joueurQuiJoue, Jeu& jeu)
     if(jeu.joueurs[joueurQuiJoue].sommetPile > 0)
     {
         jeu.joueurs[joueurQuiJoue].sommetPile -= 1;
+        if(jeu.joueurs[joueurQuiJoue].pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile].numero <
+           estPickominoMaxBrochette(jeu))
+        {
+            jeu.joueurs[joueurQuiJoue].pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile].etat =
+              CACHE;
+        }
         if(jeu.joueurs[joueurQuiJoue].sommetPile > 0)
             jeu.joueurs[joueurQuiJoue].pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile].etat =
               VISIBLE;
     }
+}
+
+int estPickominoMaxBrochette(Jeu& jeu)
+{
+    for(int i = VALEUR_PICKOMINO_MAX; i < VALEUR_PICKOMINO_MIN; i--)
+    {
+        if(jeu.plateau.pickominos[i].etat == VISIBLE)
+        {
+            for(int j = 0; j < jeu.nbJoueurs; j++)
+            {
+                if(i == jeu.joueurs[j].pilePickominos[jeu.joueurs[j].sommetPile].numero)
+                    break;
+            }
+            break;
+        }
+        else
+            return (jeu.plateau.pickominos[i].numero);
+    }
+    return 0;
 }

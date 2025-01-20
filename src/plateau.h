@@ -38,5 +38,6 @@ bool estPickominoVisible(const int& numero, const Jeu& jeu);
 bool estPickominoInferieurVisible(const int& numero, const Jeu& jeu);
 int  calculerTotalDesRetenus(Plateau& plateau);
 void remisePickomino(const int joueurQuiJoue, Jeu& jeu);
+int  estPickominoMaxBrochette(Jeu& jeu);
 
 #endif
