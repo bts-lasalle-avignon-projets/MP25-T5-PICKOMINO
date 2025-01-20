@@ -21,16 +21,16 @@ void jouerPickomino()
 
     initialiserPlateau(jeu.plateau);
 
-    jouerTour(jeu, jeu.plateau);
+    jouerTour(jeu);
 }
 
-void jouerTour(Jeu& jeu, Plateau& plateau)
+void jouerTour(Jeu& jeu)
 {
     for(int i = 0; i < jeu.nbJoueurs; i++)
     {
-        bool tourFini  = false;
-        bool lancerNul = false;
-        plateau.nbDes  = NB_DES;
+        bool tourFini     = false;
+        bool lancerNul    = false;
+        jeu.plateau.nbDes = NB_DES;
 
         afficherQuelJoueurTour(jeu.joueurs[i]);
         do
@@ -47,7 +47,7 @@ void jouerTour(Jeu& jeu, Plateau& plateau)
                 calculerTotalDesRetenus(jeu.plateau);
                 afficherTotalDesRetenus(jeu.plateau);
 
-                if(plateau.nbDes == 0)
+                if(jeu.plateau.nbDes == 0)
                 {
                     tourFini = true;
                 }
