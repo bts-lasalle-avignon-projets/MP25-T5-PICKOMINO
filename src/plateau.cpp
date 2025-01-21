@@ -145,36 +145,26 @@ void remisePickomino(const int joueurQuiJoue, Jeu& jeu)
 
 int estPickominoMaxBrochette(Jeu& jeu)
 {
-    int compte = 0;
     for(int i = VALEUR_PICKOMINO_MAX; i < VALEUR_PICKOMINO_MIN; i--)
     {
-        compte = 0;
-        if(jeu.plateau.pickominos[i].etat == VISIBLE)
+        if(jeu.plateau.pickominos[i].etat == VISIBLE &&
+           jeu.plateau.pickominos[i].appartenance == BROCHETTE)
         {
-            for(int j = 0; j < jeu.nbJoueurs; j++)
-            {
-                if(i == jeu.joueurs[j].pilePickominos[jeu.joueurs[j].sommetPile].numero)
-                    break;
-                else
-                    compte += 1;
-            }
-        }
-        else if(compte == 4)
             return (jeu.plateau.pickominos[i].numero);
+        }
     }
     return 0;
 }
 
-/*bool estBrochetteVide(Jeu& jeu)
+bool estBrochetteVide(Jeu& jeu)
 {
     for(int i = VALEUR_PICKOMINO_MIN; i < VALEUR_PICKOMINO_MAX; i++)
     {
-        for(int j = 0; j < jeu.nbJoueurs; j++)
+        if(jeu.plateau.pickominos[i].etat == VISIBLE &&
+           jeu.plateau.pickominos[i].appartenance == BROCHETTE)
         {
-            if(jeu.plateau.pickominos[i].numero ==
-               jeu.joueurs[j].pilePickominos[jeu.joueurs[j].sommetPile].numero)
+            return false;
         }
-        break;
     }
-    return;
-}*/
+    return true;
+}

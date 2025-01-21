@@ -11,11 +11,18 @@ enum Etat
     VISIBLE = 0
 };
 
+enum Appartenance
+{
+    BROCHETTE = -1,
+    JOUEUR    = 0
+};
+
 struct Pickomino
 {
-    int  numero;
-    int  nbVers;
-    Etat etat;
+    int          numero;
+    int          nbVers;
+    Etat         etat;
+    Appartenance appartenance;
 };
 
 struct Plateau
