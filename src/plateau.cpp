@@ -19,9 +19,10 @@ void initialiserPickominos(Plateau plateau)
 {
     for(int i = 0; i < NB_PICKOMINOS; i++)
     {
-        plateau.pickominos[i].numero = VALEUR_PICKOMINO_MIN + i;
-        plateau.pickominos[i].nbVers = (i / PALIER_VER_PICKOMINO) + 1;
-        plateau.pickominos[i].etat   = Etat::VISIBLE;
+        plateau.pickominos[i].numero       = VALEUR_PICKOMINO_MIN + i;
+        plateau.pickominos[i].nbVers       = (i / PALIER_VER_PICKOMINO) + 1;
+        plateau.pickominos[i].etat         = Etat::VISIBLE;
+        plateau.pickominos[i].appartenance = Appartenance::BROCHETTE;
     }
 }
 
@@ -72,8 +73,8 @@ bool retenirDes(Plateau& plateau, int faceDe)
 bool estScoreValide(const int& score)
 {
     if(score >= VALEUR_PICKOMINO_MIN && score <= VALEUR_PICKOMINO_MAX)
-        return false;
-    return true;
+        return true;
+    return false;
 }
 
 bool verifierSiVersRetenu(const Plateau& plateau)
@@ -97,11 +98,11 @@ bool estPickominoInferieurVisible(const int& numero, const Jeu& jeu)
 {
     for(int i = 0; i < numero - VALEUR_PICKOMINO_MIN; i++)
     {
-        for(int j = 0; j < jeu.nbJoueurs; j++)
-            if(numero - i != jeu.joueurs[j].pilePickominos[jeu.joueurs[j].sommetPile].numero)
-            {
-                return (jeu.plateau.pickominos[numero - VALEUR_PICKOMINO_MIN].etat - i == VISIBLE);
-            }
+        if(jeu.plateau.pickominos[numero - i].etat == VISIBLE &&
+           jeu.plateau.pickominos[numero - i].appartenance == BROCHETTE)
+        {
+            return true;
+        }
     }
     return false;
 }
@@ -136,6 +137,9 @@ void remisePickomino(const int joueurQuiJoue, Jeu& jeu)
         {
             jeu.joueurs[joueurQuiJoue].pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile].etat =
               CACHE;
+            jeu.joueurs[joueurQuiJoue]
+              .pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile]
+              .appartenance = BROCHETTE;
         }
         if(jeu.joueurs[joueurQuiJoue].sommetPile > 0)
             jeu.joueurs[joueurQuiJoue].pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile].etat =
