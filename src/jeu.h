@@ -3,8 +3,6 @@
 
 #include "joueur.h"
 
-// #define SIMULATION
-
 struct Jeu
 {
     int     nbJoueurs;
@@ -13,7 +11,9 @@ struct Jeu
 };
 
 void jouerPickomino();
-void jouerTour(Jeu& jeu, Plateau& plateau);
+void jouerTour(Jeu& jeu);
 bool estLancerNul(const int& score, const Plateau& plateau);
+void determinerGagnant(const Jeu& jeu);
+void siEgaliteVersGagnant(const Jeu& jeu);
 
 #endif

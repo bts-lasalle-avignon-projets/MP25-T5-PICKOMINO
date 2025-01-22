@@ -98,7 +98,7 @@ void afficherVersion()
     cout << "-----------------------------------------------" << endl;
     cout << "-------------------Pickomino-------------------" << endl;
     cout << "-----------------------------------------------" << endl;
-    cout << "-----------------Version " << VERSION << "-----------------" << endl;
+    cout << "------------------Version " << VERSION << "-----------------" << endl;
     cout << "-----------------------------------------------" << endl;
 }
 
@@ -135,5 +135,10 @@ void afficherTotalDesRetenus(const Plateau& plateau)
 
 void afficherQuelJoueurTour(const Joueur& joueur)
 {
-    cout << "C'est le tour de " << joueur.nom << " !" << endl;
+    cout << "C'est le tour de " << YELLOW << joueur.nom << RESET << " !" << endl;
+}
+
+void affichageGagnant()
+{
+    
 }

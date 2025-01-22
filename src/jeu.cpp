@@ -1,6 +1,9 @@
 #include "jeu.h"
 #include "vue.h"
 
+#include <iostream> //test
+#include <limits>   //test
+
 void jouerPickomino()
 {
     afficherVersion();
@@ -21,16 +24,18 @@ void jouerPickomino()
 
     initialiserPlateau(jeu.plateau);
 
-    jouerTour(jeu, jeu.plateau);
+    jouerTour(jeu);
+
+    determinerGagnant(jeu);
 }
 
-void jouerTour(Jeu& jeu, Plateau& plateau)
+void jouerTour(Jeu& jeu)
 {
     for(int i = 0; i < jeu.nbJoueurs; i++)
     {
-        bool tourFini  = false;
-        bool lancerNul = false;
-        plateau.nbDes  = NB_DES;
+        bool tourFini     = false;
+        bool lancerNul    = false;
+        jeu.plateau.nbDes = NB_DES;
 
         afficherQuelJoueurTour(jeu.joueurs[i]);
         do
@@ -47,7 +52,7 @@ void jouerTour(Jeu& jeu, Plateau& plateau)
                 calculerTotalDesRetenus(jeu.plateau);
                 afficherTotalDesRetenus(jeu.plateau);
 
-                if(plateau.nbDes == 0)
+                if(jeu.plateau.nbDes == 0)
                 {
                     tourFini = true;
                 }
@@ -67,4 +72,54 @@ void jouerTour(Jeu& jeu, Plateau& plateau)
 bool estLancerNul(const int& score, const Plateau& plateau)
 {
     return false;
+}
+
+void determinerGagnant(const Jeu& jeu)
+{
+    int meilleurScore = -1;
+    int indexGagnant  = -1;
+
+    for(int i = 0; i < jeu.nbJoueurs; i++)
+    {
+        int scoreVers = 0;
+        for(int j = 0; j < NB_PICKOMINOS; j++)
+        {
+            scoreVers += jeu.joueurs[i].pilePickominos[j].nbVers;
+        }
+
+        std::cout << "Score de " << jeu.joueurs[i].nom << ": " << scoreVers << " vers"
+                  << std::endl; // test
+
+        if(scoreVers > meilleurScore)
+        {
+            meilleurScore = scoreVers;
+            indexGagnant  = i;
+        }
+        else if(scoreVers == meilleurScore)
+        {
+            siEgaliteVersGagnant;
+        }
+    }
+
+    if(indexGagnant != -1) // test
+    {
+        std::cout << "Le gagnant est " << jeu.joueurs[indexGagnant].nom << " avec " << meilleurScore
+                  << " vers!" << std::endl;
+    }
+    else
+    {
+        std::cout << "Aucun gagnant." << std::endl;
+    }
+}
+
+void siEgaliteVersGagnant(const Jeu& jeu)
+{
+    for(int i = 0; i < jeu.nbJoueurs; i++)
+    {
+        int scorePickomino = 0;
+        for(int j = 0; j < NB_PICKOMINOS; j++)
+        {
+            scorePickomino += jeu.joueurs[i].pilePickominos[j].numero;
+        }
+    }
 }
