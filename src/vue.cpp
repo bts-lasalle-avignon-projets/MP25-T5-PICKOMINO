@@ -36,6 +36,7 @@ int demanderDesARetenir()
     {
         cout << "Face dé à retenir (1, 2, 3, 4, 5 ou V, v) : ";
         cin >> faceARetenir;
+        cout << endl;
         if((faceARetenir >= '1' && faceARetenir <= '5') ||
            (faceARetenir == 'V' || faceARetenir == 'v'))
         {
@@ -98,12 +99,13 @@ void afficherVersion()
     cout << "-----------------------------------------------" << endl;
     cout << "-------------------Pickomino-------------------" << endl;
     cout << "-----------------------------------------------" << endl;
-    cout << "-----------------Version " << VERSION << "-----------------" << endl;
+    cout << "-----------------Version " << VERSION << "------------------" << endl;
     cout << "-----------------------------------------------" << endl;
 }
 
 void afficherDes(const Plateau& plateau)
 {
+    positionnerCurseur(100, 100);
     cout << "Dés :    ";
     for(int i = 0; i < plateau.nbDes; i++)
     {
@@ -117,14 +119,16 @@ void afficherDes(const Plateau& plateau)
 
 void afficherDesRetenus(const Plateau& plateau)
 {
-    cout << "Dés retenus :    ";
+    cout << "------------------------------------------------------------------" << endl;
+    cout << "| Dés retenus :    ";
     for(int i = 0; i < (NB_DES - plateau.nbDes); i++)
     {
         if(plateau.desRetenus[i] == FACE_VER)
-            cout << "V    ";
+            cout << "V     ";
         else
-            cout << plateau.desRetenus[i] << "    ";
+            cout << plateau.desRetenus[i] << "     ";
     }
+    cout << "\n------------------------------------------------------------------";
     cout << endl;
 }
 
@@ -135,5 +139,12 @@ void afficherTotalDesRetenus(const Plateau& plateau)
 
 void afficherQuelJoueurTour(const Joueur& joueur)
 {
-    cout << "C'est le tour de " << joueur.nom << " !" << endl;
+    cout << "\nC'est le tour de " << YELLOW << joueur.nom << RESET << " !" << endl;
+}
+
+void positionnerCurseur(int x, int y)
+{
+    // Déplace le curseur à la position (x, y)
+
+    std::cout << "\033[" << y << ";" << x << "H";
 }
