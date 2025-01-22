@@ -134,17 +134,31 @@ void remisePickomino(const int joueurQuiJoue, Jeu& jeu)
         if(jeu.joueurs[joueurQuiJoue].pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile].numero <
            estPickominoMaxBrochette(jeu))
         {
-            jeu.joueurs[joueurQuiJoue].pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile].etat =
-              CACHE;
-            jeu.joueurs[joueurQuiJoue]
-              .pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile]
-              .appartenance = BROCHETTE;
-            jeu.joueurs[joueurQuiJoue].sommetPile -= 1;
+            remisePickominoMaxDansLaBrochette(joueurQuiJoue, jeu);
+        }
+        else
+        {
+            remisePickominoMaxChezLeJoueur(joueurQuiJoue, jeu);
         }
         if(jeu.joueurs[joueurQuiJoue].sommetPile > 0)
             jeu.joueurs[joueurQuiJoue].pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile].etat =
               VISIBLE;
     }
+}
+
+void remisePickominoMaxDansLaBrochette(const int joueurQuiJoue, Jeu& jeu)
+{
+    jeu.joueurs[joueurQuiJoue].pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile].etat = CACHE;
+    jeu.joueurs[joueurQuiJoue].pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile].appartenance =
+      BROCHETTE;
+    jeu.joueurs[joueurQuiJoue].sommetPile -= 1;
+}
+
+void remisePickominoMaxChezLeJoueur(const int joueurQuiJoue, Jeu& jeu)
+{
+    jeu.joueurs[joueurQuiJoue].pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile].appartenance =
+      BROCHETTE;
+    jeu.joueurs[joueurQuiJoue].sommetPile -= 1;
 }
 
 int estPickominoMaxBrochette(Jeu& jeu)
