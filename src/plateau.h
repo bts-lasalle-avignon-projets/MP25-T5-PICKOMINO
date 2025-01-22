@@ -41,12 +41,13 @@ bool estDejaRetenu(const Plateau& plateau, int faceDe);
 bool retenirDes(Plateau& plateau, int faceDe);
 bool estScoreValide(const int& score);
 bool verifierSiVersRetenu(const Plateau& plateau);
+int  estNumeroPickomino(const int& scoreDes);
 bool estPickominoVisible(const int& numero, const Jeu& jeu);
 bool estPickominoInferieurVisible(const int& numero, const Jeu& jeu);
 int  calculerTotalDesRetenus(Plateau& plateau);
-void remisePickomino(const int joueurQuiJoue, Jeu& jeu);
-void remisePickominoMaxDansLaBrochette(const int joueurQuiJoue, Jeu& jeu);
-void remisePickominoMaxChezLeJoueur(const int joueurQuiJoue, Jeu& jeu);
+void remisePickomino(const int& joueurQuiJoue, Jeu& jeu);
+void remisePickominoMaxDansLaBrochette(const int& joueurQuiJoue, Jeu& jeu);
+void remisePickominoMaxChezLeJoueur(const int& joueurQuiJoue, Jeu& jeu);
 int  estPickominoMaxBrochette(Jeu& jeu);
 bool estBrochetteVide(Jeu& jeu);
 

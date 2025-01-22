@@ -70,9 +70,9 @@ bool retenirDes(Plateau& plateau, int faceDe)
     return retenue;
 }
 
-bool estScoreValide(const int& score)
+bool estScoreValide(const int& scoreDes)
 {
-    if(score >= VALEUR_PICKOMINO_MIN && score <= VALEUR_PICKOMINO_MAX)
+    if(scoreDes >= VALEUR_PICKOMINO_MIN && scoreDes <= VALEUR_PICKOMINO_MAX)
         return true;
     return false;
 }
@@ -89,14 +89,19 @@ bool verifierSiVersRetenu(const Plateau& plateau)
     return false;
 }
 
+int estNumeroPickomino(const int& scoreDes)
+{
+    return (scoreDes - VALEUR_PICKOMINO_MIN);
+}
+
 bool estPickominoVisible(const int& numero, const Jeu& jeu)
 {
-    return (jeu.plateau.pickominos[numero - VALEUR_PICKOMINO_MIN].etat == VISIBLE);
+    return (jeu.plateau.pickominos[numero].etat == VISIBLE);
 }
 
 bool estPickominoInferieurVisible(const int& numero, const Jeu& jeu)
 {
-    for(int i = 1; i < numero - VALEUR_PICKOMINO_MIN; i++)
+    for(int i = 1; i < numero; i++)
     {
         if(jeu.plateau.pickominos[numero - i].etat == VISIBLE &&
            jeu.plateau.pickominos[numero - i].appartenance == BROCHETTE)
@@ -127,7 +132,7 @@ int calculerTotalDesRetenus(Plateau& plateau)
     return plateau.totalDes;
 }
 
-void remisePickomino(const int joueurQuiJoue, Jeu& jeu)
+void remisePickomino(const int& joueurQuiJoue, Jeu& jeu)
 {
     if(jeu.joueurs[joueurQuiJoue].sommetPile > 0)
     {
@@ -146,7 +151,7 @@ void remisePickomino(const int joueurQuiJoue, Jeu& jeu)
     }
 }
 
-void remisePickominoMaxDansLaBrochette(const int joueurQuiJoue, Jeu& jeu)
+void remisePickominoMaxDansLaBrochette(const int& joueurQuiJoue, Jeu& jeu)
 {
     jeu.joueurs[joueurQuiJoue].pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile].etat = CACHE;
     jeu.joueurs[joueurQuiJoue].pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile].appartenance =
@@ -154,7 +159,7 @@ void remisePickominoMaxDansLaBrochette(const int joueurQuiJoue, Jeu& jeu)
     jeu.joueurs[joueurQuiJoue].sommetPile -= 1;
 }
 
-void remisePickominoMaxChezLeJoueur(const int joueurQuiJoue, Jeu& jeu)
+void remisePickominoMaxChezLeJoueur(const int& joueurQuiJoue, Jeu& jeu)
 {
     jeu.joueurs[joueurQuiJoue].pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile].appartenance =
       BROCHETTE;
