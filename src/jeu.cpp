@@ -56,9 +56,7 @@ bool estLancerNul(const int& score, const Jeu& jeu)
 {
     if(estScoreValide(score) && verifierSiVersRetenu(jeu.plateau) == true)
     {
-        if(estPickominoVisible(score, jeu))
-            return false;
-        else if(estPickominoInferieurVisible(score, jeu))
+        if(estPickominoVisible(score, jeu) || estPickominoInferieurVisible(score, jeu))
             return false;
     }
     return true;
