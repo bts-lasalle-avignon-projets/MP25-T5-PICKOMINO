@@ -94,18 +94,18 @@ $ ./pickomino.out
 
   - Événement du tour
 
-    > - [ ] Prendre le pickomino de la valeur total des 🎲 si visible sur la brochette hors exception
+    > - [X] Prendre le pickomino de la valeur total des 🎲 si visible sur la brochette hors exception
     > - [ ] Becqueter le pickomino de la valeur total des 🎲 si visible sur la pile d'un joueur
-    > - [ ] Remettre le sommet de la pile du joueur sur la brochette (si tour nul)
+    > - [X] Remettre le sommet de la pile du joueur sur la brochette (si tour nul)
 
   - Exception événement du tour
 
-    > - [ ] Prendre le pickomino sur la brochette de la valeur total des 🎲 - 1 si visible
+    > - [X] Prendre le pickomino sur la brochette de la valeur total des 🎲 - 1 si visible
 
   - Lorsque qu'un pickomino est remis sur la brochette par un joueur
 
     > - [x] Vérifier si le pickomino remis est d'une valeur supérieur au max visible sur la brochette
-    > - [ ] Si faux, retourner face caché le pickomino avec la valeur la plus élevé de la brochette
+    > - [X] Si faux, retourner face caché le pickomino avec la valeur la plus élevé de la brochette
 
   - Déclencheur de fin de partie
 

@@ -98,8 +98,8 @@ bool estPickominoInferieurVisible(const int& numero, const Jeu& jeu)
 {
     for(int i = 1; i < numero - VALEUR_PICKOMINO_MIN; i++)
     {
-        if(jeu.plateau.pickominos[numero - i].etat == VISIBLE &&
-           jeu.plateau.pickominos[numero - i].appartenance == BROCHETTE)
+        if(jeu.plateau.pickominos[numero - VALEUR_PICKOMINO_MIN - i].etat == VISIBLE &&
+           jeu.plateau.pickominos[numero - VALEUR_PICKOMINO_MIN - i].appartenance == BROCHETTE)
         {
             return true;
         }
@@ -185,4 +185,27 @@ bool estBrochetteVide(Jeu& jeu)
         }
     }
     return true;
+}
+
+void prendrePickomino(const int& score, const int& joueurQuiJoue, Jeu& jeu)
+{
+    jeu.joueurs[joueurQuiJoue].sommetPile += 1;
+    jeu.joueurs[joueurQuiJoue].pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile] =
+      jeu.plateau.pickominos[score - VALEUR_PICKOMINO_MIN];
+    jeu.plateau.pickominos[score - VALEUR_PICKOMINO_MIN].appartenance = JOUEUR;
+}
+
+void prendrePickominoInferieur(const int& score, const int& joueurQuiJoue, Jeu& jeu)
+{
+    int scoreDecremente;
+    jeu.joueurs[joueurQuiJoue].sommetPile += 1;
+    for(int i = 1; i < score - VALEUR_PICKOMINO_MIN; i++)
+    {
+        scoreDecremente = score - i - VALEUR_PICKOMINO_MIN;
+        if(estPickominoVisible(scoreDecremente, jeu))
+        {
+            jeu.joueurs[joueurQuiJoue].pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile] =
+              jeu.plateau.pickominos[scoreDecremente];
+        }
+    }
 }

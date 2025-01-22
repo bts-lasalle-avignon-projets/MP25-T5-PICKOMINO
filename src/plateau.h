@@ -49,5 +49,7 @@ void remisePickominoMaxDansLaBrochette(const int joueurQuiJoue, Jeu& jeu);
 void remisePickominoMaxChezLeJoueur(const int joueurQuiJoue, Jeu& jeu);
 int  estPickominoMaxBrochette(Jeu& jeu);
 bool estBrochetteVide(Jeu& jeu);
+void prendrePickomino(const int& joueurQuiJoue, Jeu& jeu);
+void prendrePickominoInferieur(const int& joueurQuiJoue, Jeu& jeu);
 
 #endif
