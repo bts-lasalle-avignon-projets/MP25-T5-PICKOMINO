@@ -26,30 +26,42 @@ void jouerPickomino()
 
 void jouerTour(Jeu& jeu)
 {
-    bool tourFini  = false;
-    bool lancerNul = false;
-
-    do
+    for(int i = 0; i < jeu.nbJoueurs; i++)
     {
-        lancerDes(jeu.plateau);
-        afficherDes(jeu.plateau);
+        bool tourFini     = false;
+        bool lancerNul    = false;
+        jeu.plateau.nbDes = NB_DES;
 
-        int faceDe = demanderDesARetenir();
-        lancerNul  = !retenirDes(jeu.plateau, faceDe);
-
-        if(!lancerNul)
+        afficherQuelJoueurTour(jeu.joueurs[i]);
+        do
         {
-            afficherDesRetenus(jeu.plateau);
-            calculerTotalDesRetenus(jeu.plateau);
-            afficherTotalDesRetenus(jeu.plateau);
+            lancerDes(jeu.plateau);
+            afficherDes(jeu.plateau);
 
-            tourFini = !demanderRelancerDes();
-        }
-        else
-        {
-            tourFini = true;
-        }
-    } while(!tourFini);
+            int faceDe = demanderDesARetenir();
+            lancerNul  = !retenirDes(jeu.plateau, faceDe);
+
+            if(!lancerNul)
+            {
+                afficherDesRetenus(jeu.plateau);
+                calculerTotalDesRetenus(jeu.plateau);
+                afficherTotalDesRetenus(jeu.plateau);
+
+                if(jeu.plateau.nbDes == 0)
+                {
+                    tourFini = true;
+                }
+                else
+                {
+                    tourFini = !demanderRelancerDes();
+                }
+            }
+            else
+            {
+                tourFini = true;
+            }
+        } while(!tourFini);
+    }
 }
 
 bool estLancerNul(const int& score, const Jeu& jeu)
