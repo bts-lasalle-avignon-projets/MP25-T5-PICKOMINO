@@ -39,17 +39,19 @@ void initialiserPickominos(Plateau plateau);
 void lancerDes(Plateau& plateau);
 bool estDejaRetenu(const Plateau& plateau, int faceDe);
 bool retenirDes(Plateau& plateau, int faceDe);
-bool estScoreValide(const int& score);
+bool estScoreValide(const int& scoreDes);
 bool verifierSiVersRetenu(const Plateau& plateau);
+int  estNumeroPickomino(const int& scoreDes);
 bool estPickominoVisible(const int& numero, const Jeu& jeu);
 bool estPickominoInferieurVisible(const int& numero, const Jeu& jeu);
 int  calculerTotalDesRetenus(Plateau& plateau);
-void remisePickomino(const int joueurQuiJoue, Jeu& jeu);
-void remisePickominoMaxDansLaBrochette(const int joueurQuiJoue, Jeu& jeu);
-void remisePickominoMaxChezLeJoueur(const int joueurQuiJoue, Jeu& jeu);
+void remisePickomino(const int& joueurQuiJoue, Jeu& jeu);
+void remisePickominoMaxDansLaBrochette(const int& joueurQuiJoue, Jeu& jeu);
+void remisePickominoMaxChezLeJoueur(const int& joueurQuiJoue, Jeu& jeu);
 int  estPickominoMaxBrochette(Jeu& jeu);
 bool estBrochetteVide(Jeu& jeu);
-void prendrePickomino(const int& joueurQuiJoue, Jeu& jeu);
-void prendrePickominoInferieur(const int& joueurQuiJoue, Jeu& jeu);
+void prendrePickomino(const int& numero, const int& joueurQuiJoue, Jeu& jeu);
+void prendrePickominoInferieur(const int& numero, const int& joueurQuiJoue, Jeu& jeu);
+void estBecqueter(const int& numero);
 
 #endif
