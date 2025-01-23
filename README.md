@@ -90,7 +90,7 @@ $ ./pickomino.out
 
   - Vérification d'un tour
 
-    > - [x] Vérifier si toutes les vérification précédente sont fausse (si oui, le tour est nul)
+    > - [x] Vérifier si toutes les vérifications précédentes sont fausses (si oui, le tour est nul)
 
   - Événement du tour
 
@@ -109,7 +109,7 @@ $ ./pickomino.out
 
   - Déclencheur de fin de partie
 
-    > - [x] Vérifier s'il ne reste plus de pickominos visible sur la brochette
+    > - [x] Vérifier s'il ne reste plus de pickominos visibles sur la brochette
 
   - Choix du gagnant en fin de partie
 
