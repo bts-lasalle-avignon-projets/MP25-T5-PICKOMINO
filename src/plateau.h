@@ -35,7 +35,7 @@ struct Plateau
 };
 
 void initialiserPlateau(Plateau& plateau);
-void initialiserPickominos(Plateau plateau);
+void initialiserPickominos(Plateau& plateau);
 void lancerDes(Plateau& plateau);
 bool estDejaRetenu(const Plateau& plateau, int faceDe);
 bool retenirDes(Plateau& plateau, int faceDe);
@@ -45,10 +45,8 @@ int  estNumeroPickomino(const int& scoreDes);
 bool estPickominoVisible(const int& numero, const Jeu& jeu);
 bool estPickominoInferieurVisible(const int& numero, const Jeu& jeu);
 int  calculerTotalDesRetenus(Plateau& plateau);
-void remisePickomino(const int& joueurQuiJoue, Jeu& jeu);
-void remisePickominoMaxDansLaBrochette(const int& joueurQuiJoue, Jeu& jeu);
-void remisePickominoMaxChezLeJoueur(const int& joueurQuiJoue, Jeu& jeu);
-int  estPickominoMaxBrochette(Jeu& jeu);
+bool remettrePickomino(const int& joueurQuiJoue, Jeu& jeu);
+int  lirePickominoMaxBrochette(Jeu& jeu);
 bool estBrochetteVide(Jeu& jeu);
 
 #endif

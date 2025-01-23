@@ -15,7 +15,7 @@ void initialiserPlateau(Plateau& plateau)
     }
 }
 
-void initialiserPickominos(Plateau plateau)
+void initialiserPickominos(Plateau& plateau)
 {
     for(int i = 0; i < NB_PICKOMINOS; i++)
     {
@@ -79,7 +79,7 @@ bool estScoreValide(const int& scoreDes)
 
 bool verifierSiVersRetenu(const Plateau& plateau)
 {
-    for(int i = 0; i < NB_DES; i++)
+    for(int i = 0; i < (NB_DES - plateau.nbDes); i++)
     {
         if(plateau.desRetenus[i] == FACE_VER)
         {
@@ -132,41 +132,35 @@ int calculerTotalDesRetenus(Plateau& plateau)
     return plateau.totalDes;
 }
 
-void remisePickomino(const int& joueurQuiJoue, Jeu& jeu)
+bool remettrePickomino(const int& joueurQuiJoue, Jeu& jeu)
 {
     if(jeu.joueurs[joueurQuiJoue].sommetPile > 0)
     {
-        if(jeu.joueurs[joueurQuiJoue].pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile].numero <
-           estPickominoMaxBrochette(jeu))
+        if(jeu.joueurs[joueurQuiJoue]
+             .pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile - 1]
+             .numero < lirePickominoMaxBrochette(jeu))
         {
-            remisePickominoMaxDansLaBrochette(joueurQuiJoue, jeu);
+            jeu.joueurs[joueurQuiJoue]
+              .pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile - 1]
+              .etat = CACHE;
         }
         else
         {
-            remisePickominoMaxChezLeJoueur(joueurQuiJoue, jeu);
+            jeu.joueurs[joueurQuiJoue]
+              .pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile - 1]
+              .etat = VISIBLE;
         }
-        if(jeu.joueurs[joueurQuiJoue].sommetPile > 0)
-            jeu.joueurs[joueurQuiJoue].pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile].etat =
-              VISIBLE;
+
+        jeu.joueurs[joueurQuiJoue]
+          .pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile - 1]
+          .appartenance = BROCHETTE;
+        jeu.joueurs[joueurQuiJoue].sommetPile -= 1;
+        return true;
     }
+    return false;
 }
 
-void remisePickominoMaxDansLaBrochette(const int& joueurQuiJoue, Jeu& jeu)
-{
-    jeu.joueurs[joueurQuiJoue].pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile].etat = CACHE;
-    jeu.joueurs[joueurQuiJoue].pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile].appartenance =
-      BROCHETTE;
-    jeu.joueurs[joueurQuiJoue].sommetPile -= 1;
-}
-
-void remisePickominoMaxChezLeJoueur(const int& joueurQuiJoue, Jeu& jeu)
-{
-    jeu.joueurs[joueurQuiJoue].pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile].appartenance =
-      BROCHETTE;
-    jeu.joueurs[joueurQuiJoue].sommetPile -= 1;
-}
-
-int estPickominoMaxBrochette(Jeu& jeu)
+int lirePickominoMaxBrochette(Jeu& jeu)
 {
     for(int i = NB_PICKOMINOS - 1; i <= 0; i--)
     {
