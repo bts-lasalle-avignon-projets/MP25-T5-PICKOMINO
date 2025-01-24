@@ -19,71 +19,67 @@ void jouerPickomino()
     }
 
     initialiserPlateau(jeu.plateau);
-
-    jouerTour(jeu);
+    do
+    {
+        for(int i = 0; i < jeu.nbJoueurs; i++)
+        {
+            afficherQuelJoueurTour(i, jeu);
+            afficherBrochette(i, jeu);
+            jouerTour(i, jeu);
+        }
+    }while(!estBrochetteVide(jeu));
 }
 
-void jouerTour(Jeu& jeu)
+void jouerTour(const int& joueurQuiJoue, Jeu& jeu)
 {
-    for(int i = 0; i < jeu.nbJoueurs; i++)
+    bool tourFini  = false;
+    bool lancerNul = false;
+
+    initialiserTour(jeu);
+    do
     {
-        bool tourFini  = false;
-        bool lancerNul = false;
+        lancerDes(jeu.plateau);
+        afficherDes(jeu.plateau);
 
-        initialiserTour(jeu);
-        afficherBrochette(jeu.plateau);
-        afficherQuelJoueurTour(jeu.joueurs[i]);
-        do
+        int faceDe = demanderDesARetenir();
+        lancerNul  = !retenirDes(jeu.plateau, faceDe);
+
+        if(!lancerNul)
         {
-            lancerDes(jeu.plateau);
-            afficherDes(jeu.plateau);
+            afficherDesRetenus(jeu.plateau);
+            calculerTotalDesRetenus(jeu.plateau);
+            afficherTotalDesRetenus(jeu.plateau);
 
-            int faceDe = demanderDesARetenir();
-            lancerNul  = !retenirDes(jeu.plateau, faceDe);
-
-            if(!lancerNul)
-            {
-                afficherDesRetenus(jeu.plateau);
-                calculerTotalDesRetenus(jeu.plateau);
-                afficherTotalDesRetenus(jeu.plateau);
-
-                if(jeu.plateau.nbDes == 0)
-                {
-                    tourFini = true;
-                }
-                else
-                {
-                    tourFini = !demanderRelancerDes();
-                }
-            }
-            else
-            {
+            if(jeu.plateau.nbDes == 0)
                 tourFini = true;
-            }
-        } while(!tourFini);
-
-        int score = calculerTotalDesRetenus(jeu.plateau);
-#ifdef DEBUG_JEU
-        std::cout << "[" << __FILE__ << ":" << __PRETTY_FUNCTION__ << ":" << __LINE__ << "] ";
-        std::cout << "score = " << score << std::endl;
-#endif
-        if(!estLancerNul(score, jeu))
-        {
-            // @todo récupérer le pickomino
-#ifdef DEBUG_JEU
-            std::cout << "[" << __FILE__ << ":" << __PRETTY_FUNCTION__ << ":" << __LINE__ << "] ";
-            std::cout << "récupérer le pickomino" << std::endl;
-#endif
+            else
+                tourFini = !demanderRelancerDes();
         }
         else
         {
-            // @todo remettre un pickomino et éventuellement retourner un pickomino
-#ifdef DEBUG_JEU
-            std::cout << "[" << __FILE__ << ":" << __PRETTY_FUNCTION__ << ":" << __LINE__ << "] ";
-            std::cout << "remettre un pickomino et éventuellement retourner un pickomino"
-                      << std::endl;
-#endif
+            tourFini = true;
         }
+
+    } while(!tourFini);
+
+    int score = calculerTotalDesRetenus(jeu.plateau);
+    int numero = convertirNumeroPickomino(score);
+    std::cout << "score = " << score << std::endl;
+
+    if(!estLancerNul(score, jeu))
+    {
+        if(estPickominoVisible(numero, jeu)){
+            prendrePickomino(numero, joueurQuiJoue, jeu);
+            estBecqueter(numero, joueurQuiJoue, jeu);
+        }
+        else
+        {
+            prendrePickominoInferieur(numero, joueurQuiJoue, jeu);
+        }
+    }
+    else
+    {
+        remisePickomino(joueurQuiJoue, jeu);
     }
 }
 
