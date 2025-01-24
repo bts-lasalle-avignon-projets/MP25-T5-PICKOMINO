@@ -136,4 +136,35 @@ void afficherTotalDesRetenus(const Plateau& plateau)
 void afficherQuelJoueurTour(const Joueur& joueur)
 {
     cout << "C'est le tour de " << joueur.nom << " !" << endl;
+    afficherPileJoueur(joueur);
+}
+
+void afficherPileJoueur(const Joueur& joueur)
+{
+    if(joueur.sommetPile > 0)
+    {
+        cout << "Pile pickominos : ";
+        for(int i = 0; i < joueur.sommetPile; i++)
+        {
+            cout << joueur.pilePickominos[i].numero << " ";
+        }
+        cout << endl;
+    }
+}
+
+void afficherBrochette(const Plateau& plateau)
+{
+    cout << "Brochette : ";
+    for(int i = 0; i < NB_PICKOMINOS; i++)
+    {
+        if(plateau.pickominos[i].etat == Etat::VISIBLE)
+        {
+            cout << plateau.pickominos[i].numero << " ";
+        }
+        else
+        {
+            cout << "X ";
+        }
+    }
+    cout << endl;
 }

@@ -90,7 +90,7 @@ $ ./pickomino.out
 
   - Vérification d'un tour
 
-    > - [ ] Vérifier si toutes les vérification précédente sont fausse (si oui, le tour est nul)
+    > - [x] Vérifier si toutes les vérifications précédentes sont fausses (si oui, le tour est nul)
 
   - Événement du tour
 
@@ -104,12 +104,12 @@ $ ./pickomino.out
 
   - Lorsque qu'un pickomino est remis sur la brochette par un joueur
 
-    > - [ ] Vérifier si le pickomino remis est d'une valeur supérieur au max visible sur la brochette
+    > - [x] Vérifier si le pickomino remis est d'une valeur supérieur au max visible sur la brochette
     > - [ ] Si faux, retourner face caché le pickomino avec la valeur la plus élevé de la brochette
 
   - Déclencheur de fin de partie
 
-    > - [ ] Vérifier s'il ne reste plus de pickominos visible sur la brochette
+    > - [x] Vérifier s'il ne reste plus de pickominos visibles sur la brochette
 
   - Choix du gagnant en fin de partie
 
