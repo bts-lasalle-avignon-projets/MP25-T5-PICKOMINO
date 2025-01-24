@@ -11,8 +11,7 @@ int definirNombreJoueurs()
 
     do
     {
-        std::cout << "Nombre de joueurs (entre " << NB_JOUEURS_MIN << " et " << NB_JOUEURS_MAX
-                  << ") ? ";
+        cout << "Nombre de joueurs (entre " << NB_JOUEURS_MIN << " et " << NB_JOUEURS_MAX << ") ? ";
         cin >> nombreJoueurs;
         if(cin.fail())
         {
@@ -35,7 +34,7 @@ int demanderDesARetenir()
 
     do
     {
-        std::cout << "Face dé à retenir (1, 2, 3, 4, 5 ou V, v) : ";
+        cout << "Face dé à retenir (1, 2, 3, 4, 5 ou V, v) : ";
         cin >> faceARetenir;
         if((faceARetenir >= '1' && faceARetenir <= '5') ||
            (faceARetenir == 'V' || faceARetenir == 'v'))
@@ -44,7 +43,7 @@ int demanderDesARetenir()
         }
         else
         {
-            std::cout << "Saisie invalide !" << std::endl;
+            cout << "Saisie invalide !" << std::endl;
             saisieInvalide = true;
         }
     } while(saisieInvalide);
@@ -70,7 +69,7 @@ bool demanderRelancerDes()
 
     do
     {
-        std::cout << "Relancer les dés (Oo ou Nn) ? ";
+        cout << "Relancer les dés (Oo ou Nn) ? ";
         cin >> choixRelance;
         if((choixRelance == 'O' || choixRelance == 'o') ||
            (choixRelance == 'N' || choixRelance == 'n'))
@@ -79,7 +78,7 @@ bool demanderRelancerDes()
         }
         else
         {
-            std::cout << "Saisie invalide !" << std::endl;
+            cout << "Saisie invalide !" << std::endl;
             saisieInvalide = true;
         }
     } while(saisieInvalide);
@@ -132,4 +131,40 @@ void afficherDesRetenus(const Plateau& plateau)
 void afficherTotalDesRetenus(const Plateau& plateau)
 {
     cout << "Total dés : " << plateau.totalDes << endl;
+}
+
+void afficherQuelJoueurTour(const Joueur& joueur)
+{
+    cout << "C'est le tour de " << joueur.nom << " !" << endl;
+    afficherPileJoueur(joueur);
+}
+
+void afficherPileJoueur(const Joueur& joueur)
+{
+    if(joueur.sommetPile > 0)
+    {
+        cout << "Pile pickominos : ";
+        for(int i = 0; i < joueur.sommetPile; i++)
+        {
+            cout << joueur.pilePickominos[i].numero << " ";
+        }
+        cout << endl;
+    }
+}
+
+void afficherBrochette(const Plateau& plateau)
+{
+    cout << "Brochette : ";
+    for(int i = 0; i < NB_PICKOMINOS; i++)
+    {
+        if(plateau.pickominos[i].etat == Etat::VISIBLE)
+        {
+            cout << plateau.pickominos[i].numero << " ";
+        }
+        else
+        {
+            cout << "X ";
+        }
+    }
+    cout << endl;
 }

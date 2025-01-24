@@ -3,6 +3,7 @@
 
 #include "pickomino.h"
 #include "plateau.h"
+#include "joueur.h"
 
 int  definirNombreJoueurs();
 int  demanderDesARetenir();
@@ -12,5 +13,8 @@ void afficherVersion();
 void afficherDes(const Plateau& plateau);
 void afficherDesRetenus(const Plateau& plateau);
 void afficherTotalDesRetenus(const Plateau& plateau);
+void afficherQuelJoueurTour(const Joueur& joueur);
+void afficherPileJoueur(const Joueur& joueur);
+void afficherBrochette(const Plateau& plateau);
 
 #endif

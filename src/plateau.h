@@ -35,7 +35,7 @@ struct Plateau
 };
 
 void initialiserPlateau(Plateau& plateau);
-void initialiserPickominos(Plateau plateau);
+void initialiserPickominos(Plateau& plateau);
 void lancerDes(Plateau& plateau);
 bool estDejaRetenu(const Plateau& plateau, int faceDe);
 bool retenirDes(Plateau& plateau, int faceDe);

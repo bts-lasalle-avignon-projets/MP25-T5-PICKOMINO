@@ -15,7 +15,7 @@ void initialiserPlateau(Plateau& plateau)
     }
 }
 
-void initialiserPickominos(Plateau plateau)
+void initialiserPickominos(Plateau& plateau)
 {
     for(int i = 0; i < NB_PICKOMINOS; i++)
     {
@@ -79,7 +79,7 @@ bool estScoreValide(const int& scoreDes)
 
 bool verifierSiVersRetenu(const Plateau& plateau)
 {
-    for(int i = 0; i < NB_DES; i++)
+    for(int i = 0; i < (NB_DES - plateau.nbDes); i++)
     {
         if(plateau.desRetenus[i] == FACE_VER)
         {
