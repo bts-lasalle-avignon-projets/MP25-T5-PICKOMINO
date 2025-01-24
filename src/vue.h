@@ -16,5 +16,6 @@ void afficherTotalDesRetenus(const Plateau& plateau);
 void afficherQuelJoueurTour(const Joueur& joueur);
 void afficherPileJoueur(const Joueur& joueur);
 void afficherBrochette(const Plateau& plateau);
+std::string afficherPickomino(const int& numero, const Plateau& plateau);
 
 #endif

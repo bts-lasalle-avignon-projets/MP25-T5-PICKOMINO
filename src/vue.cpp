@@ -154,17 +154,36 @@ void afficherPileJoueur(const Joueur& joueur)
 
 void afficherBrochette(const Plateau& plateau)
 {
-    cout << "Brochette : ";
+    string brochetteAffichage[16];
+    string pickominoDisponible;
+    cout << "Brochette : " << endl;
+
     for(int i = 0; i < NB_PICKOMINOS; i++)
     {
         if(plateau.pickominos[i].etat == Etat::VISIBLE)
         {
-            cout << plateau.pickominos[i].numero << " ";
+            brochetteAffichage[i] = afficherPickomino(i, plateau);
+            pickominoDisponible +=  brochetteAffichage[i];
         }
         else
         {
-            cout << "X ";
+            brochetteAffichage[i] = "X";
+            pickominoDisponible +=  brochetteAffichage[i];
         }
     }
-    cout << endl;
+    cout << pickominoDisponible << endl;
+}
+
+string afficherPickomino(const int& numero, const Plateau& plateau)
+{
+    int nombreVerPickomino = plateau.pickominos[numero].nbVers;
+    /*string resultat = " ____\n";
+    resultat += "| " + to_string(numero+VALEUR_PICKOMINO_MIN) + " |\n";
+    resultat += "|----|\n";
+    resultat += "| " + to_string(nombreVerPickomino) + "🪱 |\n";
+    resultat += " ‾‾‾‾"; */ //Pour tout sur la même ligne c'est complex donc on le fera plus tard
+    string resultat = "___________\n";
+    resultat += "| " + to_string(numero+VALEUR_PICKOMINO_MIN) + " | " + to_string(nombreVerPickomino) + "🪱 |\n";
+    resultat += "‾‾‾‾‾‾‾‾‾‾‾\n";
+    return resultat;
 }
