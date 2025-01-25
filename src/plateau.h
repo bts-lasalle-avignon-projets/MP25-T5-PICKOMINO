@@ -19,7 +19,7 @@ enum Appartenance
 
 struct Pickomino
 {
-    int          numero;
+    int          numero = -1;
     int          nbVers;
     Etat         etat;
     Appartenance appartenance;

@@ -184,7 +184,8 @@ void remisePickomino(const int& joueurQuiJoue, Jeu& jeu)
 
 void remisePickominoMaxDansLaBrochette(const int& joueurQuiJoue, Jeu& jeu)
 {
-    jeu.joueurs[joueurQuiJoue].pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile].etat = Etat::CACHE;
+    jeu.joueurs[joueurQuiJoue].pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile].etat =
+      Etat::CACHE;
     jeu.joueurs[joueurQuiJoue].pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile].appartenance =
       Appartenance::BROCHETTE;
     jeu.joueurs[joueurQuiJoue].sommetPile -= 1;

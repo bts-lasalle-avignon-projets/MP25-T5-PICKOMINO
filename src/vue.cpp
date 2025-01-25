@@ -135,7 +135,8 @@ void afficherTotalDesRetenus(const Plateau& plateau)
 
 void afficherQuelJoueurTour(const int& joueurQuiJoue, const Jeu& jeu)
 {
-    cout << "C'est le tour de " << jeu.joueurs[joueurQuiJoue].nom << " !" << endl;
+    cout << "C'est le tour de " << JAUNE << jeu.joueurs[joueurQuiJoue].nom << RESET_COLOR << " !"
+         << endl;
     afficherPileJoueur(joueurQuiJoue, jeu);
 }
 
@@ -155,38 +156,43 @@ void afficherPileJoueur(const int& joueurQuiJoue, const Jeu& jeu)
 void afficherBrochette(const int& joueurQuiJoue, const Jeu& jeu)
 {
     string brochetteAffichage[16];
-    string pickominoDisponible ="";
+    string pickominoDisponible = "";
     cout << "Brochette : " << endl;
 
     for(int i = 0; i < NB_PICKOMINOS; i++)
     {
         brochetteAffichage[i] = afficherPickomino(i, joueurQuiJoue, jeu);
-        pickominoDisponible +=  brochetteAffichage[i];
+        pickominoDisponible += brochetteAffichage[i];
     }
     cout << pickominoDisponible << endl;
 }
 
-string afficherPickomino(const int& numero, const int& joueurQuiJoue,const Jeu& jeu)
+string afficherPickomino(const int& numero, const int& joueurQuiJoue, const Jeu& jeu)
 {
     int nombreVerPickomino = jeu.plateau.pickominos[numero].nbVers;
-    if (jeu.plateau.pickominos[numero].etat == Etat::CACHE)
+    if(jeu.plateau.pickominos[numero].etat == Etat::CACHE)
     {
-        return(afficherPickominoCache(numero, nombreVerPickomino));
+        return (afficherPickominoCache(numero, nombreVerPickomino));
     }
     else if(jeu.plateau.pickominos[numero].appartenance == Appartenance::JOUEUR)
     {
-        if(jeu.plateau.pickominos[numero].numero == jeu.plateau.pickominos[jeu.joueurs[joueurQuiJoue].pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile].numero].numero)
+        if(jeu.plateau.pickominos[numero].numero ==
+           jeu.plateau
+             .pickominos[jeu.joueurs[joueurQuiJoue]
+                           .pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile]
+                           .numero]
+             .numero)
         {
-            return(afficherPickominoJoueurActif(numero, nombreVerPickomino));
+            return (afficherPickominoJoueurActif(numero, nombreVerPickomino));
         }
         else
         {
-            return(afficherPickominoJoueur(numero, nombreVerPickomino));
+            return (afficherPickominoJoueur(numero, nombreVerPickomino));
         }
     }
     else
     {
-        return(afficherPickominoNormal(numero, nombreVerPickomino));
+        return (afficherPickominoNormal(numero, nombreVerPickomino));
     }
 }
 
@@ -196,33 +202,36 @@ string afficherPickominoJoueurActif(const int& numero, const int& nombreVerPicko
     resultat += "| " + to_string(numero+VALEUR_PICKOMINO_MIN) + " |\n";
     resultat += "|----|\n";
     resultat += "| " + to_string(nombreVerPickomino) + "🪱 |\n";
-    resultat += " ‾‾‾‾"; */ //Pour tout sur la même ligne c'est complex donc on le fera plus tard
-    string resultat = "\x1b[35m___________\n";
-        resultat += "| " + to_string(numero+VALEUR_PICKOMINO_MIN) + " | " + to_string(nombreVerPickomino) + "🪱 |\n";
-        resultat += "‾‾‾‾‾‾‾‾‾‾‾\n\x1b[0m";
-        return resultat;
+    resultat += " ‾‾‾‾";  *///Pour tout sur la même ligne c'est complex donc on le fera plus tard
+    string resultat = MAGENTA + "___________\n";
+    resultat += "| " + to_string(numero + VALEUR_PICKOMINO_MIN) + " | " +
+                to_string(nombreVerPickomino) + "🪱 |\n";
+    resultat += "‾‾‾‾‾‾‾‾‾‾‾\n" + RESET_COLOR;
+    return resultat;
 }
 
 string afficherPickominoJoueur(const int& numero, const int& nombreVerPickomino)
 {
-    string resultat = "\x1b[31m___________\n";
-        resultat += "| " + to_string(numero+VALEUR_PICKOMINO_MIN) + " | " + to_string(nombreVerPickomino) + "🪱 |\n";
-        resultat += "‾‾‾‾‾‾‾‾‾‾‾\n\x1b[0m";
-        return resultat;
+    string resultat = ROUGE + "___________\n";
+    resultat += "| " + to_string(numero + VALEUR_PICKOMINO_MIN) + " | " +
+                to_string(nombreVerPickomino) + "🪱 |\n";
+    resultat += "‾‾‾‾‾‾‾‾‾‾‾\n" + RESET_COLOR;
+    return resultat;
 }
 
 string afficherPickominoNormal(const int& numero, const int& nombreVerPickomino)
 {
-    string resultat = "\x1b[32m___________\n";
-        resultat += "| " + to_string(numero+VALEUR_PICKOMINO_MIN) + " | " + to_string(nombreVerPickomino) + "🪱 |\n";
-        resultat += "‾‾‾‾‾‾‾‾‾‾‾\n\x1b[0m";
-        return resultat;
+    string resultat = VERT + "___________\n";
+    resultat += "| " + to_string(numero + VALEUR_PICKOMINO_MIN) + " | " +
+                to_string(nombreVerPickomino) + "🪱 |\n";
+    resultat += "‾‾‾‾‾‾‾‾‾‾‾\n" + RESET_COLOR;
+    return resultat;
 }
 
 string afficherPickominoCache(const int& numero, const int& nombreVerPickomino)
 {
     string resultat = "___________\n";
-        resultat += "| XX | XX |\n";
-        resultat += "‾‾‾‾‾‾‾‾‾‾‾\n";
-        return resultat;
+    resultat += "| XX | XX |\n";
+    resultat += "‾‾‾‾‾‾‾‾‾‾‾\n";
+    return resultat;
 }
