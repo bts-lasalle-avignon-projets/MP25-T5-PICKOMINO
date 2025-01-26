@@ -102,6 +102,84 @@ void afficherVersion()
     cout << "-----------------------------------------------" << endl;
 }
 
+void afficherRegles()
+{
+    cout << "\n********************REGLES*********************" << endl;
+    cout << "Lire le README pour avoir les règles complètes.\n" << endl;
+    cout << "Voici 4 couleurs pour différiencier les pickominos : \n" << endl;
+    for(int i = 0; i < NB_PICKOMINO_EXEMPLE; i++)
+    {
+        cout << afficherPickominoExemple(i) << endl;
+    }
+    cout << "***********************************************\n" << endl;
+}
+
+string afficherPickominoExemple(const int& numeroExemple)
+{
+    string description[NB_LIGNE_PICKOMINO];
+    string pickomino[NB_LIGNE_PICKOMINO];
+    pickomino[0]                = " ____ ";
+    pickomino[1]                = "| 21 |";
+    pickomino[2]                = "|————|";
+    pickomino[3]                = "| 1v |";
+    pickomino[4]                = " ‾‾‾‾ ";
+    string pickominoDescription = "";
+    if(numeroExemple == 0)
+    {
+        description[0] = "   Ceci est le pickomino classic appartenant\n";
+        description[1] = "   à la brochette. Peut être gagné :\n";
+        description[2] = "   Avec le bon score de dè.\n";
+        description[3] = "   Score inferieur si indisponible.\n";
+        description[4] = "\n";
+        for(int i = 0; i < NB_LIGNE_PICKOMINO; i++)
+        {
+            pickominoDescription += VERT + pickomino[i] + RESET_COLOR + description[i];
+        }
+        return (pickominoDescription);
+    }
+    if(numeroExemple == 1)
+    {
+        description[0] = "   Ceci est le pickomino appartenant\n";
+        description[1] = "   à un autre joueur que vous.\n";
+        description[2] = "   Peut être gagné :\n";
+        description[3] = "   Uniquement avec le bon score de dès.\n";
+        description[4] = "\n";
+        for(int i = 0; i < NB_LIGNE_PICKOMINO; i++)
+        {
+            pickominoDescription += ROUGE + pickomino[i] + RESET_COLOR + description[i];
+        }
+        return (pickominoDescription);
+    }
+    if(numeroExemple == 2)
+    {
+        description[0] = "   Ce pickomino est votre dernier pickomino\n";
+        description[1] = "   obtenu.\n";
+        description[2] = "   Si resélectionné par son propriétaire,\n";
+        description[3] = "   le pickomino inférieur appartenant à\n";
+        description[4] = "   la brochette sera pris.\n";
+        for(int i = 0; i < NB_LIGNE_PICKOMINO; i++)
+        {
+            pickominoDescription += MAGENTA + pickomino[i] + RESET_COLOR + description[i];
+        }
+        return (pickominoDescription);
+    }
+    else
+    {
+        pickomino[1]   = "| XX |";
+        pickomino[3]   = "| XX |";
+        description[0] = "   Ce pickomino est indisponible (Caché).\n";
+        description[1] = "   Il peut être :\n";
+        description[2] = "   Redisponible si est le suivant dans la pile\n";
+        description[3] = "   d'un joueur et fait un tour nul.\n";
+        description[4] = "   Verrouillé par le jeu indéfiniment.\n";
+        for(int i = 0; i < NB_LIGNE_PICKOMINO; i++)
+        {
+            pickominoDescription += pickomino[i] + description[i];
+        }
+        return (pickominoDescription);
+    }
+}
+
 void afficherDes(const Plateau& plateau)
 {
     cout << "Dés :    ";
@@ -198,7 +276,7 @@ string afficherPickomino(const int& numero,
         if(jeu.plateau.pickominos[numero].etat == Etat::CACHE)
             pickomino = "| XX | ";
         else
-            pickomino = "| " + to_string(nombreVerPickomino) + "🪱 | ";
+            pickomino = "| " + to_string(nombreVerPickomino) + "v | ";
     }
     else
     {

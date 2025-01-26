@@ -264,8 +264,9 @@ void prendrePickominoInferieur(const int& numero, const int& joueurQuiJoue, Jeu&
            jeu.plateau.pickominos[numeroDecremente].appartenance == Appartenance::BROCHETTE)
         {
             prendrePickomino(numeroDecremente, joueurQuiJoue, jeu);
-            std::cout << "PICKO GAGNE : " << jeu.plateau.pickominos[numeroDecremente].numero
-                      << std::endl;
+            /*std::cout << "Pickomino récupéré : " <<
+               jeu.plateau.pickominos[numeroDecremente].numero
+                      << std::endl;*/
             break;
         }
     }

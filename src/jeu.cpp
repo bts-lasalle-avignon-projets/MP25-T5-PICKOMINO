@@ -12,7 +12,7 @@ void jouerPickomino()
     Jeu jeu;
 
     jeu.nbJoueurs = definirNombreJoueurs();
-
+    afficherRegles();
     for(int i = 0; i < jeu.nbJoueurs; i++)
     {
         initialiserJoueur("Joueur" + std::to_string(i + 1), jeu.joueurs[i]);
