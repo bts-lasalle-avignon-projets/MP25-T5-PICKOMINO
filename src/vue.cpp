@@ -145,7 +145,7 @@ void afficherPileJoueur(const int& joueurQuiJoue, const Jeu& jeu)
     if(jeu.joueurs[joueurQuiJoue].sommetPile > 0)
     {
         cout << "Vos pickominos : ";
-        for(int i = 0; i < jeu.joueurs[joueurQuiJoue].sommetPile; i++)
+        for(int i = 1; i <= jeu.joueurs[joueurQuiJoue].sommetPile; i++)
         {
             cout << jeu.joueurs[joueurQuiJoue].pilePickominos[i].numero << " ";
         }
@@ -170,62 +170,38 @@ void afficherBrochette(const int& joueurQuiJoue, const Jeu& jeu)
 string afficherPickomino(const int& numero, const int& joueurQuiJoue, const Jeu& jeu)
 {
     int nombreVerPickomino = jeu.plateau.pickominos[numero].nbVers;
+
+    /*string pickomino = " ____\n";
+    pickomino += "| " + to_string(numero+VALEUR_PICKOMINO_MIN) + " |\n";
+    pickomino += "|----|\n";
+    pickomino += "| " + to_string(nombreVerPickomino) + "🪱 |\n";
+    pickomino += " ‾‾‾‾";  *///Pour tout sur la même ligne c'est complex donc on le fera plus tard
+
+    string pickomino = "___________\n";
+    pickomino += "| " + to_string(numero + VALEUR_PICKOMINO_MIN) + " | " +
+                 to_string(nombreVerPickomino) + "🪱 |\n";
+    pickomino += "‾‾‾‾‾‾‾‾‾‾‾\n";
+
     if(jeu.plateau.pickominos[numero].etat == Etat::CACHE)
     {
         return (afficherPickominoCache(numero, nombreVerPickomino));
     }
+    else if(jeu.plateau.pickominos[numero].appartenance == Appartenance::JOUEUR &&
+            jeu.plateau.pickominos[numero].numero ==
+              jeu.joueurs[joueurQuiJoue]
+                .pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile]
+                .numero)
+    {
+        return (MAGENTA + pickomino + RESET_COLOR);
+    }
     else if(jeu.plateau.pickominos[numero].appartenance == Appartenance::JOUEUR)
     {
-        if(jeu.plateau.pickominos[numero].numero ==
-           jeu.plateau
-             .pickominos[jeu.joueurs[joueurQuiJoue]
-                           .pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile]
-                           .numero]
-             .numero)
-        {
-            return (afficherPickominoJoueurActif(numero, nombreVerPickomino));
-        }
-        else
-        {
-            return (afficherPickominoJoueur(numero, nombreVerPickomino));
-        }
+        return (ROUGE + pickomino + RESET_COLOR);
     }
     else
     {
-        return (afficherPickominoNormal(numero, nombreVerPickomino));
+        return (VERT + pickomino + RESET_COLOR);
     }
-}
-
-string afficherPickominoJoueurActif(const int& numero, const int& nombreVerPickomino)
-{
-    /*string resultat = " ____\n";
-    resultat += "| " + to_string(numero+VALEUR_PICKOMINO_MIN) + " |\n";
-    resultat += "|----|\n";
-    resultat += "| " + to_string(nombreVerPickomino) + "🪱 |\n";
-    resultat += " ‾‾‾‾";  *///Pour tout sur la même ligne c'est complex donc on le fera plus tard
-    string resultat = MAGENTA + "___________\n";
-    resultat += "| " + to_string(numero + VALEUR_PICKOMINO_MIN) + " | " +
-                to_string(nombreVerPickomino) + "🪱 |\n";
-    resultat += "‾‾‾‾‾‾‾‾‾‾‾\n" + RESET_COLOR;
-    return resultat;
-}
-
-string afficherPickominoJoueur(const int& numero, const int& nombreVerPickomino)
-{
-    string resultat = ROUGE + "___________\n";
-    resultat += "| " + to_string(numero + VALEUR_PICKOMINO_MIN) + " | " +
-                to_string(nombreVerPickomino) + "🪱 |\n";
-    resultat += "‾‾‾‾‾‾‾‾‾‾‾\n" + RESET_COLOR;
-    return resultat;
-}
-
-string afficherPickominoNormal(const int& numero, const int& nombreVerPickomino)
-{
-    string resultat = VERT + "___________\n";
-    resultat += "| " + to_string(numero + VALEUR_PICKOMINO_MIN) + " | " +
-                to_string(nombreVerPickomino) + "🪱 |\n";
-    resultat += "‾‾‾‾‾‾‾‾‾‾‾\n" + RESET_COLOR;
-    return resultat;
 }
 
 string afficherPickominoCache(const int& numero, const int& nombreVerPickomino)

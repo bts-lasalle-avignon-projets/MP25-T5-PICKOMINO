@@ -85,8 +85,8 @@ $ ./pickomino.out
 
   - Déclencheur de fin du tour d'un joueur
 
-    > - [ ] Vérifier si les valeurs des 🎲 relancé sont déjà retenus
-    > - [ ] Arrêter son tour
+    > - [x] Vérifier si les valeurs des 🎲 relancé sont déjà retenus
+    > - [x] Arrêter son tour
 
   - Vérification d'un tour
 
@@ -113,7 +113,7 @@ $ ./pickomino.out
 
   - Choix du gagnant en fin de partie
 
-    > - [ ] Compter le nombre de "vers" total par joueur
+    > - [x] Compter le nombre de "vers" total par joueur
     > - [ ] Vérifier s'il y a une égalité entre plusieur joueurs
     > - [ ] Si égalité, choisir le joueur qui a le pickomino avec la valeur la plus élevé
     > - [ ] Sinon, désigner le joueur avec le plus de vers

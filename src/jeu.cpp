@@ -27,7 +27,7 @@ void jouerPickomino()
             afficherBrochette(i, jeu);
             jouerTour(i, jeu);
         }
-    }while(!estBrochetteVide(jeu));
+    } while(!estBrochetteVide(jeu));
 }
 
 void jouerTour(const int& joueurQuiJoue, Jeu& jeu)
@@ -62,19 +62,29 @@ void jouerTour(const int& joueurQuiJoue, Jeu& jeu)
 
     } while(!tourFini);
 
-    int score = calculerTotalDesRetenus(jeu.plateau);
+    int score  = calculerTotalDesRetenus(jeu.plateau);
     int numero = convertirNumeroPickomino(score);
     std::cout << "score = " << score << std::endl;
 
     if(!estLancerNul(score, jeu))
     {
-        if(estPickominoVisible(numero, jeu)){
+        if(estPickominoVisible(numero, jeu) &&
+           jeu.plateau.pickominos[numero].appartenance == Appartenance::BROCHETTE)
+        {
             prendrePickomino(numero, joueurQuiJoue, jeu);
-            estBecqueter(numero, joueurQuiJoue, jeu);
+            std::cout << "Pris" << std::endl;
+        }
+        else if(estPickominoVisible(numero, jeu) &&
+                !estSommetPileJoueur(numero, joueurQuiJoue, jeu))
+        {
+            std::cout << "BECQUETE" << std::endl;
+            becqueter(numero, joueurQuiJoue, jeu);
+            prendrePickomino(numero, joueurQuiJoue, jeu);
         }
         else
         {
             prendrePickominoInferieur(numero, joueurQuiJoue, jeu);
+            std::cout << "INFERIEUR" << std::endl;
         }
     }
     else

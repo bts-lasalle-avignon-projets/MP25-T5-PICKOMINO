@@ -19,7 +19,7 @@ enum Appartenance
 
 struct Pickomino
 {
-    int          numero = -1;
+    int          numero;
     int          nbVers;
     Etat         etat;
     Appartenance appartenance;
@@ -51,6 +51,7 @@ int  convertirNumeroPickomino(const int& scoreDes);
 bool estPickominoVisible(const int& numero, const Jeu& jeu);
 bool estPickominoInferieurVisible(const int& numero, const Jeu& jeu);
 int  lirePickominoMaxBrochette(const Jeu& jeu);
+bool estSommetPileJoueur(const int& numero, const int& joueurQuiJoue, const Jeu& jeu);
 
 // Déclencheur
 bool estBrochetteVide(const Jeu& jeu);
@@ -62,6 +63,14 @@ void remisePickominoMaxChezLeJoueur(const int& joueurQuiJoue, Jeu& jeu);
 
 void prendrePickomino(const int& numero, const int& joueurQuiJoue, Jeu& jeu);
 void prendrePickominoInferieur(const int& numero, const int& joueurQuiJoue, Jeu& jeu);
-void estBecqueter(const int& numero, const int& joueurQuiJoue, Jeu& jeu);
+void becqueter(const int& numero, const int& joueurQuiJoue, Jeu& jeu);
+
+void devientPickominoBrochette(const int& numero, Plateau& plateau);
+void devientPickominoJoueur(const int& numero, Plateau& plateau);
+void devientPickominoCache(const int& numero, Plateau& plateau);
+void devientPickominoVisible(const int& numero, Plateau& plateau);
+
+void incrementerSommetPileJoueur(const int& joueurConcerne, Jeu& jeu);
+void decrementerSommetPileJoueur(const int& joueurConcerne, Jeu& jeu);
 
 #endif
