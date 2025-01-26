@@ -158,33 +158,61 @@ void afficherBrochette(const int& joueurQuiJoue, const Jeu& jeu)
     string brochetteAffichage[16];
     string pickominoDisponible = "";
     cout << "Brochette : " << endl;
-
-    for(int i = 0; i < NB_PICKOMINOS; i++)
+    for(int j = 0; j < NB_LIGNE_PICKOMINO; j++)
     {
-        brochetteAffichage[i] = afficherPickomino(i, joueurQuiJoue, jeu);
-        pickominoDisponible += brochetteAffichage[i];
+        for(int i = 0; i < NB_PICKOMINOS; i++)
+        {
+            brochetteAffichage[i] = afficherPickomino(i, joueurQuiJoue, j, jeu);
+            pickominoDisponible += brochetteAffichage[i];
+        }
+        pickominoDisponible += "\n";
     }
     cout << pickominoDisponible << endl;
 }
 
-string afficherPickomino(const int& numero, const int& joueurQuiJoue, const Jeu& jeu)
+string afficherPickomino(const int& numero,
+                         const int& joueurQuiJoue,
+                         const int& numeroLigne,
+                         const Jeu& jeu)
 {
-    int nombreVerPickomino = jeu.plateau.pickominos[numero].nbVers;
+    int    nombreVerPickomino = jeu.plateau.pickominos[numero].nbVers;
+    string pickomino;
 
-    /*string pickomino = " ____\n";
-    pickomino += "| " + to_string(numero+VALEUR_PICKOMINO_MIN) + " |\n";
-    pickomino += "|----|\n";
-    pickomino += "| " + to_string(nombreVerPickomino) + "🪱 |\n";
-    pickomino += " ‾‾‾‾";  *///Pour tout sur la même ligne c'est complex donc on le fera plus tard
-
-    string pickomino = "___________\n";
-    pickomino += "| " + to_string(numero + VALEUR_PICKOMINO_MIN) + " | " +
-                 to_string(nombreVerPickomino) + "🪱 |\n";
-    pickomino += "‾‾‾‾‾‾‾‾‾‾‾\n";
+    if(numeroLigne == 0)
+    {
+        pickomino = " ____  ";
+    }
+    else if(numeroLigne == 1)
+    {
+        if(jeu.plateau.pickominos[numero].etat == Etat::CACHE)
+            pickomino = "| XX | ";
+        else
+            pickomino = "| " + to_string(numero + VALEUR_PICKOMINO_MIN) + " | ";
+    }
+    else if(numeroLigne == 2)
+    {
+        pickomino = "|————| ";
+    }
+    else if(numeroLigne == 3)
+    {
+        if(jeu.plateau.pickominos[numero].etat == Etat::CACHE)
+            pickomino = "| XX | ";
+        else
+            pickomino = "| " + to_string(nombreVerPickomino) + "🪱 | ";
+    }
+    else
+    {
+        pickomino = " ‾‾‾‾  ";
+    }
+    /*
+        string pickomino = "___________\n";
+        pickomino += "| " + to_string(numero + VALEUR_PICKOMINO_MIN) + " | " +
+                     to_string(nombreVerPickomino) + "🪱 |\n";
+        pickomino += "‾‾‾‾‾‾‾‾‾‾‾\n";*/ //version horizontal
 
     if(jeu.plateau.pickominos[numero].etat == Etat::CACHE)
     {
-        return (afficherPickominoCache(numero, nombreVerPickomino));
+        return (pickomino);
     }
     else if(jeu.plateau.pickominos[numero].appartenance == Appartenance::JOUEUR &&
             jeu.plateau.pickominos[numero].numero ==
@@ -202,12 +230,4 @@ string afficherPickomino(const int& numero, const int& joueurQuiJoue, const Jeu&
     {
         return (VERT + pickomino + RESET_COLOR);
     }
-}
-
-string afficherPickominoCache(const int& numero, const int& nombreVerPickomino)
-{
-    string resultat = "___________\n";
-    resultat += "| XX | XX |\n";
-    resultat += "‾‾‾‾‾‾‾‾‾‾‾\n";
-    return resultat;
 }
