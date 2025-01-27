@@ -7,6 +7,7 @@
 
 void jouerPickomino()
 {
+    system("printf '\e[8;30;112t'");
     afficherVersion();
 
     Jeu jeu;
