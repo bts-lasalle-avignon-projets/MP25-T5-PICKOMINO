@@ -28,6 +28,7 @@ void jouerPickomino()
             jouerTour(i, jeu);
         }
     } while(!estBrochetteVide(jeu));
+    std::cout << "Bravo vous avez fini le jeu au bout de 7ans" << std::endl;
 }
 
 void jouerTour(const int& joueurQuiJoue, Jeu& jeu)
@@ -66,7 +67,7 @@ void jouerTour(const int& joueurQuiJoue, Jeu& jeu)
     int numero = convertirNumeroPickomino(score);
     std::cout << "score = " << score << std::endl;
 
-    if(!estLancerNul(score, jeu))
+    if(!estLancerNul(score, numero, jeu))
     {
         if(estPickominoVisible(numero, jeu) &&
            jeu.plateau.pickominos[numero].appartenance == Appartenance::BROCHETTE)
@@ -75,7 +76,8 @@ void jouerTour(const int& joueurQuiJoue, Jeu& jeu)
             std::cout << "Pris" << std::endl;
         }
         else if(estPickominoVisible(numero, jeu) &&
-                !estSommetPileJoueur(numero, joueurQuiJoue, jeu))
+                !estSommetPileJoueur(numero, joueurQuiJoue, jeu) &&
+                jeu.plateau.pickominos[numero].appartenance == Appartenance::JOUEUR)
         {
             std::cout << "BECQUETE" << std::endl;
             becqueter(numero, joueurQuiJoue, jeu);
@@ -93,12 +95,11 @@ void jouerTour(const int& joueurQuiJoue, Jeu& jeu)
     }
 }
 
-bool estLancerNul(const int& score, const Jeu& jeu)
+bool estLancerNul(const int& score, const int& numero, const Jeu& jeu)
 {
     if(estScoreValide(score) && verifierSiVersRetenu(jeu.plateau))
     {
-        if(estPickominoVisible(score - VALEUR_PICKOMINO_MIN, jeu) ||
-           estPickominoInferieurVisible(score - VALEUR_PICKOMINO_MIN, jeu))
+        if(estPickominoVisible(numero, jeu) || estPickominoInferieurVisible(numero, jeu))
             return false;
     }
     return true;

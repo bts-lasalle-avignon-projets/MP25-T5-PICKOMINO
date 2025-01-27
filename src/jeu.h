@@ -3,7 +3,6 @@
 
 #include "joueur.h"
 
-
 #define DEBUG_JEU
 
 struct Jeu
@@ -15,7 +14,7 @@ struct Jeu
 
 void jouerPickomino();
 void jouerTour(const int& joueurQuiJoue, Jeu& jeu);
-bool estLancerNul(const int& score, const Jeu& jeu);
+bool estLancerNul(const int& score, const int& numero, const Jeu& jeu);
 void initialiserTour(Jeu& jeu);
 
 #endif
