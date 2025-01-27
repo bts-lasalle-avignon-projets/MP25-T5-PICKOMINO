@@ -3,7 +3,8 @@
 
 #include "joueur.h"
 
-// #define SIMULATION
+
+#define DEBUG_JEU
 
 struct Jeu
 {
@@ -13,7 +14,8 @@ struct Jeu
 };
 
 void jouerPickomino();
-void jouerTour(Jeu& jeu);
-bool estLancerNul(const int& score, const Plateau& plateau);
+void jouerTour(const int& joueurQuiJoue, Jeu& jeu);
+bool estLancerNul(const int& score, const Jeu& jeu);
+void initialiserTour(Jeu& jeu);
 
 #endif

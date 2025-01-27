@@ -85,35 +85,35 @@ $ ./pickomino.out
 
   - Déclencheur de fin du tour d'un joueur
 
-    > - [ ] Vérifier si les valeurs des 🎲 relancé sont déjà retenus
-    > - [ ] Arrêter son tour
+    > - [x] Vérifier si les valeurs des 🎲 relancé sont déjà retenus
+    > - [x] Arrêter son tour
 
   - Vérification d'un tour
 
-    > - [ ] Vérifier si toutes les vérification précédente sont fausse (si oui, le tour est nul)
+    > - [x] Vérifier si toutes les vérifications précédentes sont fausses (si oui, le tour est nul)
 
   - Événement du tour
 
-    > - [ ] Prendre le pickomino de la valeur total des 🎲 si visible sur la brochette hors exception
-    > - [ ] Becqueter le pickomino de la valeur total des 🎲 si visible sur la pile d'un joueur
-    > - [ ] Remettre le sommet de la pile du joueur sur la brochette (si tour nul)
+    > - [x] Prendre le pickomino de la valeur total des 🎲 si visible sur la brochette hors exception
+    > - [x] Becqueter le pickomino de la valeur total des 🎲 si visible sur la pile d'un joueur
+    > - [x] Remettre le sommet de la pile du joueur sur la brochette (si tour nul)
 
   - Exception événement du tour
 
-    > - [ ] Prendre le pickomino sur la brochette de la valeur total des 🎲 - 1 si visible
+    > - [x] Prendre le pickomino sur la brochette de la valeur total des 🎲 - 1 si visible
 
   - Lorsque qu'un pickomino est remis sur la brochette par un joueur
 
-    > - [ ] Vérifier si le pickomino remis est d'une valeur supérieur au max visible sur la brochette
-    > - [ ] Si faux, retourner face caché le pickomino avec la valeur la plus élevé de la brochette
+    > - [x] Vérifier si le pickomino remis est d'une valeur supérieur au max visible sur la brochette
+    > - [x] Si faux, retourner face caché le pickomino avec la valeur la plus élevé de la brochette
 
   - Déclencheur de fin de partie
 
-    > - [ ] Vérifier s'il ne reste plus de pickominos visible sur la brochette
+    > - [x] Vérifier s'il ne reste plus de pickominos visibles sur la brochette
 
   - Choix du gagnant en fin de partie
 
-    > - [ ] Compter le nombre de "vers" total par joueur
+    > - [x] Compter le nombre de "vers" total par joueur
     > - [ ] Vérifier s'il y a une égalité entre plusieur joueurs
     > - [ ] Si égalité, choisir le joueur qui a le pickomino avec la valeur la plus élevé
     > - [ ] Sinon, désigner le joueur avec le plus de vers
