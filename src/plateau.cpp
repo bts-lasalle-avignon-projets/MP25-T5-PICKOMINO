@@ -127,14 +127,16 @@ bool estPickominoInferieurVisible(const int& numero, const Jeu& jeu)
     int numeroDecremente = numero;
     for(int i = 1; i < numero; i++)
     {
-        numeroDecremente -= i;
+        numeroDecremente -= 1;
         if(jeu.plateau.pickominos[numeroDecremente].etat == Etat::VISIBLE &&
            jeu.plateau.pickominos[numeroDecremente].appartenance == Appartenance::BROCHETTE)
         {
-            std::cout << "Picko inf : " << jeu.plateau.pickominos[numeroDecremente].numero
+            std::cout << "Picko inf dispo: " << jeu.plateau.pickominos[numeroDecremente].numero
                       << std::endl;
             return true;
         }
+        std::cout << "Picko inf non dispo : " << jeu.plateau.pickominos[numeroDecremente].numero
+                  << std::endl;
     }
     return false;
 }
@@ -253,8 +255,9 @@ void prendrePickomino(const int& numero, const int& joueurQuiJoue, Jeu& jeu)
 void prendrePickominoInferieur(const int& numero, const int& joueurQuiJoue, Jeu& jeu)
 {
     int numeroDecremente = numero;
-    for(int i = 1; i < numero; i++)
+    for(int i = 0; i < numero; i++)
     {
+        numeroDecremente -= 1;
         std::cout << "Pickomino Inf : " << jeu.plateau.pickominos[numeroDecremente].numero
                   << std::endl;
         if(estPickominoVisible(numeroDecremente, jeu) &&
@@ -263,7 +266,6 @@ void prendrePickominoInferieur(const int& numero, const int& joueurQuiJoue, Jeu&
             prendrePickomino(numeroDecremente, joueurQuiJoue, jeu);
             break;
         }
-        numeroDecremente -= i;
     }
 }
 

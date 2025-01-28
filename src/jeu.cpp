@@ -83,11 +83,13 @@ void jouerTour(const int& joueurQuiJoue, Jeu& jeu)
             becqueter(numero, joueurQuiJoue, jeu);
             prendrePickomino(numero, joueurQuiJoue, jeu);
         }
-        else
+        else if(estPickominoInferieurVisible(numero, jeu))
         {
             prendrePickominoInferieur(numero, joueurQuiJoue, jeu);
             std::cout << "INFERIEUR" << std::endl;
         }
+        else
+            remisePickomino(joueurQuiJoue, jeu);
     }
     else
     {

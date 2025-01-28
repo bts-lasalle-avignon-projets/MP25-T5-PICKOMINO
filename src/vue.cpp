@@ -118,11 +118,11 @@ string afficherPickominoExemple(const int& numeroExemple)
 {
     string description[NB_LIGNE_PICKOMINO];
     string pickomino[NB_LIGNE_PICKOMINO];
-    pickomino[0]                = " ____ ";
-    pickomino[1]                = "| 21 |";
-    pickomino[2]                = "|————|";
-    pickomino[3]                = "| 1v |";
-    pickomino[4]                = " ‾‾‾‾ ";
+    pickomino[0]                = "╭────╮";
+    pickomino[1]                = "│ 21 │";
+    pickomino[2]                = "├────┤";
+    pickomino[3]                = "│ 1v │";
+    pickomino[4]                = "╰────╯";
     string pickominoDescription = "";
     if(numeroExemple == 0)
     {
@@ -163,15 +163,28 @@ string afficherPickominoExemple(const int& numeroExemple)
         }
         return (pickominoDescription);
     }
+    else if(numeroExemple == 3)
+    {
+        description[0] = "   Ce pickomino est indisponible (Caché)\n";
+        description[1] = "   car dans la pile d'un joueur sans en être\n";
+        description[2] = "   son sommet.\n";
+        description[3] = "   Il peut redevenir visible.\n";
+        description[4] = "   \n";
+        for(int i = 0; i < NB_LIGNE_PICKOMINO; i++)
+        {
+            pickominoDescription += pickomino[i] + description[i];
+        }
+        return (pickominoDescription);
+    }
     else
     {
-        pickomino[1]   = "| XX |";
-        pickomino[3]   = "| XX |";
+        pickomino[1]   = "│ XX │";
+        pickomino[3]   = "│ XX │";
         description[0] = "   Ce pickomino est indisponible (Caché).\n";
-        description[1] = "   Il peut être :\n";
-        description[2] = "   Redisponible si est le suivant dans la pile\n";
-        description[3] = "   d'un joueur et fait un tour nul.\n";
-        description[4] = "   Verrouillé par le jeu indéfiniment.\n";
+        description[1] = "   Il est verrouillé par le jeu indéfiniment.\n";
+        description[2] = "   \n";
+        description[3] = "   \n";
+        description[4] = "   \n";
         for(int i = 0; i < NB_LIGNE_PICKOMINO; i++)
         {
             pickominoDescription += pickomino[i] + description[i];
@@ -222,65 +235,74 @@ void afficherPileJoueur(const int& joueurQuiJoue, const Jeu& jeu)
 {
     if(jeu.joueurs[joueurQuiJoue].sommetPile > 0)
     {
-        cout << "Vos pickominos : ";
+        string pileAffichage[NB_PICKOMINOS];
+        string pickominoJoueur = "";
+        cout << "Vos pickominos : " << endl;
+
         for(int i = 1; i <= jeu.joueurs[joueurQuiJoue].sommetPile; i++)
         {
-            cout << jeu.joueurs[joueurQuiJoue].pilePickominos[i].numero << " ";
+            // cout << jeu.joueurs[joueurQuiJoue].pilePickominos[i].numero << " ";
+            int numero =
+              convertirNumeroPickomino(jeu.joueurs[joueurQuiJoue].pilePickominos[i].numero);
+
+            pileAffichage[i] = afficherPickominoPileJoueur(numero, joueurQuiJoue, jeu);
+            pickominoJoueur += pileAffichage[i];
         }
-        cout << endl;
+
+        cout << pickominoJoueur << endl;
     }
 }
 
 void afficherBrochette(const int& joueurQuiJoue, const Jeu& jeu)
 {
-    string brochetteAffichage[16];
-    string pickominoDisponible = "";
+    string brochetteAffichage[NB_PICKOMINOS];
+    string pickominoBrochette = "";
     cout << "Brochette : " << endl;
     for(int j = 0; j < NB_LIGNE_PICKOMINO; j++)
     {
         for(int i = 0; i < NB_PICKOMINOS; i++)
         {
-            brochetteAffichage[i] = afficherPickomino(i, joueurQuiJoue, j, jeu);
-            pickominoDisponible += brochetteAffichage[i];
+            brochetteAffichage[i] = afficherPickominoBrochette(i, joueurQuiJoue, j, jeu);
+            pickominoBrochette += brochetteAffichage[i];
         }
-        pickominoDisponible += "\n";
+        pickominoBrochette += "\n";
     }
-    cout << pickominoDisponible << endl;
+    cout << pickominoBrochette << endl;
 }
 
-string afficherPickomino(const int& numero,
-                         const int& joueurQuiJoue,
-                         const int& numeroLigne,
-                         const Jeu& jeu)
+string afficherPickominoBrochette(const int& numero,
+                                  const int& joueurQuiJoue,
+                                  const int& numeroLigne,
+                                  const Jeu& jeu)
 {
     int    nombreVerPickomino = jeu.plateau.pickominos[numero].nbVers;
     string pickomino;
 
     if(numeroLigne == 0)
     {
-        pickomino = " ____  ";
+        pickomino = "╭────╮";
     }
     else if(numeroLigne == 1)
     {
         if(jeu.plateau.pickominos[numero].etat == Etat::CACHE)
-            pickomino = "| XX | ";
+            pickomino = "│ XX │";
         else
-            pickomino = "| " + to_string(numero + VALEUR_PICKOMINO_MIN) + " | ";
+            pickomino = "│ " + to_string(numero + VALEUR_PICKOMINO_MIN) + " │";
     }
     else if(numeroLigne == 2)
     {
-        pickomino = "|————| ";
+        pickomino = "├────┤";
     }
     else if(numeroLigne == 3)
     {
         if(jeu.plateau.pickominos[numero].etat == Etat::CACHE)
-            pickomino = "| XX | ";
+            pickomino = "│ XX │";
         else
-            pickomino = "| " + to_string(nombreVerPickomino) + "v | ";
+            pickomino = "│ " + to_string(nombreVerPickomino) + "v │";
     }
     else
     {
-        pickomino = " ‾‾‾‾  ";
+        pickomino = "╰────╯";
     }
     /*
         string pickomino = "___________\n";
@@ -307,5 +329,46 @@ string afficherPickomino(const int& numero,
     else
     {
         return (VERT + pickomino + RESET_COLOR);
+    }
+}
+
+string afficherPickominoPileJoueur(const int& numero, const int& joueurQuiJoue, const Jeu& jeu)
+{
+    int    nombreVerPickomino = jeu.plateau.pickominos[numero].nbVers;
+    string pickomino;
+
+    /*if(numeroLigne == 0) //affichage pile sur l'horizontal
+    {
+        pickomino = "┌──┐";
+    }
+    else if(numeroLigne == 1)
+    {
+        pickomino = "│" + to_string(numero + VALEUR_PICKOMINO_MIN) + "│";
+    }
+    else if(numeroLigne == 2)
+    {
+        pickomino = "├──┤";
+    }
+    else if(numeroLigne == 3)
+    {
+        pickomino = "│" + to_string(nombreVerPickomino) + "v│";
+    }
+    else
+    {
+        pickomino = "└──┘";
+    }*/
+
+    pickomino = "┌───┬───┐\n";
+    pickomino += "│ " + to_string(numero + VALEUR_PICKOMINO_MIN) + "│" +
+                 to_string(nombreVerPickomino) + "v │\n";
+    pickomino += "└───┴───┘\n";
+
+    if(jeu.plateau.pickominos[numero].etat == Etat::VISIBLE)
+    {
+        return (MAGENTA + pickomino + RESET_COLOR);
+    }
+    else
+    {
+        return (pickomino);
     }
 }
