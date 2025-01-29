@@ -9,7 +9,7 @@ const std::string VERT                 = "\x1b[32m"; // Vert
 const std::string JAUNE                = "\x1b[33m"; // Jaune
 const std::string MAGENTA              = "\x1b[35m"; // Magenta
 const int         NB_LIGNE_PICKOMINO   = 5;
-const int         NB_PICKOMINO_EXEMPLE = 5;
+const int         NB_PICKOMINO_EXEMPLE = 4;
 
 int  definirNombreJoueurs();
 int  demanderDesARetenir();
@@ -31,5 +31,6 @@ std::string afficherPickominoBrochette(const int& numero,
 std::string afficherPickominoPileJoueur(const int& numero,
                                         const int& joueurQuiJoue,
                                         const Jeu& jeu);
+std::string afficherPickominoVide();
 
 #endif
