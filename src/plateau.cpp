@@ -125,7 +125,7 @@ bool estPickominoVisible(const int& numero, const Jeu& jeu)
 bool estPickominoInferieurVisible(const int& numero, const Jeu& jeu)
 {
     int numeroDecremente = numero;
-    for(int i = 1; i < numero; i++)
+    for(int i = 0; i <= numero; i++)
     {
         numeroDecremente -= 1;
         if(jeu.plateau.pickominos[numeroDecremente].etat == Etat::VISIBLE &&
