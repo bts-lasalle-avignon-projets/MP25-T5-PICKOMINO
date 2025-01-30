@@ -1,6 +1,8 @@
 #ifndef PLATEAU_H
 #define PLATEAU_H
 
+//#define DEBUG_PLATEAU
+
 #include "pickomino.h"
 
 struct Jeu;
@@ -52,23 +54,19 @@ bool estPickominoVisible(const int& numero, const Jeu& jeu);
 bool estPickominoInferieurVisible(const int& numero, const Jeu& jeu);
 int  lirePickominoMaxBrochette(const Jeu& jeu);
 bool estSommetPileJoueur(const int& numero, const int& joueurQuiJoue, const Jeu& jeu);
-
-// Déclencheur
 bool estBrochetteVide(const Jeu& jeu);
 
 // Actions
-void remisePickomino(const int& joueurQuiJoue, Jeu& jeu);
-void remisePickominoMaxDansLaBrochette(const int& joueurQuiJoue, Jeu& jeu);
-void remisePickominoMaxChezLeJoueur(const int& joueurQuiJoue, Jeu& jeu);
+void remettrePickomino(const int& joueurQuiJoue, Jeu& jeu);
+void remettrePickominoMaxDansLaBrochette(const int& joueurQuiJoue, Jeu& jeu);
+void remettrePickominoMaxChezLeJoueur(const int& joueurQuiJoue, Jeu& jeu);
 
 void prendrePickomino(const int& numero, const int& joueurQuiJoue, Jeu& jeu);
 void prendrePickominoInferieur(const int& numero, const int& joueurQuiJoue, Jeu& jeu);
 void becqueter(const int& numero, const int& joueurQuiJoue, Jeu& jeu);
 
-void devientPickominoBrochette(const int& numero, Plateau& plateau);
-void devientPickominoJoueur(const int& numero, Plateau& plateau);
-void devientPickominoCache(const int& numero, Plateau& plateau);
-void devientPickominoVisible(const int& numero, Plateau& plateau);
+void changerAppartenancePickomino(const int& numero, Plateau& plateau, Appartenance appartenance);
+void changerEtatPickominoBrochette(const int& numero, Plateau& plateau, Etat etat);
 
 void incrementerSommetPileJoueur(const int& joueurConcerne, Jeu& jeu);
 void decrementerSommetPileJoueur(const int& joueurConcerne, Jeu& jeu);

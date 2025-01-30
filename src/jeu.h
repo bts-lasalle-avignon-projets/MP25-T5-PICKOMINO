@@ -1,9 +1,9 @@
 #ifndef JEU_H
 #define JEU_H
 
-#include "joueur.h"
+//#define DEBUG_JEU
 
-#define DEBUG_JEU
+#include "joueur.h"
 
 struct Jeu
 {

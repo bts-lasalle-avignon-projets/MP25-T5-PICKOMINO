@@ -2,9 +2,11 @@
 #include "jeu.h"
 #include <cstdlib>
 #include <ctime>
-#include <iostream>
 
-/*************************Initialisation du jeu*************************/
+#ifdef DEBUG_PLATEAU
+#include <iostream>
+#endif
+
 void initialiserPlateau(Plateau& plateau)
 {
     srand(time(NULL));
@@ -27,7 +29,6 @@ void initialiserPickominos(Plateau& plateau)
     }
 }
 
-/**********************************Dès**********************************/
 void lancerDes(Plateau& plateau)
 {
     for(int i = 0; i < plateau.nbDes; i++)
@@ -111,7 +112,6 @@ int calculerTotalDesRetenus(Plateau& plateau)
     return plateau.totalDes;
 }
 
-/******************Vérification/Lecture des pickominos******************/
 int convertirNumeroPickomino(const int& scoreDes)
 {
     return (scoreDes - VALEUR_PICKOMINO_MIN);
@@ -124,19 +124,13 @@ bool estPickominoVisible(const int& numero, const Jeu& jeu)
 
 bool estPickominoInferieurVisible(const int& numero, const Jeu& jeu)
 {
-    int numeroDecremente = numero;
-    for(int i = 0; i <= numero; i++)
+    for(int i = numero; i >= 0; --i)
     {
-        numeroDecremente -= 1;
-        if(jeu.plateau.pickominos[numeroDecremente].etat == Etat::VISIBLE &&
-           jeu.plateau.pickominos[numeroDecremente].appartenance == Appartenance::BROCHETTE)
+        if(jeu.plateau.pickominos[i].etat == Etat::VISIBLE &&
+           jeu.plateau.pickominos[i].appartenance == Appartenance::BROCHETTE)
         {
-            std::cout << "Picko inf dispo: " << jeu.plateau.pickominos[numeroDecremente].numero
-                      << std::endl;
             return true;
         }
-        std::cout << "Picko inf non dispo : " << jeu.plateau.pickominos[numeroDecremente].numero
-                  << std::endl;
     }
     return false;
 }
@@ -149,8 +143,6 @@ int lirePickominoMaxBrochette(const Jeu& jeu)
         if(estPickominoVisible(pickomino, jeu) &&
            jeu.plateau.pickominos[pickomino].appartenance == Appartenance::BROCHETTE)
         {
-            std::cout << "Picko max sur brochette : " << jeu.plateau.pickominos[pickomino].numero
-                      << std::endl;
             return (jeu.plateau.pickominos[pickomino].numero);
         }
         pickomino -= 1;
@@ -163,14 +155,11 @@ bool estSommetPileJoueur(const int& numero, const int& joueurQuiJoue, const Jeu&
     if(jeu.plateau.pickominos[numero].numero ==
        jeu.joueurs[joueurQuiJoue].pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile].numero)
     {
-        std::cout << "MEME PICKO" << std::endl;
         return true;
     }
-    std::cout << "PAS LE MEME PICKO" << std::endl;
     return false;
 }
 
-/******************************Dèclencheur******************************/
 bool estBrochetteVide(const Jeu& jeu)
 {
     for(int i = 0; i < NB_PICKOMINOS; i++)
@@ -181,12 +170,11 @@ bool estBrochetteVide(const Jeu& jeu)
             return false;
         }
     }
-    std::cout << "BROCHETTE VIDE !!" << std::endl;
+
     return true;
 }
 
-/********************************Actions********************************/
-void remisePickomino(const int& joueurQuiJoue, Jeu& jeu)
+void remettrePickomino(const int& joueurQuiJoue, Jeu& jeu)
 {
     if(jeu.joueurs[joueurQuiJoue].sommetPile > 0)
     {
@@ -196,16 +184,13 @@ void remisePickomino(const int& joueurQuiJoue, Jeu& jeu)
         int valeurPickominoSommetPilePerdu =
           jeu.joueurs[joueurQuiJoue].pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile].numero;
 
-        if(valeurPickominoSommetPilePerdu <
-           lirePickominoMaxBrochette(jeu)) // Le max est dans la brochette
+        if(valeurPickominoSommetPilePerdu < lirePickominoMaxBrochette(jeu))
         {
-            std::cout << "Max dans la brochette" << std::endl;
-            remisePickominoMaxDansLaBrochette(pickominoSommetPilePerdu, jeu);
+            remettrePickominoMaxDansLaBrochette(pickominoSommetPilePerdu, jeu);
         }
-        else // Le max est chez le joeur
+        else
         {
-            std::cout << "Max chez Joueur" << std::endl;
-            remisePickominoMaxChezLeJoueur(pickominoSommetPilePerdu, jeu);
+            remettrePickominoMaxChezLeJoueur(pickominoSommetPilePerdu, jeu);
         }
 
         decrementerSommetPileJoueur(joueurQuiJoue, jeu);
@@ -216,23 +201,21 @@ void remisePickomino(const int& joueurQuiJoue, Jeu& jeu)
               convertirNumeroPickomino(jeu.joueurs[joueurQuiJoue]
                                          .pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile]
                                          .numero);
-            devientPickominoVisible(nouveauPickominoSommet, jeu.plateau);
+            changerEtatPickominoBrochette(nouveauPickominoSommet, jeu.plateau, Etat::VISIBLE);
         }
-        std::cout << "PICKO PERDU" << jeu.plateau.pickominos[pickominoSommetPilePerdu].numero
-                  << std::endl;
     }
 }
 
-void remisePickominoMaxDansLaBrochette(const int& pickominoSommetPilePerdu, Jeu& jeu)
+void remettrePickominoMaxDansLaBrochette(const int& pickominoSommetPilePerdu, Jeu& jeu)
 {
     int pickominoMaxBrochette = convertirNumeroPickomino(lirePickominoMaxBrochette(jeu));
-    devientPickominoCache(pickominoMaxBrochette, jeu.plateau);
-    remisePickominoMaxChezLeJoueur(pickominoSommetPilePerdu, jeu);
+    changerEtatPickominoBrochette(pickominoMaxBrochette, jeu.plateau, Etat::CACHE);
+    remettrePickominoMaxChezLeJoueur(pickominoSommetPilePerdu, jeu);
 }
 
-void remisePickominoMaxChezLeJoueur(const int& pickominoSommetPilePerdu, Jeu& jeu)
+void remettrePickominoMaxChezLeJoueur(const int& pickominoSommetPilePerdu, Jeu& jeu)
 {
-    devientPickominoBrochette(pickominoSommetPilePerdu, jeu.plateau);
+    changerAppartenancePickomino(pickominoSommetPilePerdu, jeu.plateau, Appartenance::BROCHETTE);
 }
 
 void prendrePickomino(const int& numero, const int& joueurQuiJoue, Jeu& jeu)
@@ -242,28 +225,27 @@ void prendrePickomino(const int& numero, const int& joueurQuiJoue, Jeu& jeu)
 
     if(jeu.joueurs[joueurQuiJoue].sommetPile > 0)
     {
-        devientPickominoCache(pickominoSommetPile, jeu.plateau);
+        changerEtatPickominoBrochette(pickominoSommetPile, jeu.plateau, Etat::CACHE);
     }
 
     incrementerSommetPileJoueur(joueurQuiJoue, jeu);
     jeu.joueurs[joueurQuiJoue].pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile] =
       jeu.plateau.pickominos[numero];
-    devientPickominoJoueur(numero, jeu.plateau);
-    std::cout << "Pickomino récupéré : " << jeu.plateau.pickominos[numero].numero << std::endl;
+    changerAppartenancePickomino(numero, jeu.plateau, Appartenance::JOUEUR);
 }
 
 void prendrePickominoInferieur(const int& numero, const int& joueurQuiJoue, Jeu& jeu)
 {
-    int numeroDecremente = numero;
-    for(int i = 0; i < numero; i++)
+    for(int i = numero; i >= 0; --i)
     {
-        numeroDecremente -= 1;
-        std::cout << "Pickomino Inf : " << jeu.plateau.pickominos[numeroDecremente].numero
-                  << std::endl;
-        if(estPickominoVisible(numeroDecremente, jeu) &&
-           jeu.plateau.pickominos[numeroDecremente].appartenance == Appartenance::BROCHETTE)
+        if(estPickominoVisible(i, jeu) &&
+           jeu.plateau.pickominos[i].appartenance == Appartenance::BROCHETTE)
         {
-            prendrePickomino(numeroDecremente, joueurQuiJoue, jeu);
+#ifdef DEBUG_PLATEAU
+            std::cout << "[" << __FILE__ << ":" << __PRETTY_FUNCTION__ << ":" << __LINE__ << "] ";
+            std::cout << "numero = " << jeu.plateau.pickominos[i].numero << std::endl;
+#endif
+            prendrePickomino(i, joueurQuiJoue, jeu);
             break;
         }
     }
@@ -283,31 +265,21 @@ void becqueter(const int& numero, const int& joueurQuiJoue, Jeu& jeu)
                 int pickominoSommetPile = convertirNumeroPickomino(
                   jeu.joueurs[i].pilePickominos[jeu.joueurs[i].sommetPile].numero);
 
-                devientPickominoVisible(pickominoSommetPile, jeu.plateau);
+                changerEtatPickominoBrochette(pickominoSommetPile, jeu.plateau, Etat::VISIBLE);
             }
             break;
         }
     }
 }
 
-void devientPickominoBrochette(const int& numero, Plateau& plateau)
+void changerAppartenancePickomino(const int& numero, Plateau& plateau, Appartenance appartenance)
 {
-    plateau.pickominos[numero].appartenance = Appartenance::BROCHETTE;
+    plateau.pickominos[numero].appartenance = appartenance;
 }
 
-void devientPickominoJoueur(const int& numero, Plateau& plateau)
+void changerEtatPickominoBrochette(const int& numero, Plateau& plateau, Etat etat)
 {
-    plateau.pickominos[numero].appartenance = Appartenance::JOUEUR;
-}
-
-void devientPickominoCache(const int& numero, Plateau& plateau)
-{
-    plateau.pickominos[numero].etat = Etat::CACHE;
-}
-
-void devientPickominoVisible(const int& numero, Plateau& plateau)
-{
-    plateau.pickominos[numero].etat = Etat::VISIBLE;
+    plateau.pickominos[numero].etat = etat;
 }
 
 void incrementerSommetPileJoueur(const int& joueurConcerne, Jeu& jeu)

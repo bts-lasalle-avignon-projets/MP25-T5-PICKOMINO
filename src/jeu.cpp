@@ -28,7 +28,10 @@ void jouerPickomino()
             jouerTour(i, jeu);
         }
     } while(!estBrochetteVide(jeu));
-    std::cout << "Bravo vous avez fini le jeu au bout de 7ans" << std::endl;
+#ifdef DEBUG_JEU
+    std::cout << "[" << __FILE__ << ":" << __PRETTY_FUNCTION__ << ":" << __LINE__ << "] ";
+    std::cout << "fin du jeu" << std::endl;
+#endif
 }
 
 void jouerTour(const int& joueurQuiJoue, Jeu& jeu)
@@ -63,9 +66,12 @@ void jouerTour(const int& joueurQuiJoue, Jeu& jeu)
 
     } while(!tourFini);
 
-    int score  = calculerTotalDesRetenus(jeu.plateau);
-    int numero = convertirNumeroPickomino(score);
+    int score = calculerTotalDesRetenus(jeu.plateau);
+#ifdef DEBUG_JEU
+    std::cout << "[" << __FILE__ << ":" << __PRETTY_FUNCTION__ << ":" << __LINE__ << "] ";
     std::cout << "score = " << score << std::endl;
+#endif
+    int numero = convertirNumeroPickomino(score);
 
     if(!estLancerNul(score, numero, jeu))
     {
@@ -73,28 +79,26 @@ void jouerTour(const int& joueurQuiJoue, Jeu& jeu)
            jeu.plateau.pickominos[numero].appartenance == Appartenance::BROCHETTE)
         {
             prendrePickomino(numero, joueurQuiJoue, jeu);
-            std::cout << "Pris" << std::endl;
         }
         else if(estPickominoVisible(numero, jeu) &&
                 !estSommetPileJoueur(numero, joueurQuiJoue, jeu) &&
                 jeu.plateau.pickominos[numero].appartenance == Appartenance::JOUEUR)
         {
-            std::cout << "BECQUETE" << std::endl;
             becqueter(numero, joueurQuiJoue, jeu);
             prendrePickomino(numero, joueurQuiJoue, jeu);
         }
         else if(estPickominoInferieurVisible(numero, jeu))
         {
             prendrePickominoInferieur(numero, joueurQuiJoue, jeu);
-            std::cout << "INFERIEUR" << std::endl;
         }
         else
-            remisePickomino(joueurQuiJoue, jeu);
+            remettrePickomino(joueurQuiJoue, jeu);
     }
     else
     {
-        remisePickomino(joueurQuiJoue, jeu);
+        remettrePickomino(joueurQuiJoue, jeu);
     }
+    afficherPileJoueur(joueurQuiJoue, jeu);
 }
 
 bool estLancerNul(const int& score, const int& numero, const Jeu& jeu)

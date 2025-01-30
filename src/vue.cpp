@@ -106,12 +106,11 @@ void afficherRegles()
 {
     cout << "\n********************REGLES*********************" << endl;
     cout << "Lire le README pour avoir les règles complètes.\n" << endl;
-    cout << "Voici 4 couleurs pour différiencier les pickominos : \n" << endl;
+    cout << "Voici les 4 couleurs pour différencier les pickominos : \n" << endl;
     for(int i = 0; i < NB_PICKOMINO_EXEMPLE; i++)
     {
         cout << afficherPickominoExemple(i) << endl;
     }
-    cout << "***********************************************\n" << endl;
 }
 
 string afficherPickominoExemple(const int& numeroExemple)
@@ -126,10 +125,10 @@ string afficherPickominoExemple(const int& numeroExemple)
     string pickominoDescription = "";
     if(numeroExemple == 0)
     {
-        description[0] = "   Ceci est le pickomino classic appartenant\n";
+        description[0] = "   Ceci est le pickomino classique appartenant\n";
         description[1] = "   à la brochette. Peut être gagné :\n";
-        description[2] = "   Avec le bon score de dè.\n";
-        description[3] = "   Score inferieur si indisponible.\n";
+        description[2] = "   Avec le bon score de dés.\n";
+        description[3] = "   Indisponible si score inférieur.\n";
         description[4] = "\n";
         for(int i = 0; i < NB_LIGNE_PICKOMINO; i++)
         {
@@ -140,9 +139,9 @@ string afficherPickominoExemple(const int& numeroExemple)
     if(numeroExemple == 1)
     {
         description[0] = "   Ceci est le pickomino appartenant\n";
-        description[1] = "   à un autre joueur que vous.\n";
+        description[1] = "   à un autre joueur.\n";
         description[2] = "   Peut être gagné :\n";
-        description[3] = "   Uniquement avec le bon score de dès.\n";
+        description[3] = "   Uniquement avec le bon score de dés.\n";
         description[4] = "\n";
         for(int i = 0; i < NB_LIGNE_PICKOMINO; i++)
         {
@@ -154,9 +153,9 @@ string afficherPickominoExemple(const int& numeroExemple)
     {
         description[0] = "   Ce pickomino est votre dernier pickomino\n";
         description[1] = "   obtenu.\n";
-        description[2] = "   Si resélectionné par son propriétaire,\n";
-        description[3] = "   le pickomino inférieur appartenant à\n";
-        description[4] = "   la brochette sera pris.\n";
+        description[2] = "   Il peut être pris par un adversaire\n";
+        description[3] = "   ou replacer sur la brochette.\n";
+        description[4] = "   \n";
         for(int i = 0; i < NB_LIGNE_PICKOMINO; i++)
         {
             pickominoDescription += MAGENTA + pickomino[i] + RESET_COLOR + description[i];
@@ -168,8 +167,8 @@ string afficherPickominoExemple(const int& numeroExemple)
         pickomino[1]   = "│    │";
         pickomino[2]   = "│    │";
         pickomino[3]   = "│    │";
-        description[0] = "   Ce pickomino est indisponible (Caché).\n";
-        description[1] = "   Il est verrouillé par le jeu indéfiniment.\n";
+        description[0] = "   Ce pickomino est indisponible (retourné).\n";
+        description[1] = "   Il est verrouillé indéfiniment par le jeu.\n";
         description[2] = "   \n";
         description[3] = "   \n";
         description[4] = "   \n";
@@ -214,6 +213,7 @@ void afficherTotalDesRetenus(const Plateau& plateau)
 
 void afficherQuelJoueurTour(const int& joueurQuiJoue, const Jeu& jeu)
 {
+    cout << "***********************************************\n" << endl;
     cout << "C'est le tour de " << JAUNE << jeu.joueurs[joueurQuiJoue].nom << RESET_COLOR << " !"
          << endl;
     afficherPileJoueur(joueurQuiJoue, jeu);
