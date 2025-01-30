@@ -12,87 +12,100 @@ void jouerPickomino()
     Jeu jeu;
 
     jeu.nbJoueurs = definirNombreJoueurs();
-
+    afficherRegles();
     for(int i = 0; i < jeu.nbJoueurs; i++)
     {
         initialiserJoueur("Joueur" + std::to_string(i + 1), jeu.joueurs[i]);
     }
 
     initialiserPlateau(jeu.plateau);
-
-    jouerTour(jeu);
+    do
+    {
+        for(int i = 0; i < jeu.nbJoueurs; i++)
+        {
+            afficherQuelJoueurTour(i, jeu);
+            afficherBrochette(i, jeu);
+            jouerTour(i, jeu);
+        }
+    } while(!estBrochetteVide(jeu));
+#ifdef DEBUG_JEU
+    std::cout << "[" << __FILE__ << ":" << __PRETTY_FUNCTION__ << ":" << __LINE__ << "] ";
+    std::cout << "fin du jeu" << std::endl;
+#endif
 }
 
-void jouerTour(Jeu& jeu)
+void jouerTour(const int& joueurQuiJoue, Jeu& jeu)
 {
-    for(int i = 0; i < jeu.nbJoueurs; i++)
+    bool tourFini  = false;
+    bool lancerNul = false;
+
+    initialiserTour(jeu);
+    do
     {
-        bool tourFini  = false;
-        bool lancerNul = false;
+        lancerDes(jeu.plateau);
+        afficherDes(jeu.plateau);
 
-        initialiserTour(jeu);
-        afficherBrochette(jeu.plateau);
-        afficherQuelJoueurTour(jeu.joueurs[i]);
-        do
+        int faceDe = demanderDesARetenir();
+        lancerNul  = !retenirDes(jeu.plateau, faceDe);
+
+        if(!lancerNul)
         {
-            lancerDes(jeu.plateau);
-            afficherDes(jeu.plateau);
+            afficherDesRetenus(jeu.plateau);
+            calculerTotalDesRetenus(jeu.plateau);
+            afficherTotalDesRetenus(jeu.plateau);
 
-            int faceDe = demanderDesARetenir();
-            lancerNul  = !retenirDes(jeu.plateau, faceDe);
-
-            if(!lancerNul)
-            {
-                afficherDesRetenus(jeu.plateau);
-                calculerTotalDesRetenus(jeu.plateau);
-                afficherTotalDesRetenus(jeu.plateau);
-
-                if(jeu.plateau.nbDes == 0)
-                {
-                    tourFini = true;
-                }
-                else
-                {
-                    tourFini = !demanderRelancerDes();
-                }
-            }
-            else
-            {
+            if(jeu.plateau.nbDes == 0)
                 tourFini = true;
-            }
-        } while(!tourFini);
-
-        int score = calculerTotalDesRetenus(jeu.plateau);
-#ifdef DEBUG_JEU
-        std::cout << "[" << __FILE__ << ":" << __PRETTY_FUNCTION__ << ":" << __LINE__ << "] ";
-        std::cout << "score = " << score << std::endl;
-#endif
-        if(!estLancerNul(score, jeu))
-        {
-            // @todo récupérer le pickomino
-#ifdef DEBUG_JEU
-            std::cout << "[" << __FILE__ << ":" << __PRETTY_FUNCTION__ << ":" << __LINE__ << "] ";
-            std::cout << "récupérer le pickomino" << std::endl;
-#endif
+            else
+                tourFini = !demanderRelancerDes();
         }
         else
         {
-            // @todo remettre un pickomino et éventuellement retourner un pickomino
-#ifdef DEBUG_JEU
-            std::cout << "[" << __FILE__ << ":" << __PRETTY_FUNCTION__ << ":" << __LINE__ << "] ";
-            std::cout << "remettre un pickomino et éventuellement retourner un pickomino"
-                      << std::endl;
-#endif
+            tourFini = true;
         }
+
+    } while(!tourFini);
+
+    int score = calculerTotalDesRetenus(jeu.plateau);
+#ifdef DEBUG_JEU
+    std::cout << "[" << __FILE__ << ":" << __PRETTY_FUNCTION__ << ":" << __LINE__ << "] ";
+    std::cout << "score = " << score << std::endl;
+#endif
+    int numero = convertirNumeroPickomino(score);
+
+    if(!estLancerNul(score, numero, jeu))
+    {
+        if(estPickominoVisible(numero, jeu) &&
+           jeu.plateau.pickominos[numero].appartenance == Appartenance::BROCHETTE)
+        {
+            prendrePickomino(numero, joueurQuiJoue, jeu);
+        }
+        else if(estPickominoVisible(numero, jeu) &&
+                !estSommetPileJoueur(numero, joueurQuiJoue, jeu) &&
+                jeu.plateau.pickominos[numero].appartenance == Appartenance::JOUEUR)
+        {
+            becqueter(numero, joueurQuiJoue, jeu);
+            prendrePickomino(numero, joueurQuiJoue, jeu);
+        }
+        else if(estPickominoInferieurVisible(numero, jeu))
+        {
+            prendrePickominoInferieur(numero, joueurQuiJoue, jeu);
+        }
+        else
+            remettrePickomino(joueurQuiJoue, jeu);
     }
+    else
+    {
+        remettrePickomino(joueurQuiJoue, jeu);
+    }
+    afficherPileJoueur(joueurQuiJoue, jeu);
 }
 
-bool estLancerNul(const int& score, const Jeu& jeu)
+bool estLancerNul(const int& score, const int& numero, const Jeu& jeu)
 {
     if(estScoreValide(score) && verifierSiVersRetenu(jeu.plateau))
     {
-        if(estPickominoVisible(score - VALEUR_PICKOMINO_MIN, jeu) ||
-           estPickominoInferieurVisible(score - VALEUR_PICKOMINO_MIN, jeu))
+        if(estPickominoVisible(numero, jeu) || estPickominoInferieurVisible(numero, jeu))
             return false;
     }
     return true;
