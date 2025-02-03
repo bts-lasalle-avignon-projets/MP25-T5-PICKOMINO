@@ -303,3 +303,16 @@ int comptageVers(const int& joueur, const Jeu& jeu) //, const Jeu& jeu
 
     return totalVers;
 }
+
+int trouverScoreMaxPickominoJoueur(const int& joueur, const Jeu& jeu)
+{
+    int scoreMax = 0;
+    for(int i = 1; i < jeu.joueurs[joueur].sommetPile; i++)
+    {
+        if(scoreMax < jeu.joueurs[joueur].pilePickominos[i].numero)
+        {
+            scoreMax = jeu.joueurs[joueur].pilePickominos[i].numero;
+        }
+    }
+    return scoreMax;
+}

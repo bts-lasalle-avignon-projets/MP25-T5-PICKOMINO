@@ -32,6 +32,7 @@ void jouerPickomino()
             jouerTour(i, jeu);
         }
     } while(!estBrochetteVide(jeu));
+    finDuJeu(jeu);
 #ifdef DEBUG_JEU
     std::cout << "[" << __FILE__ << ":" << __PRETTY_FUNCTION__ << ":" << __LINE__ << "] ";
     std::cout << "fin du jeu" << std::endl;
@@ -127,41 +128,69 @@ void initialiserTour(Jeu& jeu)
         jeu.plateau.desRetenus[i] = 0;
     }
 }
-/*
-void finDuJeu(Jeu& jeu)
+
+void finDuJeu(const Jeu& jeu)
 {
-    int meilleurTotalVers = 0;
-    int gagnant           = -1;
-    int hallDesVainceur[jeu.nbJoueurs];
+    int tableauDesScoresVers[jeu.nbJoueurs];
+    int tableauDesvainqueur[jeu.nbJoueurs];
+    int meilleurTotalVers      = 0;
+    int occurence              = 1;
+    int occurenceDe0           = 0;
+    int indiceTableauVainqueur = 0;
+    int joueurParDefaut        = 0;
+    int gagnant                = joueurParDefaut;
 
-    for(int i = 0; i < jeu.nbJoueurs; i++)
+    for(int i = 0; i < jeu.nbJoueurs; i++) // Rempli le tableau de comparaison
     {
-        int totalVers = comptageVers(i, jeu);
-
-        if(totalVers > meilleurTotalVers)
-        {
-            meilleurTotalVers = totalVers;
-
-            gagnant = i;
-        }
-        else if(totalVers == meilleurTotalVers)
-        {
-            int numeroGagnant = jeu.joueurs[i].pilePickominos[0].numero;
-
-            int numeroConcurrent = jeu.joueurs[i - 1].pilePickominos[0].numero;
-
-            if(numeroGagnant > numeroConcurrent)
-            {
-                gagnant = &jeu.joueurs[i];
-            }
-        }
+        int totalVers           = comptageVers(i, jeu);
+        tableauDesScoresVers[i] = totalVers;
     }
-    if(gagnant != -1)
+    for(int i = 0; i < jeu.nbJoueurs; i++) // Vérifie si tout les joueurs n'ont pas de pickomino
     {
-        afficherGagnant(jeu.joueurs[gagnant].nom, meilleurTotalVers);
+        if(tableauDesScoresVers[i] == 0)
+            occurenceDe0 += 1;
     }
+    if(occurenceDe0 == jeu.nbJoueurs)
+        pasDeGagnant();
     else
     {
-        pasDeGagnant();
+        for(int i = 0; i < jeu.nbJoueurs; i++)
+        {
+            if(meilleurTotalVers < tableauDesScoresVers[i] && tableauDesScoresVers[i] != 0)
+            {
+                meilleurTotalVers = tableauDesScoresVers[i];
+                gagnant           = i;
+
+                occurence              = 1;
+                indiceTableauVainqueur = joueurParDefaut;
+            }
+            else if(meilleurTotalVers == tableauDesScoresVers[i] && tableauDesScoresVers[i] != 0)
+            {
+                occurence += 1;
+                tableauDesvainqueur[indiceTableauVainqueur] = i;
+                indiceTableauVainqueur++;
+            }
+        }
+        if(occurence != 1) // Si égalité
+        {
+            int tableauDesScores[indiceTableauVainqueur];
+            int gagnant         = tableauDesvainqueur[0];
+            int meilleurScore   = 0;
+            tableauDesScores[0] = trouverScoreMaxPickominoJoueur(gagnant, jeu);
+
+            for(int i = 0; i < indiceTableauVainqueur; i++) // Rempli le tableau de comparaison
+            {
+                tableauDesScores[i] = trouverScoreMaxPickominoJoueur(i, jeu);
+            }
+            for(int i = 0; i < indiceTableauVainqueur; i++)
+            {
+                if(meilleurScore < tableauDesScores[i])
+                {
+                    gagnant = tableauDesvainqueur[i];
+                }
+            }
+        }
+
+        afficherGagnant(jeu.joueurs[gagnant].nom, meilleurTotalVers);
     }
-}*/
+}

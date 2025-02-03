@@ -1,7 +1,7 @@
 #ifndef PLATEAU_H
 #define PLATEAU_H
 
-//#define DEBUG_PLATEAU
+// #define DEBUG_PLATEAU
 
 #include "pickomino.h"
 
@@ -72,5 +72,6 @@ void incrementerSommetPileJoueur(const int& joueurConcerne, Jeu& jeu);
 void decrementerSommetPileJoueur(const int& joueurConcerne, Jeu& jeu);
 
 int comptageVers(const int& joueur, const Jeu& jeu);
+int trouverScoreMaxPickominoJoueur(const int& joueur, const Jeu& jeu);
 
 #endif

@@ -423,7 +423,7 @@ string afficherPickominoVide()
     return ("      ");
 }
 
-void afficherGagnant(const string& joueur, const int& nombreVer)
+void afficherGagnant(const std::string& joueur, const int& nombreVer)
 {
     cout << "Le gagnant est : " << joueur << " avec " << nombreVer << " vers." << endl;
 }
