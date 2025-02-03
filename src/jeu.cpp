@@ -1,8 +1,9 @@
 #include "jeu.h"
 #include "vue.h"
 
-#include <iostream> //test
-#include <limits>   //test
+#ifdef DEBUG_JEU
+#include <iostream>
+#endif
 
 void jouerPickomino()
 {
@@ -10,116 +11,111 @@ void jouerPickomino()
 
     Jeu jeu;
 
-#ifdef SIMULATION
-    int nbJoueurs = NB_JOUEURS_MIN;
-#else
-    int nbJoueurs = definirNombreJoueurs();
-#endif
-
-    jeu.nbJoueurs = nbJoueurs;
-    for(int i = 0; i < nbJoueurs; i++)
+    jeu.nbJoueurs = definirNombreJoueurs();
+    afficherRegles();
+    for(int i = 0; i < jeu.nbJoueurs; i++)
     {
         initialiserJoueur("Joueur" + std::to_string(i + 1), jeu.joueurs[i]);
     }
 
     initialiserPlateau(jeu.plateau);
-
-    jouerTour(jeu);
-
-    determinerGagnant(jeu);
+    do
+    {
+        for(int i = 0; i < jeu.nbJoueurs; i++)
+        {
+            afficherQuelJoueurTour(i, jeu);
+            afficherBrochette(i, jeu);
+            jouerTour(i, jeu);
+        }
+    } while(!estBrochetteVide(jeu));
+#ifdef DEBUG_JEU
+    std::cout << "[" << __FILE__ << ":" << __PRETTY_FUNCTION__ << ":" << __LINE__ << "] ";
+    std::cout << "fin du jeu" << std::endl;
+#endif
 }
 
-void jouerTour(Jeu& jeu)
+void jouerTour(const int& joueurQuiJoue, Jeu& jeu)
 {
-    for(int i = 0; i < jeu.nbJoueurs; i++)
+    bool tourFini  = false;
+    bool lancerNul = false;
+
+    initialiserTour(jeu);
+    do
     {
-        bool tourFini     = false;
-        bool lancerNul    = false;
-        jeu.plateau.nbDes = NB_DES;
+        lancerDes(jeu.plateau);
+        afficherDes(jeu.plateau);
 
-        afficherQuelJoueurTour(jeu.joueurs[i]);
-        do
+        int faceDe = demanderDesARetenir();
+        lancerNul  = !retenirDes(jeu.plateau, faceDe);
+
+        if(!lancerNul)
         {
-            lancerDes(jeu.plateau);
-            afficherDes(jeu.plateau);
+            afficherDesRetenus(jeu.plateau);
+            calculerTotalDesRetenus(jeu.plateau);
+            afficherTotalDesRetenus(jeu.plateau);
 
-            int faceDe = demanderDesARetenir();
-            lancerNul  = !retenirDes(jeu.plateau, faceDe);
-
-            if(!lancerNul)
-            {
-                afficherDesRetenus(jeu.plateau);
-                calculerTotalDesRetenus(jeu.plateau);
-                afficherTotalDesRetenus(jeu.plateau);
-
-                if(jeu.plateau.nbDes == 0)
-                {
-                    tourFini = true;
-                }
-                else
-                {
-                    tourFini = !demanderRelancerDes();
-                }
-            }
-            else
-            {
+            if(jeu.plateau.nbDes == 0)
                 tourFini = true;
-            }
-        } while(!tourFini);
-    }
-}
+            else
+                tourFini = !demanderRelancerDes();
+        }
+        else
+        {
+            tourFini = true;
+        }
 
-bool estLancerNul(const int& score, const Plateau& plateau)
-{
-    return false;
-}
+    } while(!tourFini);
 
-void determinerGagnant(const Jeu& jeu)
-{
-    int meilleurScore = -1;
-    int indexGagnant  = -1;
+    int score = calculerTotalDesRetenus(jeu.plateau);
+#ifdef DEBUG_JEU
+    std::cout << "[" << __FILE__ << ":" << __PRETTY_FUNCTION__ << ":" << __LINE__ << "] ";
+    std::cout << "score = " << score << std::endl;
+#endif
+    int numero = convertirNumeroPickomino(score);
 
-    for(int i = 0; i < jeu.nbJoueurs; i++)
+    if(!estLancerNul(score, numero, jeu))
     {
-        int scoreVers = 0;
-        for(int j = 0; j < NB_PICKOMINOS; j++)
+        if(estPickominoVisible(numero, jeu) &&
+           jeu.plateau.pickominos[numero].appartenance == Appartenance::BROCHETTE)
         {
-            scoreVers += jeu.joueurs[i].pilePickominos[j].nbVers;
+            prendrePickomino(numero, joueurQuiJoue, jeu);
         }
-
-        std::cout << "Score de " << jeu.joueurs[i].nom << ": " << scoreVers << " vers"
-                  << std::endl; // test
-
-        if(scoreVers > meilleurScore)
+        else if(estPickominoVisible(numero, jeu) &&
+                !estSommetPileJoueur(numero, joueurQuiJoue, jeu) &&
+                jeu.plateau.pickominos[numero].appartenance == Appartenance::JOUEUR)
         {
-            meilleurScore = scoreVers;
-            indexGagnant  = i;
+            becqueter(numero, joueurQuiJoue, jeu);
+            prendrePickomino(numero, joueurQuiJoue, jeu);
         }
-        else if(scoreVers == meilleurScore)
+        else if(estPickominoInferieurVisible(numero, jeu))
         {
-            siEgaliteVersGagnant;
+            prendrePickominoInferieur(numero, joueurQuiJoue, jeu);
         }
-    }
-
-    if(indexGagnant != -1) // test
-    {
-        std::cout << "Le gagnant est " << jeu.joueurs[indexGagnant].nom << " avec " << meilleurScore
-                  << " vers!" << std::endl;
+        else
+            remettrePickomino(joueurQuiJoue, jeu);
     }
     else
     {
-        std::cout << "Aucun gagnant." << std::endl;
+        remettrePickomino(joueurQuiJoue, jeu);
     }
+    afficherPileJoueur(joueurQuiJoue, jeu);
 }
 
-void siEgaliteVersGagnant(const Jeu& jeu)
+bool estLancerNul(const int& score, const int& numero, const Jeu& jeu)
 {
-    for(int i = 0; i < jeu.nbJoueurs; i++)
+    if(estScoreValide(score) && verifierSiVersRetenu(jeu.plateau))
     {
-        int scorePickomino = 0;
-        for(int j = 0; j < NB_PICKOMINOS; j++)
-        {
-            scorePickomino += jeu.joueurs[i].pilePickominos[j].numero;
-        }
+        if(estPickominoVisible(numero, jeu) || estPickominoInferieurVisible(numero, jeu))
+            return false;
+    }
+    return true;
+}
+
+void initialiserTour(Jeu& jeu)
+{
+    jeu.plateau.nbDes = NB_DES;
+    for(int i = 0; i < NB_DES; i++)
+    {
+        jeu.plateau.desRetenus[i] = 0;
     }
 }
