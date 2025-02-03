@@ -7,7 +7,6 @@
 #include <iostream>
 #endif
 
-/*************************Initialisation du jeu*************************/
 void initialiserPlateau(Plateau& plateau)
 {
     srand(time(NULL));
@@ -30,7 +29,6 @@ void initialiserPickominos(Plateau& plateau)
     }
 }
 
-/**********************************Dès**********************************/
 void lancerDes(Plateau& plateau)
 {
     for(int i = 0; i < plateau.nbDes; i++)
@@ -194,11 +192,6 @@ void remettrePickomino(const int& joueurQuiJoue, Jeu& jeu)
         {
             remettrePickominoMaxChezLeJoueur(pickominoSommetPilePerdu, jeu);
         }
-        if(jeu.joueurs[joueurQuiJoue].sommetPile > 0)
-            devientPickominoVisible(numero, jeu.plateau);
-        std::cout << "PICKO PERDU" << jeu.plateau.pickominos[numero].numero << std::endl;
-    }
-}
 
         decrementerSommetPileJoueur(joueurQuiJoue, jeu);
 
@@ -297,4 +290,16 @@ void incrementerSommetPileJoueur(const int& joueurConcerne, Jeu& jeu)
 void decrementerSommetPileJoueur(const int& joueurConcerne, Jeu& jeu)
 {
     jeu.joueurs[joueurConcerne].sommetPile -= 1;
+}
+
+int comptageVers(const int& joueur, const Jeu& jeu) //, const Jeu& jeu
+{
+    int totalVers = 0;
+
+    for(int i = 0; i < jeu.joueurs[joueur].sommetPile; i++)
+    {
+        totalVers += jeu.joueurs[joueur].pilePickominos[i].nbVers;
+    }
+
+    return totalVers;
 }

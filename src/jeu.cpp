@@ -5,6 +5,9 @@
 #include <iostream>
 #endif
 
+#include <iostream>
+#include <limits>
+
 void jouerPickomino()
 {
     system("printf '\e[8;30;112t'");
@@ -56,9 +59,13 @@ void jouerTour(const int& joueurQuiJoue, Jeu& jeu)
             afficherTotalDesRetenus(jeu.plateau);
 
             if(jeu.plateau.nbDes == 0)
+            {
                 tourFini = true;
+            }
             else
+            {
                 tourFini = !demanderRelancerDes();
+            }
         }
         else
         {
@@ -74,7 +81,7 @@ void jouerTour(const int& joueurQuiJoue, Jeu& jeu)
 #endif
     int numero = convertirNumeroPickomino(score);
 
-    if(!estLancerNul(score, numero, jeu))
+    if(!estLancerNul(score, numero, jeu, lancerNul))
     {
         if(estPickominoVisible(numero, jeu) &&
            jeu.plateau.pickominos[numero].appartenance == Appartenance::BROCHETTE)
@@ -102,9 +109,9 @@ void jouerTour(const int& joueurQuiJoue, Jeu& jeu)
     afficherPileJoueur(joueurQuiJoue, jeu);
 }
 
-bool estLancerNul(const int& score, const int& numero, const Jeu& jeu)
+bool estLancerNul(const int& score, const int& numero, const Jeu& jeu, bool lancerNul)
 {
-    if(estScoreValide(score) && verifierSiVersRetenu(jeu.plateau))
+    if(estScoreValide(score) && verifierSiVersRetenu(jeu.plateau) && lancerNul == false)
     {
         if(estPickominoVisible(numero, jeu) || estPickominoInferieurVisible(numero, jeu))
             return false;
@@ -120,3 +127,41 @@ void initialiserTour(Jeu& jeu)
         jeu.plateau.desRetenus[i] = 0;
     }
 }
+/*
+void finDuJeu(Jeu& jeu)
+{
+    int meilleurTotalVers = 0;
+    int gagnant           = -1;
+    int hallDesVainceur[jeu.nbJoueurs];
+
+    for(int i = 0; i < jeu.nbJoueurs; i++)
+    {
+        int totalVers = comptageVers(i, jeu);
+
+        if(totalVers > meilleurTotalVers)
+        {
+            meilleurTotalVers = totalVers;
+
+            gagnant = i;
+        }
+        else if(totalVers == meilleurTotalVers)
+        {
+            int numeroGagnant = jeu.joueurs[i].pilePickominos[0].numero;
+
+            int numeroConcurrent = jeu.joueurs[i - 1].pilePickominos[0].numero;
+
+            if(numeroGagnant > numeroConcurrent)
+            {
+                gagnant = &jeu.joueurs[i];
+            }
+        }
+    }
+    if(gagnant != -1)
+    {
+        afficherGagnant(jeu.joueurs[gagnant].nom, meilleurTotalVers);
+    }
+    else
+    {
+        pasDeGagnant();
+    }
+}*/

@@ -183,8 +183,7 @@ string afficherPickominoExemple(const int& numeroExemple)
 
 void afficherDes(const Plateau& plateau)
 {
-    positionnerCurseur(65, 100);
-    cout << "Dés :    ";
+    cout << "\nDés :    ";
     for(int i = 0; i < plateau.nbDes; i++)
     {
         if(plateau.des[i] == FACE_VER)
@@ -424,9 +423,12 @@ string afficherPickominoVide()
     return ("      ");
 }
 
-void positionnerCurseur(int x, int y)
+void afficherGagnant(const string& joueur, const int& nombreVer)
 {
-    // Déplace le curseur à la position (x, y)
+    cout << "Le gagnant est : " << joueur << " avec " << nombreVer << " vers." << endl;
+}
 
-    std::cout << "\033[" << y << ";" << x << "H";
+void pasDeGagnant()
+{
+    cout << "Pas de gagnant NULLOS" << endl;
 }
