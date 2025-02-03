@@ -14,6 +14,7 @@ const int         NB_PICKOMINO_EXEMPLE = 4;
 int  definirNombreJoueurs();
 int  demanderDesARetenir();
 bool demanderRelancerDes();
+void viderTampon();
 
 void        afficherVersion();
 void        afficherRegles();

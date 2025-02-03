@@ -15,12 +15,11 @@ int definirNombreJoueurs()
         cin >> nombreJoueurs;
         if(cin.fail())
         {
-            cin.clear();                                         // Réinitialise l'état d'erreur
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignore l'entrée
+            cin.clear(); // Réinitialise l'état d'erreur
             continue;
         }
     } while(nombreJoueurs < NB_JOUEURS_MIN || nombreJoueurs > NB_JOUEURS_MAX);
-
+    viderTampon();
     return nombreJoueurs;
 }
 
@@ -46,6 +45,7 @@ int demanderDesARetenir()
             cout << "Saisie invalide !" << std::endl;
             saisieInvalide = true;
         }
+        viderTampon();
     } while(saisieInvalide);
 
     if(faceARetenir >= '1' && faceARetenir <= '5')
@@ -81,6 +81,7 @@ bool demanderRelancerDes()
             cout << "Saisie invalide !" << std::endl;
             saisieInvalide = true;
         }
+        viderTampon();
     } while(saisieInvalide);
 
     if(choixRelance == 'O' || choixRelance == 'o')
@@ -91,6 +92,11 @@ bool demanderRelancerDes()
     {
         return false;
     }
+}
+
+void viderTampon()
+{
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
 void afficherVersion()
