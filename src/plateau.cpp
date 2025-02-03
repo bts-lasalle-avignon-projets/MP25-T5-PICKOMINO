@@ -7,6 +7,7 @@
 #include <iostream>
 #endif
 
+/*************************Initialisation du jeu*************************/
 void initialiserPlateau(Plateau& plateau)
 {
     srand(time(NULL));
@@ -29,6 +30,7 @@ void initialiserPickominos(Plateau& plateau)
     }
 }
 
+/**********************************Dès**********************************/
 void lancerDes(Plateau& plateau)
 {
     for(int i = 0; i < plateau.nbDes; i++)
@@ -192,6 +194,11 @@ void remettrePickomino(const int& joueurQuiJoue, Jeu& jeu)
         {
             remettrePickominoMaxChezLeJoueur(pickominoSommetPilePerdu, jeu);
         }
+        if(jeu.joueurs[joueurQuiJoue].sommetPile > 0)
+            devientPickominoVisible(numero, jeu.plateau);
+        std::cout << "PICKO PERDU" << jeu.plateau.pickominos[numero].numero << std::endl;
+    }
+}
 
         decrementerSommetPileJoueur(joueurQuiJoue, jeu);
 

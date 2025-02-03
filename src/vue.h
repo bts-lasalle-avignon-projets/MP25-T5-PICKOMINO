@@ -33,4 +33,6 @@ std::string afficherPickominoPileJoueur(const int& numero,
                                         const Jeu& jeu);
 std::string afficherPickominoVide();
 
+void positionnerCurseur(int x, int y);
+
 #endif
