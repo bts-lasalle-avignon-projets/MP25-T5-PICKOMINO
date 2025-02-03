@@ -8,7 +8,7 @@ using namespace std;
 void changerCouleurParDefaut(const int& numero)
 {
     if(numero == 0)
-        std::cout << "\x1b[97;40m"; // noir
+        std::cout << "\x1b[97;48;5;234m"; // noir
     else
         std::cout << "\x1b[0m"; // Réinitialise les couleurs
 }

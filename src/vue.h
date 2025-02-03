@@ -3,7 +3,8 @@
 
 #include "jeu.h"
 
-const std::string RESET_COLOR          = "\x1b[97m"; // Réinitialiser la couleur
+const std::string RESET_COLOR          = "\x1b[37m"; // Réinitialiser la couleur
+const std::string BLANC                = "\x1b[97m"; // Rouge
 const std::string ROUGE                = "\x1b[31m"; // Rouge
 const std::string VERT                 = "\x1b[32m"; // Vert
 const std::string JAUNE                = "\x1b[33m"; // Jaune
