@@ -8,9 +8,9 @@ using namespace std;
 void changerCouleurParDefaut(const int& numero)
 {
     if(numero == 0)
-        std::cout << "\x1b[97;48;5;234m"; // noir
+        std::cout << GRIS; // Gris
     else
-        std::cout << "\x1b[0m"; // Réinitialise les couleurs
+        std::cout << REINISALISER_COULEUR; // Réinitialise les couleurs
 }
 
 int definirNombreJoueurs()
@@ -146,7 +146,7 @@ string afficherPickominoExemple(const int& numeroExemple)
         description[4] = "\n";
         for(int i = 0; i < NB_LIGNE_PICKOMINO; i++)
         {
-            pickominoDescription += VERT + pickomino[i] + RESET_COLOR + description[i];
+            pickominoDescription += VERT + pickomino[i] + BLANC + description[i];
         }
         return (pickominoDescription);
     }
@@ -159,7 +159,7 @@ string afficherPickominoExemple(const int& numeroExemple)
         description[4] = "\n";
         for(int i = 0; i < NB_LIGNE_PICKOMINO; i++)
         {
-            pickominoDescription += ROUGE + pickomino[i] + RESET_COLOR + description[i];
+            pickominoDescription += ROUGE + pickomino[i] + BLANC + description[i];
         }
         return (pickominoDescription);
     }
@@ -172,7 +172,7 @@ string afficherPickominoExemple(const int& numeroExemple)
         description[4] = "   \n";
         for(int i = 0; i < NB_LIGNE_PICKOMINO; i++)
         {
-            pickominoDescription += MAGENTA + pickomino[i] + RESET_COLOR + description[i];
+            pickominoDescription += MAGENTA + pickomino[i] + BLANC + description[i];
         }
         return (pickominoDescription);
     }
@@ -228,8 +228,7 @@ void afficherTotalDesRetenus(const Plateau& plateau)
 void afficherQuelJoueurTour(const int& joueurQuiJoue, const Jeu& jeu)
 {
     cout << "***********************************************\n" << endl;
-    cout << "C'est le tour de " << JAUNE << jeu.joueurs[joueurQuiJoue].nom << RESET_COLOR << " !"
-         << endl;
+    cout << "C'est le tour de " << JAUNE << jeu.joueurs[joueurQuiJoue].nom << BLANC << " !" << endl;
     afficherPileJoueur(joueurQuiJoue, jeu);
 }
 
@@ -361,15 +360,15 @@ string afficherPickominoBrochette(const int& numero,
                 .pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile]
                 .numero)
     {
-        return (MAGENTA + pickomino + RESET_COLOR);
+        return (MAGENTA + pickomino + BLANC);
     }
     else if(jeu.plateau.pickominos[numero].appartenance == Appartenance::JOUEUR)
     {
-        return (ROUGE + pickomino + RESET_COLOR);
+        return (ROUGE + pickomino + BLANC);
     }
     else
     {
-        return (VERT + pickomino + RESET_COLOR);
+        return (VERT + pickomino + BLANC);
     }
 }
 
@@ -421,7 +420,7 @@ string afficherPickominoPileJoueur(const int& numero, const int& joueurQuiJoue, 
     }*/
     if(jeu.plateau.pickominos[numero].etat == Etat::VISIBLE)
     {
-        return (MAGENTA + pickomino + RESET_COLOR);
+        return (MAGENTA + pickomino + BLANC);
     }
     else
     {

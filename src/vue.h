@@ -3,12 +3,13 @@
 
 #include "jeu.h"
 
-const std::string RESET_COLOR          = "\x1b[37m"; // Réinitialiser la couleur
-const std::string BLANC                = "\x1b[97m"; // Rouge
-const std::string ROUGE                = "\x1b[31m"; // Rouge
-const std::string VERT                 = "\x1b[32m"; // Vert
-const std::string JAUNE                = "\x1b[33m"; // Jaune
-const std::string MAGENTA              = "\x1b[35m"; // Magenta
+const std::string REINISALISER_COULEUR = "\x1b[0m"; // Réinitialiser la couleur
+const std::string BLANC                = "\x1b[37m";
+const std::string GRIS                 = "\x1b[48;5;234m";
+const std::string ROUGE                = "\x1b[31m";
+const std::string VERT                 = "\x1b[32m";
+const std::string JAUNE                = "\x1b[33m";
+const std::string MAGENTA              = "\x1b[35m";
 const int         NB_LIGNE_PICKOMINO   = 5;
 const int         NB_PICKOMINO_EXEMPLE = 4;
 
