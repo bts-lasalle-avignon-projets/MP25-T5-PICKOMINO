@@ -7,6 +7,7 @@
 
 void jouerPickomino()
 {
+    changerCouleurParDefaut(0);
     afficherVersion();
 
     Jeu jeu;
@@ -32,6 +33,7 @@ void jouerPickomino()
     std::cout << "[" << __FILE__ << ":" << __PRETTY_FUNCTION__ << ":" << __LINE__ << "] ";
     std::cout << "fin du jeu" << std::endl;
 #endif
+    changerCouleurParDefaut(1);
 }
 
 void jouerTour(const int& joueurQuiJoue, Jeu& jeu)
