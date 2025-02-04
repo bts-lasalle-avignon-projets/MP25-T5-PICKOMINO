@@ -30,6 +30,8 @@ void jouerPickomino()
             afficherQuelJoueurTour(i, jeu);
             afficherBrochette(i, jeu);
             jouerTour(i, jeu);
+            if(estBrochetteVide(jeu))
+                break;
         }
     } while(!estBrochetteVide(jeu));
     finDuJeu(jeu);

@@ -2,6 +2,7 @@
 #include "jeu.h"
 #include <cstdlib>
 #include <ctime>
+#include <iostream>
 
 #ifdef DEBUG_PLATEAU
 #include <iostream>
@@ -296,9 +297,11 @@ int comptageVers(const int& joueur, const Jeu& jeu) //, const Jeu& jeu
 {
     int totalVers = 0;
 
-    for(int i = 0; i < jeu.joueurs[joueur].sommetPile; i++)
+    for(int i = 1; i <= jeu.joueurs[joueur].sommetPile; i++)
     {
         totalVers += jeu.joueurs[joueur].pilePickominos[i].nbVers;
+        std::cout << "joueur" << joueur << " : " << jeu.joueurs[joueur].pilePickominos[i].nbVers
+                  << std::endl;
     }
 
     return totalVers;
@@ -307,7 +310,7 @@ int comptageVers(const int& joueur, const Jeu& jeu) //, const Jeu& jeu
 int trouverScoreMaxPickominoJoueur(const int& joueur, const Jeu& jeu)
 {
     int scoreMax = 0;
-    for(int i = 1; i < jeu.joueurs[joueur].sommetPile; i++)
+    for(int i = 1; i <= jeu.joueurs[joueur].sommetPile; i++)
     {
         if(scoreMax < jeu.joueurs[joueur].pilePickominos[i].numero)
         {
