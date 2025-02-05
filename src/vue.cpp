@@ -43,6 +43,7 @@ int demanderDesARetenir()
     {
         cout << "Face dé à retenir (1, 2, 3, 4, 5 ou V, v) : ";
         cin >> faceARetenir;
+        cout << endl;
         if((faceARetenir >= '1' && faceARetenir <= '5') ||
            (faceARetenir == 'V' || faceARetenir == 'v'))
         {
@@ -109,11 +110,11 @@ void viderTampon()
 
 void afficherVersion()
 {
-    cout << "-----------------------------------------------" << endl;
-    cout << "-------------------Pickomino-------------------" << endl;
-    cout << "-----------------------------------------------" << endl;
-    cout << "-----------------Version " << VERSION << "-----------------" << endl;
-    cout << "-----------------------------------------------" << endl;
+    cout << "_________________________________________________" << endl;
+    cout << "|--------------|    Pickomino    |--------------|" << endl;
+    cout << "|--------------|                 |--------------|" << endl;
+    cout << "|--------------|   Version " << VERSION << "   |--------------|" << endl;
+    cout << "‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾\n" << endl;
 }
 
 void afficherRegles()
@@ -196,7 +197,7 @@ string afficherPickominoExemple(const int& numeroExemple)
 
 void afficherDes(const Plateau& plateau)
 {
-    cout << "Dés :    ";
+    cout << "\nDés :    ";
     for(int i = 0; i < plateau.nbDes; i++)
     {
         if(plateau.des[i] == FACE_VER)
@@ -209,14 +210,16 @@ void afficherDes(const Plateau& plateau)
 
 void afficherDesRetenus(const Plateau& plateau)
 {
-    cout << "Dés retenus :    ";
+    cout << "------------------------------------------------------------------" << endl;
+    cout << "| Dés retenus :    ";
     for(int i = 0; i < (NB_DES - plateau.nbDes); i++)
     {
         if(plateau.desRetenus[i] == FACE_VER)
-            cout << "V    ";
+            cout << "V     ";
         else
-            cout << plateau.desRetenus[i] << "    ";
+            cout << plateau.desRetenus[i] << "     ";
     }
+    cout << "\n------------------------------------------------------------------";
     cout << endl;
 }
 
@@ -431,4 +434,14 @@ string afficherPickominoPileJoueur(const int& numero, const int& joueurQuiJoue, 
 string afficherPickominoVide()
 {
     return ("      ");
+}
+
+void afficherGagnant(const std::string& joueur, const int& nombreVer)
+{
+    cout << "Le gagnant est : " << joueur << " avec " << nombreVer << " vers." << endl;
+}
+
+void pasDeGagnant()
+{
+    cout << "Pas de gagnant NULLOS" << endl;
 }

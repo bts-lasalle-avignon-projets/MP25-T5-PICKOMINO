@@ -1,7 +1,7 @@
 #ifndef PLATEAU_H
 #define PLATEAU_H
 
-//#define DEBUG_PLATEAU
+// #define DEBUG_PLATEAU
 
 #include "pickomino.h"
 
@@ -70,5 +70,8 @@ void changerEtatPickominoBrochette(const int& numero, Plateau& plateau, Etat eta
 
 void incrementerSommetPileJoueur(const int& joueurConcerne, Jeu& jeu);
 void decrementerSommetPileJoueur(const int& joueurConcerne, Jeu& jeu);
+
+int compterNbVers(const int& joueur, const Jeu& jeu);
+int trouverScoreMaxPickominoJoueur(const int& joueur, const Jeu& jeu);
 
 #endif

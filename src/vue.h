@@ -37,4 +37,7 @@ std::string afficherPickominoPileJoueur(const int& numero,
                                         const Jeu& jeu);
 std::string afficherPickominoVide();
 
+void afficherGagnant(const std::string& joueur, const int& nombreVer);
+void pasDeGagnant();
+
 #endif

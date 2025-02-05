@@ -114,13 +114,15 @@ $ ./pickomino.out
   - Choix du gagnant en fin de partie
 
     > - [x] Compter le nombre de "vers" total par joueur
-    > - [ ] Vérifier s'il y a une égalité entre plusieur joueurs
-    > - [ ] Si égalité, choisir le joueur qui a le pickomino avec la valeur la plus élevé
-    > - [ ] Sinon, désigner le joueur avec le plus de vers
+    > - [x] Vérifier s'il y a une égalité entre plusieur joueurs
+    > - [x] Si égalité, choisir le joueur qui a le pickomino avec la valeur la plus élevé
+    > - [x] Sinon, désigner le joueur avec le plus de vers
 
   - Affichage du gagnant
 
-    > - [ ] Afficher le joueur gagnant
+    > - [x] Afficher le joueur gagnant
+
+- v1.1 :
 
   - Personnalisation des pseudos
 
