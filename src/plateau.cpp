@@ -293,7 +293,7 @@ void decrementerSommetPileJoueur(const int& joueurConcerne, Jeu& jeu)
     jeu.joueurs[joueurConcerne].sommetPile -= 1;
 }
 
-int comptageVers(const int& joueur, const Jeu& jeu) //, const Jeu& jeu
+int compterNbVers(const int& joueur, const Jeu& jeu) //, const Jeu& jeu
 {
     int totalVers = 0;
 

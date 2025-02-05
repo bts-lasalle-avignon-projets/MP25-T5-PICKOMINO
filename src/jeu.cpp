@@ -34,7 +34,7 @@ void jouerPickomino()
                 break;
         }
     } while(!estBrochetteVide(jeu));
-    finDuJeu(jeu);
+    gererFinDuJeu(jeu);
 #ifdef DEBUG_JEU
     std::cout << "[" << __FILE__ << ":" << __PRETTY_FUNCTION__ << ":" << __LINE__ << "] ";
     std::cout << "fin du jeu" << std::endl;
@@ -132,7 +132,7 @@ void initialiserTour(Jeu& jeu)
     }
 }
 
-void finDuJeu(const Jeu& jeu)
+void gererFinDuJeu(const Jeu& jeu)
 {
     int tableauDesScoresVers[jeu.nbJoueurs];
     int tableauDesvainqueur[jeu.nbJoueurs];

@@ -71,7 +71,7 @@ void changerEtatPickominoBrochette(const int& numero, Plateau& plateau, Etat eta
 void incrementerSommetPileJoueur(const int& joueurConcerne, Jeu& jeu);
 void decrementerSommetPileJoueur(const int& joueurConcerne, Jeu& jeu);
 
-int comptageVers(const int& joueur, const Jeu& jeu);
+int compterNbVers(const int& joueur, const Jeu& jeu);
 int trouverScoreMaxPickominoJoueur(const int& joueur, const Jeu& jeu);
 
 #endif
