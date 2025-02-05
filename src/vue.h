@@ -10,8 +10,16 @@ const std::string ROUGE                = "\x1b[31m";
 const std::string VERT                 = "\x1b[32m";
 const std::string JAUNE                = "\x1b[33m";
 const std::string MAGENTA              = "\x1b[35m";
-const int         NB_LIGNE_PICKOMINO   = 5;
-const int         NB_PICKOMINO_EXEMPLE = 4;
+
+const std::string C_TERMINAL_FOND         = GRIS;
+const std::string C_POLICES_DEFAUT        = BLANC;
+const std::string C_JOUEUR_ACTIF          = JAUNE;
+const std::string C_PICKOMINO_SOMMET_PILE = MAGENTA;
+const std::string C_PICKOMINO_ADVERSE     = ROUGE;
+const std::string C_PICKOMINO_BROCHETTE   = VERT;
+
+const int NB_LIGNE_PICKOMINO   = 5;
+const int NB_PICKOMINO_EXEMPLE = 4;
 
 void changerCouleurParDefaut(const int& numero);
 int  definirNombreJoueurs();

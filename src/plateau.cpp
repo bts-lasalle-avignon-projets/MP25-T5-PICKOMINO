@@ -2,7 +2,6 @@
 #include "jeu.h"
 #include <cstdlib>
 #include <ctime>
-#include <iostream>
 
 #ifdef DEBUG_PLATEAU
 #include <iostream>
@@ -300,8 +299,10 @@ int compterNbVers(const int& joueur, const Jeu& jeu) //, const Jeu& jeu
     for(int i = 1; i <= jeu.joueurs[joueur].sommetPile; i++)
     {
         totalVers += jeu.joueurs[joueur].pilePickominos[i].nbVers;
+#ifdef DEBUG_PLATEAU
         std::cout << "joueur" << joueur << " : " << jeu.joueurs[joueur].pilePickominos[i].nbVers
                   << std::endl;
+#endif
     }
 
     return totalVers;
