@@ -145,7 +145,7 @@ void gererFinDuJeu(const Jeu& jeu)
 
     for(int i = 0; i < jeu.nbJoueurs; i++) // Rempli le tableau de comparaison
     {
-        int totalVers           = comptageVers(i, jeu);
+        int totalVers           = compterNbVers(i, jeu);
         tableauDesScoresVers[i] = totalVers;
     }
     for(int i = 0; i < jeu.nbJoueurs; i++) // Vérifie si tout les joueurs n'ont pas de pickomino
