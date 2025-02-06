@@ -1,16 +1,51 @@
 #ifndef VUE_H
 #define VUE_H
 
-#include "pickomino.h"
-#include "plateau.h"
+#include "jeu.h"
 
+const std::string REINISALISER_COULEUR = "\x1b[0m"; // Réinitialiser la couleur
+const std::string BLANC                = "\x1b[37m";
+const std::string GRIS                 = "\x1b[48;5;234m";
+const std::string ROUGE                = "\x1b[31m";
+const std::string VERT                 = "\x1b[32m";
+const std::string JAUNE                = "\x1b[33m";
+const std::string MAGENTA              = "\x1b[35m";
+
+const std::string C_TERMINAL_FOND         = GRIS;
+const std::string C_POLICES_DEFAUT        = BLANC;
+const std::string C_JOUEUR_ACTIF          = JAUNE;
+const std::string C_PICKOMINO_SOMMET_PILE = MAGENTA;
+const std::string C_PICKOMINO_ADVERSE     = ROUGE;
+const std::string C_PICKOMINO_BROCHETTE   = VERT;
+
+const int NB_LIGNE_PICKOMINO   = 5;
+const int NB_PICKOMINO_EXEMPLE = 4;
+
+void changerCouleurParDefaut(const int& numero);
 int  definirNombreJoueurs();
 int  demanderDesARetenir();
 bool demanderRelancerDes();
+void viderTampon();
 
-void afficherVersion();
-void afficherDes(const Plateau& plateau);
-void afficherDesRetenus(const Plateau& plateau);
-void afficherTotalDesRetenus(const Plateau& plateau);
+void        afficherVersion();
+void        afficherRegles();
+std::string afficherPickominoExemple(const int& numeroExemple);
+void        afficherDes(const Plateau& plateau);
+void        afficherDesRetenus(const Plateau& plateau);
+void        afficherTotalDesRetenus(const Plateau& plateau);
+void        afficherQuelJoueurTour(const int& joueurQuiJoue, const Jeu& jeu);
+void        afficherPileJoueur(const int& joueurQuiJoue, const Jeu& jeu);
+void        afficherBrochette(const int& joueurQuiJoue, const Jeu& jeu);
+std::string afficherPickominoBrochette(const int& numero,
+                                       const int& JoueurQuiJoue,
+                                       const int& numeroLigne,
+                                       const Jeu& jeu);
+std::string afficherPickominoPileJoueur(const int& numero,
+                                        const int& joueurQuiJoue,
+                                        const Jeu& jeu);
+std::string afficherPickominoVide();
+
+void afficherGagnant(const std::string& joueur, const int& nombreVer);
+void pasDeGagnant();
 
 #endif
