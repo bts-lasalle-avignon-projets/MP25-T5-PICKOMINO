@@ -8,7 +8,7 @@ using namespace std;
 void changerCouleurParDefaut(const int& numero)
 {
     if(numero == 0)
-        std::cout << GRIS; // Gris
+        std::cout << C_TERMINAL_FOND; // Gris
     else
         std::cout << REINISALISER_COULEUR; // Réinitialise les couleurs
 }
@@ -147,7 +147,8 @@ string afficherPickominoExemple(const int& numeroExemple)
         description[4] = "\n";
         for(int i = 0; i < NB_LIGNE_PICKOMINO; i++)
         {
-            pickominoDescription += VERT + pickomino[i] + BLANC + description[i];
+            pickominoDescription +=
+              C_PICKOMINO_BROCHETTE + pickomino[i] + C_POLICES_DEFAUT + description[i];
         }
         return (pickominoDescription);
     }
@@ -160,7 +161,8 @@ string afficherPickominoExemple(const int& numeroExemple)
         description[4] = "\n";
         for(int i = 0; i < NB_LIGNE_PICKOMINO; i++)
         {
-            pickominoDescription += ROUGE + pickomino[i] + BLANC + description[i];
+            pickominoDescription +=
+              C_PICKOMINO_ADVERSE + pickomino[i] + C_POLICES_DEFAUT + description[i];
         }
         return (pickominoDescription);
     }
@@ -173,7 +175,8 @@ string afficherPickominoExemple(const int& numeroExemple)
         description[4] = "   \n";
         for(int i = 0; i < NB_LIGNE_PICKOMINO; i++)
         {
-            pickominoDescription += MAGENTA + pickomino[i] + BLANC + description[i];
+            pickominoDescription +=
+              C_PICKOMINO_SOMMET_PILE + pickomino[i] + C_POLICES_DEFAUT + description[i];
         }
         return (pickominoDescription);
     }
@@ -231,7 +234,8 @@ void afficherTotalDesRetenus(const Plateau& plateau)
 void afficherQuelJoueurTour(const int& joueurQuiJoue, const Jeu& jeu)
 {
     cout << "***********************************************\n" << endl;
-    cout << "C'est le tour de " << JAUNE << jeu.joueurs[joueurQuiJoue].nom << BLANC << " !" << endl;
+    cout << "C'est le tour de " << C_JOUEUR_ACTIF << jeu.joueurs[joueurQuiJoue].nom
+         << C_POLICES_DEFAUT << " !" << endl;
     afficherPileJoueur(joueurQuiJoue, jeu);
 }
 
@@ -363,15 +367,15 @@ string afficherPickominoBrochette(const int& numero,
                 .pilePickominos[jeu.joueurs[joueurQuiJoue].sommetPile]
                 .numero)
     {
-        return (MAGENTA + pickomino + BLANC);
+        return (C_PICKOMINO_SOMMET_PILE + pickomino + C_POLICES_DEFAUT);
     }
     else if(jeu.plateau.pickominos[numero].appartenance == Appartenance::JOUEUR)
     {
-        return (ROUGE + pickomino + BLANC);
+        return (C_PICKOMINO_ADVERSE + pickomino + C_POLICES_DEFAUT);
     }
     else
     {
-        return (VERT + pickomino + BLANC);
+        return (C_PICKOMINO_BROCHETTE + pickomino + C_POLICES_DEFAUT);
     }
 }
 
@@ -423,7 +427,7 @@ string afficherPickominoPileJoueur(const int& numero, const int& joueurQuiJoue, 
     }*/
     if(jeu.plateau.pickominos[numero].etat == Etat::VISIBLE)
     {
-        return (MAGENTA + pickomino + BLANC);
+        return (C_PICKOMINO_SOMMET_PILE + pickomino + C_POLICES_DEFAUT);
     }
     else
     {
@@ -439,9 +443,4 @@ string afficherPickominoVide()
 void afficherGagnant(const std::string& joueur, const int& nombreVer)
 {
     cout << "Le gagnant est : " << joueur << " avec " << nombreVer << " vers." << endl;
-}
-
-void pasDeGagnant()
-{
-    cout << "Pas de gagnant NULLOS" << endl;
 }

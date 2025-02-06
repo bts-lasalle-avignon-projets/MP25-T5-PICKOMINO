@@ -138,7 +138,6 @@ void gererFinDuJeu(const Jeu& jeu)
     int tableauDesvainqueur[jeu.nbJoueurs];
     int meilleurTotalVers      = 0;
     int occurence              = 1;
-    int occurenceDe0           = 0;
     int indiceTableauVainqueur = 0;
     int joueurParDefaut        = 0;
     int gagnant                = joueurParDefaut;
@@ -148,52 +147,43 @@ void gererFinDuJeu(const Jeu& jeu)
         int totalVers           = compterNbVers(i, jeu);
         tableauDesScoresVers[i] = totalVers;
     }
-    for(int i = 0; i < jeu.nbJoueurs; i++) // Vérifie si tout les joueurs n'ont pas de pickomino
-    {
-        if(tableauDesScoresVers[i] == 0)
-            occurenceDe0 += 1;
-    }
-    if(occurenceDe0 == jeu.nbJoueurs)
-        pasDeGagnant();
-    else
-    {
-        for(int i = 0; i < jeu.nbJoueurs; i++)
-        {
-            if(meilleurTotalVers < tableauDesScoresVers[i] && tableauDesScoresVers[i] != 0)
-            {
-                meilleurTotalVers = tableauDesScoresVers[i];
-                gagnant           = i;
 
-                occurence              = 1;
-                indiceTableauVainqueur = joueurParDefaut;
-            }
-            else if(meilleurTotalVers == tableauDesScoresVers[i] && tableauDesScoresVers[i] != 0)
+    for(int i = 0; i < jeu.nbJoueurs; i++)
+    {
+        if(meilleurTotalVers < tableauDesScoresVers[i] && tableauDesScoresVers[i] != 0)
+        {
+            meilleurTotalVers = tableauDesScoresVers[i];
+            gagnant           = i;
+
+            occurence              = 1;
+            indiceTableauVainqueur = joueurParDefaut;
+        }
+        else if(meilleurTotalVers == tableauDesScoresVers[i] && tableauDesScoresVers[i] != 0)
+        {
+            occurence += 1;
+            tableauDesvainqueur[indiceTableauVainqueur] = i;
+            indiceTableauVainqueur++;
+        }
+    }
+    if(occurence != 1) // Si égalité
+    {
+        int tableauDesScores[indiceTableauVainqueur];
+        int gagnant         = tableauDesvainqueur[0];
+        int meilleurScore   = 0;
+        tableauDesScores[0] = trouverScoreMaxPickominoJoueur(gagnant, jeu);
+
+        for(int i = 0; i < indiceTableauVainqueur; i++) // Rempli le tableau de comparaison
+        {
+            tableauDesScores[i] = trouverScoreMaxPickominoJoueur(i, jeu);
+        }
+        for(int i = 0; i < indiceTableauVainqueur; i++)
+        {
+            if(meilleurScore < tableauDesScores[i])
             {
-                occurence += 1;
-                tableauDesvainqueur[indiceTableauVainqueur] = i;
-                indiceTableauVainqueur++;
+                gagnant = tableauDesvainqueur[i];
             }
         }
-        if(occurence != 1) // Si égalité
-        {
-            int tableauDesScores[indiceTableauVainqueur];
-            int gagnant         = tableauDesvainqueur[0];
-            int meilleurScore   = 0;
-            tableauDesScores[0] = trouverScoreMaxPickominoJoueur(gagnant, jeu);
-
-            for(int i = 0; i < indiceTableauVainqueur; i++) // Rempli le tableau de comparaison
-            {
-                tableauDesScores[i] = trouverScoreMaxPickominoJoueur(i, jeu);
-            }
-            for(int i = 0; i < indiceTableauVainqueur; i++)
-            {
-                if(meilleurScore < tableauDesScores[i])
-                {
-                    gagnant = tableauDesvainqueur[i];
-                }
-            }
-        }
-
-        afficherGagnant(jeu.joueurs[gagnant].nom, meilleurTotalVers);
     }
+
+    afficherGagnant(jeu.joueurs[gagnant].nom, meilleurTotalVers);
 }

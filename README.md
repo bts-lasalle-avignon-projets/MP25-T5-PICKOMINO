@@ -79,8 +79,6 @@ $ ./pickomino.out
     > - [x] Vérifier si le score total des 🎲 est compris entre 21 et 36.
     > - [x] Si le pickomino n'est pas visible, Vérifier si le pickomino suivant de valeur inférieur est visible (uniquement sur la brochette)
 
-## TODO
-
 - v1.0 :
 
   - Déclencheur de fin du tour d'un joueur
@@ -121,6 +119,8 @@ $ ./pickomino.out
   - Affichage du gagnant
 
     > - [x] Afficher le joueur gagnant
+
+## TODO
 
 - v1.1 :
 
